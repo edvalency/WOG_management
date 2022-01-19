@@ -47,7 +47,7 @@
           <li class="">
             <div class="mr-5">
             <span>Current Balance</span>
-            <h5 class="mb-3 font-18">$48,697</h5>
+            <h5 class="mb-3 font-18" id="sumoffunds">$48,697</h5>
           </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown"
@@ -75,7 +75,7 @@
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand mt-3" style="line-height: 1px;">
             <a href="index.php"style='letter-spacing:0px;'> <img alt="image" src="assets/img/logo.png" class="header-logo mr-2" /><span
-                class="font-12 logoname" id="">Word Of Grace Management System</span>
+                class="font-12 logoname" id="">WOGMS</span>
             </a>
           </div>
           <ul class="sidebar-menu">
@@ -196,7 +196,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                         <div class="card-content">
                           <h5 class="font-15">Welfare total</h5>
-                          <h2 class="mb-3 font-18">$48,697</h2>
+                          <h2 class="mb-3 font-18" id='totalwelfare'></h2>
                           
                         </div>
                       </div>
@@ -350,6 +350,8 @@
     </div>
   </div>
   <script>
+    // sum of tithe and offertory
+    
     // sum of members
     $.ajax({
       type:'post',
@@ -368,6 +370,7 @@
       data: 'offertorysum=all',
       success: function(data, status){
         $('#totaloffertory').text("₵ "+JSON.parse(data));
+        totalbalance += JSON.parse(data);
       }
     })
 
@@ -383,7 +386,22 @@
     })
 
     //sum of welfare
-    
+    $.ajax({
+      type:'post',
+      url: 'ajax.php',
+      data: 'totalwelfare=all',
+      success: function(data,status){
+        $('#totalwelfare').text("₵ "+JSON.parse(data));
+        // console.log(JSON.parse(data));
+      }
+    })
+
+    // current money in account
+    var totalbalance = document.getElementById('totaltithe').innerHTML;
+    console.log(document.getElementById('totaltithe').innerHTML);
+    $('#sumoffunds').text('totalbalance');
+
+
 
 
   </script>

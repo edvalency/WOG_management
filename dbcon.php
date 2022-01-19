@@ -216,6 +216,19 @@ class DB{
         return $totaltithe;
     }
 
+    public function totalwelfare(){
+        $totalwelfare = 0;
+        $query = "SELECT amount FROM welfare";
+        $cmd = $this->con->prepare($query);
+        $cmd->execute();
+        $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($data as $tithe){
+            $totaltithe += $tithe['amount'];
+        }
+        return $totaltithe;
+    }
+
 }
 
 ?> 

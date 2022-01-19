@@ -86,5 +86,10 @@ if(isset($_POST['name'])){
     $data = $db->totalTithe();
     print_r(json_encode($data));
   }
+
+  if(isset($_POST['totalwelfare'])){
+    $data = $db->totalwelfare();
+    print_r(json_encode($data));
+  }
   
 ?>
