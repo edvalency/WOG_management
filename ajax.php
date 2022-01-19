@@ -91,5 +91,14 @@ if(isset($_POST['name'])){
     $data = $db->totalwelfare();
     print_r(json_encode($data));
   }
+
+  if(isset($_POST['totalbal'])){
+    $data = $db->totalbal();
+    print_r(json_encode($data));
+  }
+
+  if(isset($_POST['chart'])){
+    echo "hello there";
+  }
   
 ?>

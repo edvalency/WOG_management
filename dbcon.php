@@ -229,6 +229,33 @@ class DB{
         return $totaltithe;
     }
 
+    public function totalbal(){
+        $totaltithe = 0;
+        $totaloffertory = 0;
+        $totalbal = 0;
+
+        $query = "SELECT amount FROM offertory";
+        $cmd = $this->con->prepare($query);
+        $cmd->execute();
+        $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($data as $amnt){
+            $totaloffertory += $amnt['amount'];
+        }
+
+        $query = "SELECT amount FROM tithes";
+        $cmd = $this->con->prepare($query);
+        $cmd->execute();
+        $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($data as $tithe){
+            $totaltithe += $tithe['amount'];
+        }
+
+        $totalbal = $totaltithe + $totaloffertory;
+        return $totalbal;
+    }
+
 }
 
 ?> 

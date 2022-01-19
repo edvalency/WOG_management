@@ -370,7 +370,7 @@
       data: 'offertorysum=all',
       success: function(data, status){
         $('#totaloffertory').text("₵ "+JSON.parse(data));
-        totalbalance += JSON.parse(data);
+      
       }
     })
 
@@ -397,11 +397,14 @@
     })
 
     // current money in account
-    var totalbalance = document.getElementById('totaltithe').innerHTML;
-    console.log(document.getElementById('totaltithe').innerHTML);
-    $('#sumoffunds').text('totalbalance');
-
-
+    $.ajax({
+      type:'post',
+      url: 'ajax.php',
+      data: 'totalbal=all',
+      success: function(data,status){
+        $('#sumoffunds').text("₵ "+JSON.parse(data));
+      }
+    })
 
 
   </script>
@@ -416,7 +419,4 @@
   <!-- Custom JS File -->
   <script src="assets/js/custom.js"></script>
 </body>
-
-
-<!-- index.html  21 Nov 2019 03:47:04 GMT -->
 </html>
