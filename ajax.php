@@ -96,8 +96,13 @@ if(isset($_POST['name'])){
     print_r(json_encode($data));
   }
 
-  if(isset($_POST['chart'])){
-    $data = $db->months();
+  if(isset($_POST['offertorychart'])){
+    $data = $db->offertorymonths();
+    print_r(json_encode($data));
+  }
+
+  if(isset($_POST['tithechart'])){
+    $data = $db->tithemonths();
     print_r(json_encode($data));
   }
   

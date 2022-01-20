@@ -1,24 +1,18 @@
 "use strict";
 
-const jan='2',feb=0,mar=0,apr=0,may=0,jun=0,jul=0,aug=0,sep=0,oct=0,nov=0,dec=0;
-
 // suming up monthly offertory for chart
 $.ajax({
   type: "post",
   url: "ajax.php",
-  data: "chart=all",
+  data: "offertorychart=all",
   success : function(data, status){
-    console.log(data);
+    var offertoryresults = JSON.parse(data);
+    OffertoryChart(offertoryresults[0],offertoryresults[1],offertoryresults[2],offertoryresults[3],offertoryresults[4],offertoryresults[5],offertoryresults[6],
+      offertoryresults[7],offertoryresults[8],offertoryresults[9],offertoryresults[10],offertoryresults[11]);
   }
 })
 
-// for(var i = 0;i<results.length;i++){
-//   console.log(results);
-// }
-
 function OffertoryChart(jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec){
-
-  console.log("month:"+ aug);
   var options = {
   series: [{
   name: 'Total Month offertory',
@@ -30,14 +24,12 @@ function OffertoryChart(jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec){
 },
 plotOptions: {
   bar: {
-    borderRadius: 10,
-    dataLabels: {
-      position: 'top', // top, center, bottom
-    },
+    borderRadius:5,
+    
   }
 },
 dataLabels: {
-  enabled: true,
+  enabled: false,
   formatter: function (val) {
     return val;
   },
@@ -103,14 +95,25 @@ var chart = new ApexCharts(document.querySelector("#chart1"), options);
 chart.render();
 }
 
-OffertoryChart(jan,feb,0,0,0,0,0,0,0,0,0,0);
+// getting chart data for total tithes
+$.ajax({
+  type: 'post',
+  url: 'ajax.php',
+  data: 'tithechart=all',
+  success: function(data,status){
+    var titheresults = JSON.parse(data);
+    TitheChart(titheresults[0],titheresults[1],titheresults[2],titheresults[3],titheresults[4],titheresults[5],titheresults[6],
+      titheresults[7],titheresults[8],titheresults[9],titheresults[10],titheresults[11]);
+    
+  }
+})
 
-
-function chart2() {
+// displaying chart data on dashboard
+function TitheChart(jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec) {
     var options = {
         series: [{
         name: 'Inflation',
-        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5,0]
+        data: [jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec]
       }],
         chart: {
         height: 400,
@@ -118,16 +121,14 @@ function chart2() {
       },
       plotOptions: {
         bar: {
-          borderRadius: 10,
-          dataLabels: {
-            position: 'top', // top, center, bottom
-          },
+          borderRadius: 5,
+         
         }
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
         formatter: function (val) {
-          return val + "%";
+          return val;
         },
         offsetY: -20,
         style: {
@@ -191,4 +192,3 @@ function chart2() {
       chart.render();
 
 }
-chart2();

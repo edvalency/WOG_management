@@ -174,7 +174,7 @@ class DB{
         
     }
 
-    public function insertGCdues($date,$name,$amount,){
+    public function insertGCdues($date,$name,$amount){
         $conv = explode("-",$date);
         $ndate = date($conv[2]."/".$conv[1]."/".$conv[0]);
         $query = "INSERT INTO gc_dues (date, name, amount) VALUES ('$ndate','$name','$amount')";
@@ -224,9 +224,9 @@ class DB{
         $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($data as $tithe){
-            $totaltithe += $tithe['amount'];
+            $totalwelfare += $tithe['amount'];
         }
-        return $totaltithe;
+        return $totalwelfare;
     }
 
     public function totalbal(){
@@ -256,13 +256,96 @@ class DB{
         return $totalbal;
     }
     
-    public function months(){
+    // getting values for offertory chart
+    public function offertorymonths(){
+        $date = date('Y');
         $total = 0;
         $query = "SELECT * FROM offertory";
         $cmd = $this->con->prepare($query);
         $cmd->execute();
         $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
-        return $data;
+
+        $months = array(0,0,0,0,0,0,0,0,0,0,0,0);
+
+        foreach($data as $offer){
+            $splt = explode("/",$offer["date"]);
+            if($splt[2] == $date){
+                if($splt[1] == "01"){
+                    $months[0] += $offer['amount'];
+                }elseif($splt[1] == "02"){
+                    $months[1] += $offer['amount'];
+                }elseif($splt[1] == "03"){
+                    $months[2] += $offer['amount'];
+                }elseif($splt[1] == "04"){
+                    $months[3] += $offer['amount'];
+                }elseif($splt[1] == "05"){
+                    $months[4] += $offer['amount'];
+                }elseif($splt[1] == "06"){
+                    $months[5] += $offer['amount'];
+                }elseif($splt[1] == "07"){
+                    $months[6] += $offer['amount'];
+                }elseif($splt[1] == "08"){
+                    $months[7] += $offer['amount'];
+                }elseif($splt[1] == "09"){
+                    $months[8] += $offer['amount'];
+                }elseif($splt[1] == "10"){
+                    $months[9] += $offer['amount'];
+                }elseif($splt[1] == "11"){
+                    $months[10] += $offer['amount'];
+                }elseif($splt[1] == "12"){
+                    $months[11] += $offer['amount'];
+                }
+
+            }
+        }
+        return $months;
+
+    }
+
+     // getting values for tithe chart
+     public function tithemonths(){
+         $date = date('Y');
+        $total = 0;
+        $query = "SELECT * FROM tithes";
+        $cmd = $this->con->prepare($query);
+        $cmd->execute();
+        $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
+
+        $months = array(0,0,0,0,0,0,0,0,0,0,0,0);
+
+        foreach($data as $offer){
+            $splt = explode("/",$offer["date"]);
+            if($splt[2] == $date){
+                if($splt[1] == "01"){
+                    $months[0] += $offer['amount'];
+                }elseif($splt[1] == "02"){
+                    $months[1] += $offer['amount'];
+                }elseif($splt[1] == "03"){
+                    $months[2] += $offer['amount'];
+                }elseif($splt[1] == "04"){
+                    $months[3] += $offer['amount'];
+                }elseif($splt[1] == "05"){
+                    $months[4] += $offer['amount'];
+                }elseif($splt[1] == "06"){
+                    $months[5] += $offer['amount'];
+                }elseif($splt[1] == "07"){
+                    $months[6] += $offer['amount'];
+                }elseif($splt[1] == "08"){
+                    $months[7] += $offer['amount'];
+                }elseif($splt[1] == "09"){
+                    $months[8] += $offer['amount'];
+                }elseif($splt[1] == "10"){
+                    $months[9] += $offer['amount'];
+                }elseif($splt[1] == "11"){
+                    $months[10] += $offer['amount'];
+                }elseif($splt[1] == "12"){
+                    $months[11] += $offer['amount'];
+                }
+
+            }
+           
+        }
+        return $months;
 
     }
 
