@@ -255,6 +255,16 @@ class DB{
         $totalbal = $totaltithe + $totaloffertory;
         return $totalbal;
     }
+    
+    public function months(){
+        $total = 0;
+        $query = "SELECT * FROM offertory";
+        $cmd = $this->con->prepare($query);
+        $cmd->execute();
+        $data = $cmd->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+
+    }
 
 }
 

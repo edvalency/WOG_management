@@ -11,7 +11,6 @@ if(isset($_POST['name'])){
   if(isset($_POST['display'])){
     $data = $db->viewOffertory();
     print_r(json_encode($data));
-    // echo 'show them all';
   }
 
   if(isset($_POST['expense'])){
@@ -98,7 +97,8 @@ if(isset($_POST['name'])){
   }
 
   if(isset($_POST['chart'])){
-    echo "hello there";
+    $data = $db->months();
+    print_r(json_encode($data));
   }
   
 ?>

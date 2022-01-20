@@ -6,23 +6,9 @@ const jan='2',feb=0,mar=0,apr=0,may=0,jun=0,jul=0,aug=0,sep=0,oct=0,nov=0,dec=0;
 $.ajax({
   type: "post",
   url: "ajax.php",
-  data: "display=all",
+  data: "chart=all",
   success : function(data, status){
-    var results = JSON.parse(data);
-    for(var i = 0;i<results.length;i++){
-      var month = results[1]['date'].split('/');
-      if(month[1]=='01'){
-        console.log('results amount:'+ parseInt(results[i]['amount']));
-        var amnt = parseInt(results[i]['amount']);
-        var conv = parseInt(jan);
-        conv += amnt;
-        console.log(conv);
-      }
-     
-    }
-    var janc = parseInt(jan);
-    // console.log(typeof(amnt));
-    console.log(jan);
+    console.log(data);
   }
 })
 
