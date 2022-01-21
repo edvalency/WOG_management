@@ -4,7 +4,6 @@ require_once 'dbcon.php';
 $db = new DB();
 
 if(isset($_POST['desc']) && isset($_POST['amount'])){
-//   echo "<script>alert('function works');</script>";
   $db->insertexpenses($_POST['desc'], $_POST['amount']);
   echo "<script>alert('Success');</script>";
 }
@@ -329,7 +328,6 @@ if(isset($_POST['desc']) && isset($_POST['amount'])){
         data:'expense=Edwin Ofosuhene',
         success:function(data,status){
           const det = JSON.parse(data);
-          console.log(det.length);
           if(det.length == 0){
               $('#mty').text('No data recorded yet');
           }
@@ -360,7 +358,6 @@ if(isset($_POST['desc']) && isset($_POST['amount'])){
     $('#addoffertory').click(function(){
       var expense = prompt("Enter today's expense");
       $('#ModalCenter').show();
-      console.log(expense);
     });
   </script>
   <!-- General JS Scripts -->
