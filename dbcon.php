@@ -24,15 +24,6 @@ class DB{
         $cmd = $this->con->prepare($query);
         $cmd->execute();
     }
-
-    // public function insert($fullname,$dob,$phone,$gender,$hometown,$region,$residence,$email,$fname,$fstat,$mname,$mstat,$nok,$nok_phone,$relation,$nok_email,$baptism_stat,$date_baptised,$yom,$profession,$occupation,$company_name,$em_stat){
-    //     $query = "INSERT INTO members(fullname,dob,contact,gender,hometown,region,residence,email,fathersname,fatherstat,mothersname,
-    //     motherstat,next_of_kin,next_of_kin_contact,relation_to_nok,email_of_nok,dept,baptism_stat,date_baptised, `yom`, `profession`, `present_occupation`,
-    //      `name_of_company`, `employment_stat`) VALUES ('$fullname','$dob','$phone','$gender','$hometown','$region','$residence','$email','$fname','$fstat','$mname','$mstat','$nok','$nok_phone','$relation','$nok_email','$baptism_stat','$date_baptised','$yom','$profession','$occupation','$company_name','$em_stat')";
-    //     $cmd = $this->con->prepare($query);
-    //     $cmd->execute();
-       
-    // }
     
     public function ins(){
         $query= "INSERT INTO `members` (`fullname`, `dob`, `contact`, `gender`, `hometown`, `region`, `residence`, `email`, `fathersname`, `fatherstat`, `mothersname`, `motherstat`, `next_of_kin`, `next_of_kin_contact`, `relation_to_nok`, `email_of_nok`, `dept`, `baptism_stat`, `date_baptised`, `yom`, `profession`, `present_occupation`, `name_of_company`, `employment_stat`) 
@@ -133,14 +124,6 @@ class DB{
         $cmd->execute();
         
     }
-
-    // public function insertGCrecord($name,$amount){
-    //     $date = date('d/m/Y');
-    //     $query = "INSERT INTO gc_dues (name, date, amount) VALUES ('$name','$date','$amount')";
-    //     $cmd = $this->con->prepare($query);
-    //     $cmd->execute();
-        
-    // }
 
     public function totalMonth(){
         $query = "SELECT date, amount FROM tithes";
@@ -347,6 +330,14 @@ class DB{
         }
         return $months;
 
+    }
+
+    public function login($username, $password){
+        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        $cmd = $this->con->prepare($query);
+        $cmd->execute();
+        $data = $cmd->rowCount();
+        return $data;
     }
 
 }

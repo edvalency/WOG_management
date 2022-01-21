@@ -78,34 +78,34 @@ $allData = $db->viewGCRecords();
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
+          <li class="menu-header">Main</li>
             <li class="dropdown">
-              <a href="index.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              <a href="index.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>Members</span></a>
+                  data-feather="users"></i><span>Members</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="members.php">Members List</a></li>
+                <li ><a class="nav-link" href="members.php">Members List</a></li>
                 <li><a class="nav-link" href="addmember.php">Add member</a></li>
                 
               </ul>
             </li>
             <li class="dropdown">
-              <a href="offertory.php" class="menu-toggle nav-link"><i data-feather="command"></i><span>Offertory</span></a>
+              <a href="offertory.php" class="menu-toggle nav-link"><i data-feather="dollar-sign"></i><span>Offertory</span></a>
             </li>
             <li class="dropdown">
-              <a href="tithes.php" class="menu-toggle nav-link"><i data-feather="mail"></i><span>Tithes</span></a>
+              <a href="tithes.php" class="menu-toggle nav-link"><i data-feather="credit-card"></i><span>Tithes</span></a>
               
             </li>
             <li class="dropdown">
-              <a href="welfare.php" class="menu-toggle"><i data-feather="copy"></i><span>Welfare</span></a>
+              <a href="welfare.php" class="menu-toggle"><i data-feather="umbrella"></i><span>Welfare</span></a>
             </li>
             <li class="dropdown">
-              <a href="expenses.php" class="menu-toggle nav-link"><i data-feather="command"></i><span>Expenses</span></a>
+              <a href="expenses.php" class="menu-toggle nav-link"><i data-feather="trending-down"></i><span>Expenses</span></a>
             </li>
             <li class="dropdown active">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="anchor"></i><span>Game Changers
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>Game Changers
               </span></a>
               <ul class="dropdown-menu">
                 <li class="active" ><a class="nav-link" href="gc_members.php">Members List</a></li>
@@ -178,7 +178,6 @@ $allData = $db->viewGCRecords();
             </div>
             <!-- list table -->
             <!-- single mmeber details -->
-            <!-- <div class="col-6 col-xs-6 container" > -->
               <div class="card card-primary container col-6" id='onemem'>
               <button class="btn col-2 btn-success mt-2" id='back' onclick='list()'>Return</button>
                 <p class='font-30 align-self-center font-weight-bold mt-5' id='memberName'></p>
@@ -191,8 +190,6 @@ $allData = $db->viewGCRecords();
                   </div>
                 </div>
               </div>
-
-            <!-- </div> -->
             <!-- single member details end -->
 
           </div>

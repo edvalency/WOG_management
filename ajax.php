@@ -52,6 +52,11 @@ if(isset($_POST['name'])){
     print_r(json_encode($data));
   }
 
+  if(isset($_POST['search'])){
+    $data = $db->searchData($_POST['search']);
+    print_r(json_encode($data));
+  }
+
   if(isset($_POST['show'])){
     $data = $db->viewMembers();
     print_r(json_encode($data));
@@ -104,6 +109,12 @@ if(isset($_POST['name'])){
   if(isset($_POST['tithechart'])){
     $data = $db->tithemonths();
     print_r(json_encode($data));
+  }
+
+  if(isset($_POST['username']) && isset($_POST['password'])){
+    $data = $db->login($_POST['username'],$_POST['password']);
+    // print_r(json_encode($data));
+    echo $data;
   }
   
 ?>

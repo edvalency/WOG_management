@@ -1,10 +1,8 @@
 <?php
 require_once 'dbcon.php';
-
 $db = new DB();
 
 if(isset($_POST['amount'])){
-  // echo "<script>alert('function works');</script>";
   $db->addoffertory($_POST['amount']);
   echo "<script>alert('Success');</script>";
 }
@@ -13,9 +11,6 @@ if(isset($_POST['amount'])){
 
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- blank.php  21 Nov 2019 03:54:41 GMT -->
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -46,12 +41,6 @@ if(isset($_POST['amount'])){
               </a></li>
             <li>
               <form class="form-inline mr-auto">
-                <!-- <div class="search-element">
-                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
-                  <button class="btn" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div> -->
               </form>
             </li>
           </ul>
@@ -92,13 +81,13 @@ if(isset($_POST['amount'])){
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
+          <li class="menu-header">Main</li>
             <li class="dropdown">
-              <a href="index.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              <a href="index.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>Members</span></a>
+                  data-feather="users"></i><span>Members</span></a>
               <ul class="dropdown-menu">
                 <li ><a class="nav-link" href="members.php">Members List</a></li>
                 <li><a class="nav-link" href="addmember.php">Add member</a></li>
@@ -106,20 +95,20 @@ if(isset($_POST['amount'])){
               </ul>
             </li>
             <li class="dropdown active">
-              <a href="offertory.php" class="menu-toggle nav-link"><i data-feather="command"></i><span>Offertory</span></a>
+              <a href="offertory.php" class="menu-toggle nav-link"><i data-feather="dollar-sign"></i><span>Offertory</span></a>
             </li>
             <li class="dropdown">
-              <a href="tithes.php" class="menu-toggle nav-link"><i data-feather="mail"></i><span>Tithes</span></a>
+              <a href="tithes.php" class="menu-toggle nav-link"><i data-feather="credit-card"></i><span>Tithes</span></a>
               
             </li>
             <li class="dropdown">
-              <a href="welfare.php" class="menu-toggle"><i data-feather="copy"></i><span>Welfare</span></a>
+              <a href="welfare.php" class="menu-toggle"><i data-feather="umbrella"></i><span>Welfare</span></a>
             </li>
             <li class="dropdown">
-              <a href="expenses.php" class="menu-toggle nav-link"><i data-feather="command"></i><span>Expenses</span></a>
+              <a href="expenses.php" class="menu-toggle nav-link"><i data-feather="trending-down"></i><span>Expenses</span></a>
             </li>
             <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="anchor"></i><span>Game Changers
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>Game Changers
               </span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="gc_members.php">Members List</a></li>
@@ -137,7 +126,7 @@ if(isset($_POST['amount'])){
           <div class="section-body">
             <!-- add content here -->
             <div class="row ">
-              <div class="col-6 col-md-6 col-lg-6 container">
+              <div class="col-6 col-xs-12 col-lg-6 container">
                 <div class="card">
                   <div class="card-header">
                     <h4>Offertory</h4>
@@ -211,10 +200,6 @@ if(isset($_POST['amount'])){
                   <button type="submit" class="btn btn-primary m-t-15 waves-effect">Enter</button>
                 </form>
               </div>
-              <!-- <div class="modal-footer bg-whitesmoke br">
-                <button type="button" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div> -->
             </div>
           </div>
         </div>
@@ -348,15 +333,10 @@ if(isset($_POST['amount'])){
         }
       })
     }
-   
-    // console.log(today);
      $('#ModalCenter').hide();
     $('#addoffertory').click(function(){
       var offertory = prompt("Enter today's offertory");
       $('#ModalCenter').show();
-
-      console.log(offertory);
-
     });
   </script>
   <!-- General JS Scripts -->
@@ -368,7 +348,4 @@ if(isset($_POST['amount'])){
   <!-- Custom JS File -->
   <script src="assets/js/custom.js"></script>
 </body>
-
-
-<!-- blank.php  21 Nov 2019 03:54:41 GMT -->
 </html>

@@ -1,6 +1,5 @@
 <?php
 require_once "dbcon.php";
-
 $db= new DB();
 
 $fullname = $_POST['fullname']; $dob = $_POST['dob']; $phone = $_POST['phone']; $gender = $_POST['gender'];
@@ -14,8 +13,6 @@ if (isset($_POST['submit'])){
   $db->insert($fullname,$dob,$phone,$gender,$hometown,$region,$residence,$email,$fname,$fstat,$mname,$mstat,$nok,$nok_phone,$relation
   ,$nok_email,$dept,$baptism_stat,$date_baptised,$yom,$profession,$occupation,$company_name,$em_stat);
 
-  // $db->ins();
-
   echo "<script>alert('done')</script>";
 }
 ?>
@@ -24,7 +21,7 @@ if (isset($_POST['submit'])){
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>WOGMS Management System</title>
+  <title>WOGMS </title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="assets/css/app.min.css">
   <!-- Template CSS -->
@@ -81,34 +78,34 @@ if (isset($_POST['submit'])){
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
+          <li class="menu-header">Main</li>
             <li class="dropdown">
-              <a href="index.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              <a href="index.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown active">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>Members</span></a>
+                  data-feather="users"></i><span>Members</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="members.php">Members List</a></li>
+                <li ><a class="nav-link" href="members.php">Members List</a></li>
                 <li class="active"><a class="nav-link" href="addmember.php">Add member</a></li>
                 
               </ul>
             </li>
             <li class="dropdown">
-              <a href="offertory.php" class="menu-toggle nav-link"><i data-feather="command"></i><span>Offertory</span></a>
+              <a href="offertory.php" class="menu-toggle nav-link"><i data-feather="dollar-sign"></i><span>Offertory</span></a>
             </li>
             <li class="dropdown">
-              <a href="tithes.php" class="menu-toggle nav-link"><i data-feather="mail"></i><span>Tithes</span></a>
+              <a href="tithes.php" class="menu-toggle nav-link"><i data-feather="credit-card"></i><span>Tithes</span></a>
               
             </li>
             <li class="dropdown">
-              <a href="welfare.php" class="menu-toggle"><i data-feather="copy"></i><span>Welfare</span></a>
+              <a href="welfare.php" class="menu-toggle"><i data-feather="umbrella"></i><span>Welfare</span></a>
             </li>
             <li class="dropdown">
-              <a href="expenses.php" class="menu-toggle nav-link"><i data-feather="command"></i><span>Expenses</span></a>
+              <a href="expenses.php" class="menu-toggle nav-link"><i data-feather="trending-down"></i><span>Expenses</span></a>
             </li>
             <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="anchor"></i><span>Game Changers
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>Game Changers
               </span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="gc_members.php">Members List</a></li>
@@ -126,7 +123,7 @@ if (isset($_POST['submit'])){
             <!-- add content here -->
             <!-- Form start -->
             <form class="" method="POST" action="#">
-            <div class="col-6 container col-md-6 col-lg-6">
+            <div class="col-12 container col-xs-12 col-lg-6">
               <div class="card">
                 <div class="card-header">
                   <h4>Membership form</h4>
@@ -284,19 +281,6 @@ if (isset($_POST['submit'])){
                       </div>
                     </div>
                     </div>
-                   
-                  
-                  
-                  <!-- <div class="form-group">
-                    <label for="">Department</label>
-                    <select name="program" id="">
-                      <option value="">Select your region</option>
-                      <option value="Computer Science">Computer Science</option>
-                      <option value="Business Administration">Business Administration</option>
-                      <option value="Electrical Engineering">Electrical Engineering</option>
-                      <option value="Procurement">Procurement</option>
-                    </select>
-                  </div> -->
                 </div>
                 <h5 class="font-18 ">Academic/Job Profile</h5>
                 <div class="row mt-4">
@@ -313,9 +297,9 @@ if (isset($_POST['submit'])){
                     <input type="text" name="company_name" id="" class="form-control" >
                   </div>
                 </div>
-                <div class="row">
-                  <h3 class="col-2 font-15 mr-2">Employment Status</h3>
-                  <div class="form-group row ">
+                <div class="row d-grid">
+                  <h3 class="col-2 font-15 mr-2 mb-5">Employment Status</h3>
+                  <div class="form-group row mt-2">
                     <div class="pretty p-default p-round mt-2 mr-3">
                       <input type="radio" name="em_stat" value="Self Employed" >
                         <label>Self Employed</label>
@@ -340,21 +324,12 @@ if (isset($_POST['submit'])){
                       <input type="radio" name="em_stat" value="Student" >
                         <label>Student</label>
                     </div>
-
                   </div>
                 </div>
-                <!-- <h5 class="font-18 ">Social Profile</h5>
-                <div class="row">
-                  <div class="form-group">
-
-                  </div>
-                </div> -->
                 </div>
                 <button type="submit" name="submit" class="btn btn-lg btn-primary">Submit</button>
               </div>
-              
             </div>
-            
           </form>
             <!-- Form End -->
           </div>

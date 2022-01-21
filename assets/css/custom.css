@@ -3,6 +3,12 @@
 
 /*# sourceMappingURL=custom.css.map */
  /* The Modal (background) */
+ @media(max-width:500px){
+.container{
+  width: 100%;
+}
+}
+
  .modl {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
