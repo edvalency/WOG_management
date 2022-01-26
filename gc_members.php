@@ -126,7 +126,7 @@ $allData = $db->viewGCRecords();
             <div class="col-12 col-xs-12" id="memlist">
               <div class="card card-primary">
                 <div class="card-header">
-                  <h4>All Members</h4>
+                  <h4>Game Changers</h4>
                 </div>
                 <div class="card-body p-5">
                   <div class="table-responsive">
@@ -178,8 +178,8 @@ $allData = $db->viewGCRecords();
             </div>
             <!-- list table -->
             <!-- single mmeber details -->
-              <div class="card card-primary container col-6" id='onemem'>
-              <button class="btn col-2 btn-success mt-2" id='back' onclick='list()'>Return</button>
+              <div class="card card-primary container col-lg-6" id='onemem'>
+              <button class="btn col-sm-2 btn-success mt-2" id='back' onclick='list()'>Return</button>
                 <p class='font-30 align-self-center font-weight-bold mt-5' id='memberName'></p>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -337,7 +337,7 @@ $allData = $db->viewGCRecords();
       });
     }
     function list(){
-      window.location="members.php";
+      window.location="gc_members.php";
     }
     
   </script>

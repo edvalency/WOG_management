@@ -134,7 +134,7 @@ if(isset($_POST['desc']) && isset($_POST['amount'])){
           <div class="section-body">
             <!-- add content here -->
             <div class="row ">
-              <div class="col-6 col-md-6 col-lg-6 container">
+              <div class="col-lg-6 col-md-6 col-lg-6 container">
                 <div class="card">
                   <div class="card-header">
                     <h4>Expenses</h4>

@@ -194,7 +194,7 @@ if(isset($_POST['amount'])){
                           <i class="fas fa-coins"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="amount" name="amount">
+                      <input type="float" class="form-control" placeholder="amount" name="amount">
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary m-t-15 waves-effect">Enter</button>

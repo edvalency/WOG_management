@@ -130,7 +130,7 @@ if(isset($_POST['amount']) && isset($_POST['date'])){
           <div class="section-body">
             <!-- add content here -->
             <div class="row " id="allmembers">
-              <div class="col-6 container">
+              <div class="col-lg-6 container">
                 <div class="card" >
                   <div class="card-header">
                     <h4>Game Changers Dues</h4>
@@ -167,15 +167,15 @@ if(isset($_POST['amount']) && isset($_POST['date'])){
               
             </div>
              <!-- single member tithe details -->
-             <div class="card col-4 container" id="member_welfare">
+             <div class="card col-xs-4 container" id="member_welfare">
               <h4 class="align-self-center mt-3 mb-4" id='membername'></h4>
               <div>
-                <button onclick="listall()" class="btn btn-primary ml-4 mb-4"><i class="fas fa-less-than"></i></button>
+                <button onclick="listall()" class="btn btn-primary ml-4 mb-4">Back</button>
                 <!-- <button class="btn btn-success ml-2 mb-4">Record Payment</button> -->
                 <button type="button" class="btn btn-success ml-2 mb-4 " data-toggle="modal"
                       data-target="#exampleModalCenter">Record dues</button>
               </div>
-              <div class="card-body">
+              <div class="card-body col-xs-6">
                 <div class="table-responsive">
                   <table class="table table-bordered table-md">
                     <tr>

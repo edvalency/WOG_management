@@ -177,10 +177,10 @@ $allData = $db->viewAll();
             </div>
             <!-- list table -->
             <!-- single mmeber details -->
-              <div class="card card-primary container col-6" id='onemem'>
-              <button class="btn col-2 btn-success mt-2" id='back' onclick='list()'>Return</button>
+              <div class="card card-primary container col-lg-6" id='onemem'>
+              <button class="btn col-sm-2 btn-success mt-2" id='back' onclick='list()'>Return</button>
                 <p class='font-30 align-self-center font-weight-bold mt-5' id='memberName'></p>
-                <div class="card-body">
+                <div class="card-body col-xs-6">
                   <div class="table-responsive">
                     <table class="table table-bordered" >
                       <tbody id="memtable">

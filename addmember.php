@@ -145,7 +145,7 @@ if (isset($_POST['submit'])){
                            <input type="tel" name="phone" id="phone" class="form-control " >
                       </div>
                     </div>
-                    <div class="form-group col-3 mt-4 mr-2 row ml-3">
+                    <div class="form-group mt-4 mr-2 row ml-3">
                       <div class="pretty p-default p-round ml-2 mt-2">
                         <input type="radio" name="gender" value="Male" >
                           <label>Male</label>
@@ -200,7 +200,7 @@ if (isset($_POST['submit'])){
                       <label for="">Father's Name</label>
                        <input type="text" name="fathers_name" id="" class="form-control" >
                    </div>
-                   <div class="form-group col-3 row ml-3 mt-4">
+                   <div class="form-group row ml-3 mt-4">
                     <div class="pretty p-default p-round ml-2 mt-2">
                       <input type="radio" name="dad_stat" value="alive" >
                         <label>Alive</label>
@@ -216,7 +216,7 @@ if (isset($_POST['submit'])){
                      <label for="">Mother's Name</label>
                       <input type="text" name="mothers_name" id="" class="form-control" >
                   </div>
-                  <div class="form-group col-3 row ml-3 mt-4">
+                  <div class="form-group row ml-3 mt-4">
                    <div class="pretty p-default p-round ml-2 mt-2">
                      <input type="radio" name="mom_stat" value="alive" >
                        <label>Alive</label>
@@ -244,13 +244,13 @@ if (isset($_POST['submit'])){
                 </div>
                 <div class="form-group col-5">
                   <label for="">Email of Kin Contact</label>
-                  <input type="tel" name="nok_email" id="" class="form-control" >
+                  <input type="text" name="nok_email" id="" class="form-control" >
                 </div>
                 </div>
                 <h5 class="font-18 ">Church Profile</h5>
                 <div class="row mt-3">
                 <div class="col-3 mr-3">
-                <label for="" class="font-13" style="font-weight: bold;">Department</label>
+                <label for="" class="" style="font-weight: bold;">Department</label>
                     <select name="department" id="" class='form-control col-12 p-1 mr-0'>
                       <option value="">select</option>
                       <option value="Men''s Fellowship">Men's Fellowship</option>
@@ -259,12 +259,12 @@ if (isset($_POST['submit'])){
                       <option value="Tachmonites">Tachmonites</option>
                     </select>
                     </div>
-                   <div class="form-group col-xs-2">
+                   <div class="form-group col-xs-2 mr-4">
                       <label for="">Date of Baptism</label>
                       <input type="date" name="baptism_date" id="" class="form-control" >
                     </div>
 
-                    <div class="form-group col-3 ml-2">
+                    <div class="form-group ml-2 mr-2">
                     <label for="">Year of Membership</label>
                     <input type="number" min="1900" max="2099" step="1" name="yom" value="2021" class="form-control col-8" >
                   </div>
@@ -298,8 +298,8 @@ if (isset($_POST['submit'])){
                   </div>
                 </div>
                 <div class="row d-grid">
-                  <h3 class="col-2 font-15 mr-2 mb-5">Employment Status</h3>
-                  <div class="form-group row mt-2">
+                  <h3 class="font-15 mr-2 mb-2">Employment Status</h3>
+                  <div class="form-group row mt-2 col-lg-12">
                     <div class="pretty p-default p-round mt-2 mr-3">
                       <input type="radio" name="em_stat" value="Self Employed" >
                         <label>Self Employed</label>

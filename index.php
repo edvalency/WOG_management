@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- index.html  21 Nov 2019 03:44:50 GMT -->
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -236,16 +233,6 @@
                 </div>
               </div>
             </div>
-            <!-- chart 3 -->
-            <!-- <div class="col-12 col-sm-12 col-lg-4">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Chart</h4>
-                </div>
-                <div class="card-body">
-                  <div id="chart3" class="chartsh"></div>
-                </div>
-              </div> -->
           </div>
         </section>
         <div class="settingSidebar">
@@ -413,7 +400,7 @@
   <!-- JS Libraies -->
   <script src="assets/bundles/apexcharts/apexcharts.min.js"></script>
   <!-- Page Specific JS File -->
-  <script src="assets/js/test.js"></script>
+  <script src="assets/js/index.js"></script>
   <!-- Template JS File -->
   <script src="assets/js/scripts.js"></script>
   <!-- Custom JS File -->
