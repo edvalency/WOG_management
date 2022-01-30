@@ -81,14 +81,14 @@ $db = new DB();
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.php"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
+            <a href="dashboard.php"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
                 class="logo-name">WOGMS</span>
             </a>
           </div>
           <ul class="sidebar-menu">
           <li class="menu-header">Main</li>
             <li class="dropdown">
-              <a href="index.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
+              <a href="dashboard.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i

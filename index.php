@@ -71,14 +71,14 @@
       <div class="main-sidebar sidebar-style-2" style="line-height: 1px;">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand mt-3" style="line-height: 1px;">
-            <a href="index.php"style='letter-spacing:0px;'> <img alt="image" src="assets/img/logo.png" class="header-logo mr-2" /><span
+            <a href="dashboard.php"style='letter-spacing:0px;'> <img alt="image" src="assets/img/logo.png" class="header-logo mr-2" /><span
                 class="logo-name" id="">WOGMS</span>
             </a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
             <li class="dropdown active">
-              <a href="index.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
+              <a href="dashboard.php" class="nav-link"><i data-feather="home"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i

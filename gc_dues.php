@@ -485,9 +485,6 @@ function member(member){
 //  displaying today's date in modal
 var dte = new Date();
 $('#date').val(dte.toISOString().slice(0, 10));
-// $('#date').val(moment().format("L"));
-console.log(moment().format("1/MM/YYYY"));
-// console.log(dte.toISOString().slice(0, 10));
 
   </script>
   <!-- General JS Scripts -->
