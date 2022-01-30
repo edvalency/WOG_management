@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 19, 2022 at 12:09 PM
+-- Generation Time: Jan 30, 2022 at 06:29 AM
 -- Server version: 10.5.13-MariaDB-0ubuntu0.21.10.1
 -- PHP Version: 8.0.8
 
@@ -45,13 +45,6 @@ CREATE TABLE `gc_dues` (
   `amount` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `gc_dues`
---
-
-INSERT INTO `gc_dues` (`date`, `name`, `amount`) VALUES
-('14/01/2022', 'Edwin Ofosuhene', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -85,14 +78,6 @@ CREATE TABLE `members` (
   `employment_stat` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `members`
---
-
-INSERT INTO `members` (`fullname`, `dob`, `contact`, `gender`, `hometown`, `region`, `residence`, `email`, `fathersname`, `fatherstat`, `mothersname`, `motherstat`, `next_of_kin`, `next_of_kin_contact`, `relation_to_nok`, `email_of_nok`, `dept`, `baptism_stat`, `date_baptised`, `yom`, `profession`, `present_occupation`, `name_of_company`, `employment_stat`) VALUES
-('Edwin Ofosuhene', '1977-12-30', '+233553798229', 'Male', 'Akim Oda', 'Eastern', 'GA-077-6362', 'edwinofosuhene31@gmail.com', 'Evans Abrokwah', 'dead', 'Comfort Adzomadi', 'alive', 'Morgan Abrokwah', '+233244291433', 'Nephew', 'morgan@gmail.com', 'Game Changers Generation', 'Yes', '2021-12-01', '2021', 'Web Developer', 'Web Development', 'Self', 'Student'),
-('Alex Abrokwah', '1978-06-29', '+233249889357', 'Male', 'Akim Oda', 'Eastern', 'GA-076-0325', 'recordscloud0@gmail.com', 'Evans Abrokwah', 'dead', 'Comfort Adzomadi', 'alive', 'Morgan Abrokwah', '+233244291433', 'Son', 'morgan@gmail.com', 'Men\'s Fellowship', 'Yes', '2008-12-16', '1998', 'Teacher', 'Teaching', 'Accra Technical University', 'Employee');
-
 -- --------------------------------------------------------
 
 --
@@ -104,14 +89,6 @@ CREATE TABLE `offertory` (
   `amount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `offertory`
---
-
-INSERT INTO `offertory` (`date`, `amount`) VALUES
-('14/01/2022', 146),
-('17/01/2022', 11);
-
 -- --------------------------------------------------------
 
 --
@@ -121,13 +98,6 @@ INSERT INTO `offertory` (`date`, `amount`) VALUES
 CREATE TABLE `test` (
   `profileimg` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `test`
---
-
-INSERT INTO `test` (`profileimg`) VALUES
-('hey there');
 
 -- --------------------------------------------------------
 
@@ -141,15 +111,23 @@ CREATE TABLE `tithes` (
   `amount` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tithes`
+-- Table structure for table `users`
 --
 
-INSERT INTO `tithes` (`date`, `name`, `amount`) VALUES
-('14/11/2021', 'Edwin Ofosuhene', '12'),
-('23/12/2021', 'Edwin Ofosuhene', '10'),
-('14/01/2022', 'Edwin Ofosuhene', '11'),
-('14/01/2022', 'Alex Abrokwah', '122');
+CREATE TABLE `users` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`) VALUES
+('wogms', 'wogms');
 
 -- --------------------------------------------------------
 
@@ -163,18 +141,6 @@ CREATE TABLE `welfare` (
   `name` varchar(50) NOT NULL,
   `amount` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `welfare`
---
-
-INSERT INTO `welfare` (`month`, `year`, `name`, `amount`) VALUES
-('February', '2021', 'Edwin Ofosuhene', 10),
-('March', '2021', 'Edwin Ofosuhene', 10),
-('April', '2021', 'Edwin Ofosuhene', 10),
-('May', '2021', 'Edwin Ofosuhene', 10),
-('April', '2021', '', 1),
-('January', '2022', 'Alex Abrokwah', 10);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
