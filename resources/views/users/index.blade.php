@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('gen')
+{{-- @section('gen')
     active
-@endsection
-@section('memlist')
+@endsection --}}
+@section('users')
     active
 @endsection
 @section('search')

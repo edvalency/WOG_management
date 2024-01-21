@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-<div class="main-content">
   <section class="section">
     <div class="section-body">
      <!-- single mmeber details -->
@@ -363,8 +362,7 @@
         </div>
 
     </form>
-  </div>
-</div>
+  </section>
 
     
           <!-- </div> -->

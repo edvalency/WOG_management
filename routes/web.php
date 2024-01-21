@@ -7,13 +7,14 @@ use App\Http\Controllers\WohController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TitheController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\WelfareController;
-use App\Http\Controllers\OffertoryController;
 
+use App\Http\Controllers\OffertoryController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\GameChangerDueController;
-use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::get('/add_member', [MemberController::class, 'create'])->name('members.ad
 Route::post('/add_member', [MemberController::class, 'store'])->name('members.save');
 
 Route::get('/all_members', [MemberController::class, 'index'])->name('members.show');
+Route::post('/import_members', [MemberController::class, 'upload'])->name('members.import');
 Route::get('/members', [MemberController::class, 'show'])->name('members.back');
 Route::post('/members/search', [MemberController::class, 'search'])->name('search_member');
 Route::post('/member/update', [MemberController::class, 'update'])->name('member.update');
@@ -110,6 +112,9 @@ Route::middleware('woh')->group(function () {
 Route::get('/single_member/{name}', [MemberController::class, 'single'])->name('mem.single');
 Route::get('/single_gcmember/{name}', [MemberController::class, 'gcsingle'])->name('gc.single');
 
+Route::get('attendance',[AttendanceController::class,'index'])->name('attendance');
+Route::get('attendance/mark/{attendee}',[AttendanceController::class,'mark_attendance'])->name('attendance.mark');
+Route::get('attendance/unmark/{attendee}',[AttendanceController::class,'unmark_attendance'])->name('attendance.unmark');
 
 
 

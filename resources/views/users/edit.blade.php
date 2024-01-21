@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@section('users')
+    active
+@endsection
 @section('content')
     <div class="col-lg-5 col-sm-8 card card-body">
         <h3>Edit User Details</h3>

@@ -119,6 +119,10 @@
                                         href="{{ route('welfare.expense') }}">Expenses</a></li>
                             </ul>
                         </li>
+                        <li class="dropdown @yield('attendance')">
+                            <a href="{{ route('attendance') }}" class="menu-toggle nav-link"><i
+                                    data-feather="edit"></i><span>Attendance Report</span></a>
+                        </li>
 
                         <li class="dropdown @yield('gcdown')">
                             <a href="#" class="menu-toggle nav-link has-dropdown"><i
@@ -153,7 +157,7 @@
                                         href="{{ route('woh.expenses') }}">Expenses</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown @yield('offertory')">
+                        <li class="dropdown @yield('users')">
                             <a href="{{ route('users') }}" class="menu-toggle nav-link"><i
                                     data-feather="command"></i><span>Users</span></a>
                         </li>

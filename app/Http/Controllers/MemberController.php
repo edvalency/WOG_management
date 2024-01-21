@@ -1,13 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Member;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\Crypt;
 
 class MemberController extends Controller
@@ -227,6 +230,70 @@ class MemberController extends Controller
         return redirect('/all_members');
     }
 
+    public function search(Request $request){
+        $data = Member::where('fullname', 'like', "%" . $request->input('search') . "%")->get();
+         return view('member.members')->with('data', $data);
+     }
+ 
+     public function look_up(Request $request){
+         $data = Member::where('fullname', 'like', "%" . $request->input('name') . "%")->get();
+          return response()->json($data);
+     }
+
+     public function upload(Request $request){
+        if (file_exists($request->file)) {
+            // dd($request->img->getClientOriginalName());
+            // try {
+            //     Excel::import(new PartakersImport($event), $request->img);
+            //     return $this->successResponse('Import successful');
+            // } catch (Exception $e) {
+            //     return $this->errorResponse('Check excel file column names if they match selected event data fields', $e);
+            // }
+            // $data = fastexcel()->importSheets($request->img);
+            $sheets = (new FastExcel)->importSheets($request->file);
+            // $event_date = Carbon::parse(getEvent($event)->event_date)->toDateTimeString();
+            foreach ($sheets as $sheet) {
+                try {
+                    foreach ($sheet as $person) {
+                        // $code = generateNumber();
+                        // $codeavail = DB::table('event_participants')->where('code', $code)->exists();
+                        // if ($codeavail) {
+                        //     $code = generateNumber();
+                        // }
+
+                        // foreach ($person as $key => $value) {
+                        //     if ($key != "") {
+                        //         $columns[$key] = $person[$key];
+                        //     }
+                        // }
+                        $columns['fullname'] = $person['fullname'];
+                        // $columns['event_id'] = $event;
+                        // $columns['name'] = $person["name"];
+                        // $columns['phone'] = "0" . $person['phone'];
+                        // $columns['email'] = $person['email'];
+                        $columns['mask'] = Str::orderedUuid();
+                        $columns['created_at'] = Carbon::now()->toDateTimeString();
+                        // $columns['phone'] = formatNumber($columns['phone']);
+                        // dd($columns); 
+
+                        // $attendee = saveAttendee($columns);
+                        DB::table('members')->insert($columns);
+                        // $ticket = makeTicket($request->name, $code);
+                        // sendViaMail($person, $getEvent, $code, $ticket['file']);
+                        // $message = "Kindly use the code " . $code . " to checkin for service and events";
+                        // sendEventNotification($getEvent, (object)$person, $message);
+                    }
+                } catch (Exception $e) {
+                    return back()->with('error',$e->getMessage());
+                }
+            }
+            // logUserActivity("Imported an excel data");
+            return back()->with('success','Upload Successful');
+        } else {
+            return back()->with('error','No file uploaded');
+        }
+     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -238,13 +305,5 @@ class MemberController extends Controller
         //
     }
 
-    public function search(Request $request){
-       $data = Member::where('fullname', 'like', "%" . $request->input('search') . "%")->get();
-        return view('member.members')->with('data', $data);
-    }
-
-    public function look_up(Request $request){
-        $data = Member::where('fullname', 'like', "%" . $request->input('name') . "%")->get();
-         return response()->json($data);
-     }
+    
 }

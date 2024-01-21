@@ -37,7 +37,7 @@
                             @foreach ($member as $value)
                                 <tr>
                                     <td>{{ $value->fullname }}</td>
-                                    <td><a href="{{ route('welfare.single', ['name' => $value->mask]) }}"
+                                    <td><a href="{{ route('welfare.single', $value->mask) }}"
                                             class="btn btn-outline-dark">View Payments</a>
                                         <a href="{{ route('welfare.support', $value->mask) }}"
                                             class="btn btn-outline-dark ml-5">Record financial support</a>

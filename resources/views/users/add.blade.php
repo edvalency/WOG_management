@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@section('users')
+    active
+@endsection
 @section('content')
                 <div class="col-lg-6 col-sm-12 card card-body">
                     <h3>Add User</h3>

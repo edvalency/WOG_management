@@ -58,10 +58,9 @@ class WelfareController extends Controller
     {
        
         $member = DB::table("members")->where('mask', $gtt)->first();
-
         $data = DB::table('welfares')
-            ->where('member_id', $member->id)
-            ->join('members','members.id','welfares.member_id')
+            ->where('member_id', $gtt)
+            ->join('members','members.mask','welfares.member_id')
             ->select('members.fullname','members.mask','welfares.amount','welfares.created_at')
             ->get();
 
