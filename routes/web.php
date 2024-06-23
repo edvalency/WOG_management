@@ -81,6 +81,8 @@ Route::middleware('auth')->group(function () {
         Route::prefix('revenue')->group(function () {
             Route::get('/', 'index')->name("revenue.show");
             Route::post('save', 'store')->name("revenue.save");
+            Route::get('{id}/edit', 'store')->name("revenue.edit");
+            Route::get('{id}/delete', 'delete')->name("revenue.delete");
         });
     });
 

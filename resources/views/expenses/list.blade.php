@@ -9,7 +9,7 @@
         <div id="kt_app_content_container" class="app-container  container-fluid ">
 
             <!--begin::Navbar-->
-            <div class="card mb-6 mb-xl-9">
+            {{-- <div class="card mb-6 mb-xl-9">
                 <div class="card-body pt-9 pb-0">
                     <!--begin::Details-->
                     <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
@@ -290,7 +290,7 @@
                     </ul>
                     <!--end::Nav-->
                 </div>
-            </div>
+            </div> --}}
             <!--end::Navbar-->
             <!--begin::Table-->
             <div class="card card-flush mt-6 mt-xl-9">
