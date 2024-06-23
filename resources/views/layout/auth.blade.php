@@ -45,25 +45,6 @@ License: For each use you must have a valid license purchased only from above li
     <link href="../../assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
-
-    <!--begin::Google tag-->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37564768-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-37564768-1');
-    </script>
-    <!--end::Google tag-->
-    <script>
-        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
-        if (window.top != window.self) {
-            window.top.location.replace(window.self.location.href);
-        }
-    </script>
 </head>
 <!--end::Head-->
 
@@ -103,16 +84,16 @@ License: For each use you must have a valid license purchased only from above li
         <!--begin::Authentication - Sign-up -->
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <!--begin::Aside-->
-            <div class="d-flex flex-column flex-lg-row-auto bg-dark w-xl-600px positon-xl-relative">
+            <div class="d-flex flex-column flex-lg-row-auto bg-warning w-xl-600px positon-xl-relative">
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
                     <!--begin::Header-->
                     <div class="d-flex flex-row-fluid flex-column text-center p-5 p-lg-10 pt-lg-20">
                         <!--begin::Logo-->
-                        <a href="../../index-2.html" class="py-2 py-lg-20">
-                            <img alt="Logo" src="../../assets/media/icons/truck.png"
-                                class="theme-light-show h-150px h-lg-150px" />
-                            <img alt="Logo" src="../../assets/media/icons/truck.png"
+                        <a href="#" class="py-2 py-lg-20">
+                            <img alt="Logo" src="../../assets/media/logo.png"
+                                class="theme-light-show h-350px h-lg-350px" />
+                            <img alt="Logo" src="../../assets/media/logo.png"
                                 class="theme-dark-show h-150px h-lg-150px" />
                         </a>
                         <!--end::Logo-->
@@ -129,12 +110,6 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Description-->
                     </div>
                     <!--end::Header-->
-
-                    <!--begin::Illustration-->
-                    <div class="d-none d-lg-block d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px"
-                        style="background-image: url(../../assets/media/illustrations/dozzy-1/17.png)">
-                    </div>
-                    <!--end::Illustration-->
                 </div>
                 <!--end::Wrapper-->
             </div>

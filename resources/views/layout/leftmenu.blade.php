@@ -1,13 +1,13 @@
-<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
+<div id="kt_app_sidebar" class="app-sidebar flex-column bg-dark" data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <a href="/">
+            {{-- <<img alt="Logo" src="assets/media/logo.png" class="h-25px app-sidebar-logo-default" /> --}}
+            {{-- <img alt="Logo" src="assets/media/logo.png" class="h-20px app-sidebar-logo-minimize" /> --}}
             <span class="text-white h-25px app-sidebar-logo-default" style="font-size: 19px;">WOGMS</span>
-            <!-- <img alt="Logo" src="assets/media/logos/default-dark.svg" class="h-25px app-sidebar-logo-default" />
-            <img alt="Logo" src="assets/media/logos/default-small.svg" class="h-20px app-sidebar-logo-minimize" /> -->
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
