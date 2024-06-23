@@ -14,8 +14,8 @@
         <!--end::Sidebar mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="/index" class="d-lg-none">
-                <img alt="Logo" src="assets/media/logos/default-small.svg" class="h-30px" />
+            <a href="{{route("home")}}" class="d-lg-none">
+                <img alt="Logo" src="assets/media/logo.png" class="h-50px" />
             </a>
         </div>
         <!--end::Mobile logo-->
@@ -436,7 +436,7 @@
 
                                         </div>
                                         <!--end::Item-->
-                                      
+
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
                                             <!--begin::Symbol-->

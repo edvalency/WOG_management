@@ -71,7 +71,7 @@
                     <!--end::Input group-->
 
                     <!--begin::Heading-->
-                    <div class="mb-10 text-center">
+                    {{-- <div class="mb-10 text-center">
                         <!--begin::Link-->
                         <div class="text-gray-500 fw-semibold fs-4">
                             Don't have an account?
@@ -81,7 +81,7 @@
                             </a>
                         </div>
                         <!--end::Link-->
-                    </div>
+                    </div> --}}
                     <!--end::Heading-->
                     <!--begin::Actions-->
                     <div class="text-center">

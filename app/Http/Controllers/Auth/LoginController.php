@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -43,8 +44,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
-        Validator::make($request->all(),['email'=>"required",'password'=>'required']);
+    public function login(Request $request)
+    {
+        Validator::make($request->all(), ['email' => "required", 'password' => 'required']);
 
         // $pass = DB::table('users')->where('email',$request->email)->first();
         //  if(Hash::check($request->password, $pass['password'])){
@@ -52,12 +54,11 @@ class LoginController extends Controller
         // }else{
         //     return back()->with('error',"Email or Password incorrect");
         // }
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect(route('home'));
-        }else{
-            return back()->with('error',"Email or Password incorrect");
+        } else {
+            return back()->with('error', "Email or Password incorrect");
         }
-
-
     }
+
 }

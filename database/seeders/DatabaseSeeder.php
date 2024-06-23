@@ -22,22 +22,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        
         DB::table('users')->insert([
             'mask' => Str::orderedUuid(),
             'name' => 'Edwin Ofosuhene',
             'email' => 'edwinofosuhene31@gmail.com',
-            'username'=> 'edvalency',
+            'phone' => '0553798229',
             'roles' => json_encode(["admin","gcg","welfare","woh"]),
             'password' => Hash::make('poster456'),
-        ]);
-
-        DB::table('users')->insert([
-            'mask' => Str::orderedUuid(),
-            'name' => 'Seth Korveh',
-            'email' => 'torgbui@gmail.com',
-            'username'=> 'dcn_seth',
-            'roles' => json_encode(["admin","gcg","welfare","woh"]),
-            'password' => Hash::make('dcn_seth'),
         ]);
     }
 }

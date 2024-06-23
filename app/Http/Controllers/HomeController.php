@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Faker\Extension\Extension;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Faker\Extension\Extension;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -166,5 +168,13 @@ class HomeController extends Controller
         //         $msg = 'MongoDB is not accessible. Error: ' . $e->getMessage();
         //     }
         //     return ['msg' => $msg];
+    }
+
+    public function destroy()
+    {
+        Auth::logout();
+        Session::flush();
+
+        return redirect('/');
     }
 }

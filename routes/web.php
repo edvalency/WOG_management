@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Models\Offertory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-
+    Route::get('logout', [HomeController::class, 'destroy'])->name('logout');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'main'])->name('home');
     Route::get('/users', [HomeController::class, 'users'])->name('users');
     Route::get('/user-add', [HomeController::class, 'userAdd'])->name('user.add');
