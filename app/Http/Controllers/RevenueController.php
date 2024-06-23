@@ -27,4 +27,10 @@ class RevenueController extends Controller
 
         return back()->with('success',"Revenue recored");
     }
+
+    public function delete($id){
+        DB::table('revenue')->where('id',$id)->delete();
+
+        return back()->with('success',"Records deleted");
+    }
 }

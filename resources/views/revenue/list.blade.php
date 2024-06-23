@@ -6,7 +6,7 @@
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content  flex-column-fluid ">
         <!--begin::Content container-->
-        <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <div id="kt_app_content_container" class="app-container  container-xxl ">
 
             <!--begin::Table-->
             <div class="card card-flush mt-6 mt-xl-9">
@@ -27,19 +27,6 @@
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar my-1">
                         <!--begin::Select-->
-                        <div class="me-6 my-1">
-                            <select id="kt_filter_year" name="year" data-control="select2" data-hide-search="true"
-                                class="w-125px form-select form-select-solid form-select-sm">
-                                <option value="All" selected>All time</option>
-                                <option value="thisyear">This year</option>
-                                <option value="thismonth">This month</option>
-                                <option value="lastmonth">Last month</option>
-                                <option value="last90days">Last 90 days</option>
-                            </select>
-                        </div>
-                        <!--end::Select-->
-
-                        <!--begin::Select-->
                         <div class="me-4 my-1">
                             <select id="kt_filter_orders" name="orders" data-control="select2" data-hide-search="true"
                                 class="w-125px form-select form-select-solid form-select-sm">
@@ -51,7 +38,6 @@
                             </select>
                         </div>
                         <!--end::Select-->
-
                         <!--begin::Search-->
                         <div class="d-flex align-items-center position-relative my-1">
                             <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3"><span class="path1"></span><span
@@ -111,9 +97,25 @@
                                         <td>{{ $revenue->type }}</td>
                                         <td>{{ $revenue->amount }}</td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pen"></i> Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
-                                                Delete</a>
+                                            <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
+                                            <!--begin::Menu-->
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="{{ route('revenue.edit', $revenue->id) }}" class="menu-link px-3">Edit</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="{{route('revenue.delete',$revenue->id)}}" onclick="return confirm('Confirm you want to delete?')" class="menu-link px-3"
+                                                        >Delete</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                            <!--end::Menu-->
                                         </td>
                                     </tr>
                                 @endforeach
