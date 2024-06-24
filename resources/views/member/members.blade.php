@@ -28,7 +28,7 @@
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container  container-fluid ">
 
-           
+
             <!--begin::Table-->
             <div class="card card-flush mt-6 mt-xl-9">
                 <div class="d-flex justify-content-end align-items-end flex-wrap mb-2 mt-4"> <a
@@ -146,11 +146,6 @@
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="{{ route('mem.single', $member->mask) }}" class="menu-link px-3">View</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{route('mem.single',$member->mask)}}" class="menu-link px-3">Edit</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->

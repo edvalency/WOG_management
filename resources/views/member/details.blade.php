@@ -16,13 +16,13 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Nemae</h1>
+                        Profile</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="/" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('home') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -32,17 +32,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="/organization/overview" class="text-muted text-hover-primary">Organization</a>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">
-                            <a href="/organization/list" class="text-muted text-hover-primary">List</a>
+                            <a href="{{ route('members.show') }}" class="text-muted text-hover-primary">Members</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -57,17 +47,7 @@
                     <!--end::Breadcrumb-->
                 </div>
                 <!--end::Page title-->
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <!--begin::Secondary button-->
-                    <a href="/" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary">Browse
-                        Shipments</a>
-                    <!--end::Secondary button-->
-                    <!--begin::Primary button-->
-                    <a href="/organization/edit" class="btn btn-sm fw-bold btn-primary">Edit Organization</a>
-                    <!--end::Primary button-->
-                </div>
-                <!--end::Actions-->
+
             </div>
             <!--end::Toolbar container-->
             <!--begin::Content container-->
@@ -81,101 +61,89 @@
                     <!--begin::Card-->
                     <div class="card mb-5 mb-xl-8">
                         <!--begin::Card body-->
-                        <div class="card-body pt-15">
-                            <!--begin::Summary-->
-                            <div class="d-flex flex-center flex-column mb-5">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-100px symbol-circle mb-7">
-                                    <img src="{{ asset('profile/' . $member->profileImg) }}" alt="image" />
-                                </div>
-                                <!--end::Avatar-->
-                                <!--begin::Name-->
-                                <a href="#"
-                                    class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{ $member->fullname }}</a>
-                                <!--end::Name-->
-                                <!--begin::Position-->
-                                {{-- @foreach (json_decode($member->load_type) as $load_type)
-                            <div class="fs-5 fw-semibold text-muted mb-6">{{$load_type}}</div>
-                            @endforeach --}}
-                                <!--end::Position-->
-
-                            </div>
-                            <!--end::Summary-->
-                            <!--begin::Details toggle-->
-                            <div class="d-flex flex-stack fs-4 py-3">
-                                <div class="fw-bold rotate collapsible" data-bs-toggle="collapse"
-                                    href="#kt_customer_view_details" role="button" aria-expanded="false"
-                                    aria-controls="kt_customer_view_details">Details
-                                    <span class="ms-2 rotate-180">
-                                        <i class="ki-duotone ki-down fs-3"></i>
-                                    </span>
-                                </div>
-                                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit customer details">
-                                    <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_update_customer">Edit</a>
-                                </span>
-                            </div>
-                            <!--end::Details toggle-->
-                            <div class="separator separator-dashed my-3"></div>
-                            <!--begin::Details content-->
-                            <div id="kt_customer_view_details" class="collapse show">
-                                <div class="py-5 fs-6">
-
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Member ID</div>
-                                    <div class="text-gray-600">                                        <input type="text" class="form-control" name="membership_no" value="{{ $member->hometown }}" id="">
+                        <form action="{{ route('member.update',$member->mask) }}" method="post">
+                            @csrf
+                            <div class="card-body pt-15">
+                                <!--begin::Summary-->
+                                <div class="d-flex flex-center flex-column mb-5">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-100px symbol-circle mb-7">
+                                        <img src="{{ asset('profile/' . $member->profileImg) }}" alt="image" />
                                     </div>
-                                    <!--begin::Details item-->
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Phone number</div>
-                                    <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="contact" value="{{ $member->hometown }}" id="">
+                                    <!--end::Avatar-->
 
-                                    </div>
-                                    <!--begin::Details item-->
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Email</div>
-                                    <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="email" value="{{ $member->email }}" id="">
-
-                                    </div>
-                                    <!--begin::Details item-->
-                                     <!--begin::Details item-->
-                                     <div class="fw-bold mt-5">Date of Birth</div>
-                                     <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="dob" value="{{ $member->dob }}" id="">
-
-                                     </div>
-                                     <!--begin::Details item-->
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Address</div>
-                                    <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="residence" value="{{ $member->residence }}" id="">
-                                        </div>
-                                    <!--begin::Details item-->
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Region</div>
-                                    <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="region" value="{{ $member->region }}" id="">
-                                        </div>
-                                    <!--begin::Details item-->
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Country</div>
-                                    <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="hometown" value="{{ $member->hometown }}" id="">
-                                        </div>
-                                    <!--begin::Details item-->
-                                    <!--begin::Details item-->
-                                    <div class="fw-bold mt-5">Marital Status</div>
-                                    <div class="text-gray-600">
-                                        <input type="text" class="form-control" name="marital" value="{{ $member->marital }}" id="">
-
-                                        </div>
-                                    <!--begin::Details item-->
                                 </div>
+                                <!--end::Summary-->
+
+                                <div class="separator separator-dashed my-3"></div>
+                                <!--begin::Details content-->
+                                <div id="kt_customer_view_details" class="">
+                                    <div class="py-6 fs-6">
+                                         <!--begin::Details item-->
+                                         <div class="fw-bold mt-5">Name</div>
+                                         <div class="text-gray-600">
+                                             <input type="text" class="form-control" name="fullname"
+                                                 value="{{ $member->fullname }}" id="">
+                                         </div>
+                                         <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Member ID</div>
+                                        <div class="text-gray-600">
+                                            <input type="text" class="form-control" name="membership_no"
+                                                value="{{ $member->membership_no }}" id="" disabled>
+                                        </div>
+                                        <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Phone number</div>
+                                        <div class="text-gray-600">
+                                            <input type="text" class="form-control" name="contact"
+                                                value="{{ $member->contact }}" id="">
+
+                                        </div>
+                                        <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Email</div>
+                                        <div class="text-gray-600">
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{ $member->email }}" id="">
+
+                                        </div>
+                                        <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Date of Birth</div>
+                                        <div class="text-gray-600">
+                                            <input type="date" class="form-control" name="dob"
+                                                value="{{ $member->dob }}" id="">
+                                        </div>
+                                        <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Address</div>
+                                        <div class="text-gray-600">
+                                            <input type="text" class="form-control" name="residence"
+                                                value="{{ $member->residence }}" id="">
+                                        </div>
+                                        <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Region</div>
+                                        <div class="text-gray-600">
+                                            <input type="text" class="form-control" name="region"
+                                                value="{{ $member->region }}" id="">
+                                        </div>
+                                        <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Marital Status</div>
+                                        <div class="text-gray-600">
+                                            <input type="text" class="form-control" name="marital"
+                                                value="{{ $member->marital }}" id="">
+
+                                        </div>
+                                        <!--begin::Details item-->
+                                    </div>
+                                </div>
+                                <!--end::Details content-->
+                                <button type="submit" class="btn btn-primary col-lg-12 col-md-12">Update</button>
                             </div>
-                            <!--end::Details content-->
-                        </div>
+                        </form>
                         <!--end::Card body-->
                     </div>
                     <!--end::Card-->
@@ -195,118 +163,13 @@
                         <!--begin:::Tab item-->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
-                                href="#kt_customer_view_overview_events_and_logs_tab">Invoices</a>
+                                href="#kt_customer_view_overview_events_and_logs_tab">Tithes & Welfares</a>
                         </li>
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab"
-                                href="#kt_customer_view_overview_statements">Statements</a>
-                        </li>
-                        <!--end:::Tab item-->
-                        <!--begin:::Tab item-->
-                        <li class="nav-item ms-auto">
-                            <!--begin::Action menu-->
-                            <a href="#" class="btn btn-primary ps-7" data-kt-menu-trigger="click"
-                                data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">Actions
-                                <i class="ki-duotone ki-down fs-2 me-0"></i></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold py-4 w-250px fs-6"
-                                data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">Payments</div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="/organization/invoices/add" class="menu-link px-5">Create invoice</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a data-bs-toggle="modal" data-bs-target="#kt_modal_adjust_balance"
-                                        class="menu-link flex-stack px-5">Create payments
-                                        <span class="ms-2" data-bs-toggle="tooltip"
-                                            title="Specify a target name for future usage and reference">
-                                            <i class="ki-duotone ki-information fs-7">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                            </i>
-                                        </span></a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5" data-kt-menu-trigger="hover"
-                                    data-kt-menu-placement="left-start">
-                                    <a href="#" class="menu-link px-5">
-                                        <span class="menu-title">Subscription</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <!--begin::Menu sub-->
-                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Apps</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Billing</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Statements</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content px-3">
-                                                <label class="form-check form-switch form-check-custom form-check-solid">
-                                                    <input class="form-check-input w-30px h-20px" type="checkbox"
-                                                        value="" name="notifications" checked="checked"
-                                                        id="kt_user_menu_notifications" />
-                                                    <span class="form-check-label text-muted fs-6"
-                                                        for="kt_user_menu_notifications">Notifications</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu sub-->
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu separator-->
-                                <div class="separator my-3"></div>
-                                <!--end::Menu separator-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">Account</div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link px-5">Reports</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5 my-1">
-                                    <a href="#" class="menu-link px-5">Account Settings</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link text-danger px-5">Delete Organization</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                            <!--end::Menu-->
+                                href="#kt_customer_view_overview_statements">Attendance</a>
                         </li>
                         <!--end:::Tab item-->
                     </ul>
@@ -316,256 +179,202 @@
                         <!--begin:::Tab pane-->
                         <div class="tab-pane fade show active" id="kt_customer_view_overview_tab" role="tabpanel">
                             <!--begin::Card-->
-
-                            <!--begin::Order summary-->
-                            <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
-                                <!--begin::Order details-->
-                                <div class="card card-flush py-4 flex-row-fluid">
-                                    <!--begin::Card header-->
-                                    <div class="card-header">
-                                        <div class="card-title">
-                                            <h2>Parents Details</h2>
+                            <form action="{{ route('member.update',$member->mask) }}" method="post">
+                                @csrf
+                                <!--begin::Order summary-->
+                                <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
+                                    <!--begin::Order details-->
+                                    <div class="card card-flush py-4 flex-row-fluid">
+                                        <!--begin::Card header-->
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Parents and Next of Kin Details</h2>
+                                            </div>
                                         </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body pt-0">
+                                            <!--begin::Tax-->
+                                            <div class="d-flex flex-wrap gap-5 mb-3">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="required form-label">Father's name</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" name="fathersname" class="form-control mb-2"
+                                                        placeholder="Father's name" value="{{ $member->fathersname }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Is he still alive?</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <select name="fatherstat" class="form-control mb-2" id="">
+                                                        <option value="">--select--</option>
+                                                        <option value="Yes" {{$member->fatherstat == 'Yes' ? "selected": ''}}>Yes</option>
+                                                        <option value="No" {{$member->fatherstat == 'No' ? "selected": ''}}>No</option>
+                                                    </select>
+                                                    <!--end::Input-->
+
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end:Tax-->
+                                            <!--begin::Tax-->
+                                            <div class="d-flex flex-wrap gap-5">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="required form-label">Mother's name</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" name="mothersname" class="form-control mb-2"
+                                                        placeholder="Father's name" value="{{ $member->mothersname }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Is she still alive?</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <select name="motherstat" class="form-control mb-2" id="">
+                                                        <option value="">--select--</option>
+                                                        <option value="Yes" {{$member->motherstat == 'Yes' ? "selected": ''}}>Yes</option>
+                                                        <option value="No" {{$member->motherstat == 'No' ? "selected": ''}}>No</option>
+                                                    </select>
+                                                    <!--end::Input-->
+                                                    <!--begin::Description-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end:Tax-->
+
+                                            <!--end::Card body-->
+                                            <div class="d-flex flex-wrap gap-5 mb-10 mt-5">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Name of next of Kin</label>
+                                                    <!--end::Label-->
+                                                    <input type="text" class="form-control" name="next_of_kin"
+                                                        id="" value="{{ $member->next_of_kin }}">
+                                                    @error('next_of_kin')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+
+
+                                                </div>
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Contact of next of kin</label>
+                                                    <!--end::Label-->
+                                                    <input type="tel" class="form-control" name="next_of_kin_contact"
+                                                        id="" value={{ $member->next_of_kin_contact }}>
+                                                    @error('next_of_kin_contact')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Relationship to next of kin</label>
+                                                    <!--end::Label-->
+                                                    <input type="text" class="form-control" name="relation_to_nok"
+                                                        value="{{ $member->relation_to_nok }}">
+                                                    <!--begin::Description-->
+                                                    @error('relation_to_nok')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
+                                    <!--begin::Documents-->
+                                </div>
+                                <!--end::Order summary-->
+                                <div class="card pt-4 mb-6 mb-xl-9 mt-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0">
+                                        <!--begin::Card title-->
+                                        <div class="card-title">
+                                            <h2>Employent Information</h2>
+                                        </div>
+                                        <!--end::Card title-->
                                     </div>
                                     <!--end::Card header-->
                                     <!--begin::Card body-->
                                     <div class="card-body pt-0">
-                                         <!--begin::Tax-->
-                                         <div class="d-flex flex-wrap gap-5 mb-3">
+                                        <!--begin::Tax-->
+                                        <div class="d-flex flex-wrap gap-5 mb-3">
                                             <!--begin::Input group-->
                                             <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Father's name</label>
+                                                <label class="required form-label">Profession</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="fathersname" class="form-control mb-2"
-                                                placeholder="Father's name" value="{{$member->fathersname}}"/>
+                                                <input type="text" name="profession" class="form-control mb-2"
+                                                    placeholder="Profession" value="{{ $member->profession }}" />
                                                 <!--end::Input-->
                                             </div>
                                             <!--end::Input group-->
                                             <!--begin::Input group-->
                                             <div class="fv-row w-100 flex-md-root">
                                                 <!--begin::Label-->
-                                                <label class="required form-label">Is he still alive?</label>
+                                                <label class="required form-label">Occupation</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <select name="fatherstat" class="form-control mb-2" id="">
-                                                    <option value="">--select--</option>
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="No">No</option>
-                                                </select>
+                                                <input name="present_occupation" class="form-control mb-2" id=""
+                                                    value="{{ $member->present_occupation }}" />
+
                                                 <!--end::Input-->
 
                                             </div>
                                             <!--end::Input group-->
                                         </div>
                                         <!--end:Tax-->
-                                         <!--begin::Tax-->
-                                         <div class="d-flex flex-wrap gap-5">
+                                        <!--begin::Tax-->
+                                        <div class="d-flex flex-wrap gap-5">
                                             <!--begin::Input group-->
                                             <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Mother's name</label>
+                                                <label class="required form-label">Company Name</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="fathersname" class="form-control mb-2"
-                                                placeholder="Father's name" value="{{$member->mothersname}}"/>
+                                                <input type="text" name="name_of_company" class="form-control mb-2"
+                                                    placeholder="Company's name" value="{{ $member->name_of_company }}" />
                                                 <!--end::Input-->
                                             </div>
                                             <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <!--begin::Label-->
-                                                <label class="required form-label">Is he still alive?</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <select name="motherstat" class="form-control mb-2" id="">
-                                                    <option value="">--select--</option>
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="No">No</option>
-                                                </select>
-                                                <!--end::Input-->
-                                                <!--begin::Description-->
-                                            </div>
-                                            <!--end::Input group-->
+
                                         </div>
                                         <!--end:Tax-->
 
-                                        <!--end::Card body-->
-                                        <div class="d-flex flex-wrap gap-5 mb-10 mt-5">
-                                            <!--begin::Input group-->
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <!--begin::Label-->
-                                                <label class="form-label">Name of next of Kin</label>
-                                                <!--end::Label-->
-                                                <input type="text" class="form-control"
-                                                    name="next_of_kin"
-                                                    id="" value="{{$member->next_of_kin}}">
-                                                @error('next_of_kin')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
 
-
-                                            </div>
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <!--begin::Label-->
-                                                <label class="form-label">Contact of next of kin</label>
-                                                <!--end::Label-->
-                                                <input type="tel" class="form-control"
-                                                    name="next_of_kin_contact" id="" value={{$member->next_of_kin_contact}}>
-                                                @error('next_of_kin_contact')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <!--begin::Label-->
-                                                <label class="form-label">Relationship to next of kin</label>
-                                                <!--end::Label-->
-                                                <input type="text" class="form-control"
-                                                    name="relation_to_nok" value="{{$member->relation_to_nok}}">
-                                                <!--begin::Description-->
-                                                @error('license_number')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
-                                        <!--end::Input group-->
                                     </div>
                                     <!--end::Card body-->
                                 </div>
-                                <!--begin::Documents-->
-                            </div>
-                            <!--end::Order summary-->
-                            <div class="card pt-4 mb-6 mb-xl-9 mt-10">
-                                <!--begin::Card header-->
-                                <div class="card-header border-0">
-                                    <!--begin::Card title-->
-                                    <div class="card-title">
-                                        <h2>Employent Information</h2>
-                                    </div>
-                                    <!--end::Card title-->
+                                <!--end::Card-->
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
-                                <!--end::Card header-->
-                               <!--begin::Card body-->
-                               <div class="card-body pt-0">
-                                <!--begin::Tax-->
-                                <div class="d-flex flex-wrap gap-5 mb-3">
-                                   <!--begin::Input group-->
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <label class="required form-label">Profession</label>
-                                       <!--end::Label-->
-                                       <!--begin::Input-->
-                                       <input type="text" name="profession" class="form-control mb-2"
-                                       placeholder="Profession" value="{{$member->profession}}"/>
-                                       <!--end::Input-->
-                                   </div>
-                                   <!--end::Input group-->
-                                   <!--begin::Input group-->
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <!--begin::Label-->
-                                       <label class="required form-label">Occupation</label>
-                                       <!--end::Label-->
-                                       <!--begin::Input-->
-                                       <input name="occupation" class="form-control mb-2" id="" value="{{$member->occupation}}" />
-
-                                       <!--end::Input-->
-
-                                   </div>
-                                   <!--end::Input group-->
-                               </div>
-                               <!--end:Tax-->
-                                <!--begin::Tax-->
-                                <div class="d-flex flex-wrap gap-5">
-                                   <!--begin::Input group-->
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <label class="required form-label">Company Name</label>
-                                       <!--end::Label-->
-                                       <!--begin::Input-->
-                                       <input type="text" name="fathersname" class="form-control mb-2"
-                                       placeholder="Father's name" value="{{$member->company}}"/>
-                                       <!--end::Input-->
-                                   </div>
-                                   <!--end::Input group-->
-                                   <!--begin::Input group-->
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <!--begin::Label-->
-                                       <label class="required form-label">Is he still alive?</label>
-                                       <!--end::Label-->
-                                       <!--begin::Input-->
-                                       <select name="motherstat" class="form-control mb-2" id="">
-                                           <option value="">--select--</option>
-                                           <option value="Yes">Yes</option>
-                                           <option value="No">No</option>
-                                       </select>
-                                       <!--end::Input-->
-                                       <!--begin::Description-->
-                                   </div>
-                                   <!--end::Input group-->
-                               </div>
-                               <!--end:Tax-->
-
-                               <!--end::Card body-->
-                               <div class="d-flex flex-wrap gap-5 mb-10 mt-5">
-                                   <!--begin::Input group-->
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <!--begin::Label-->
-                                       <label class="form-label">Name of next of Kin</label>
-                                       <!--end::Label-->
-                                       <input type="text" class="form-control"
-                                           name="next_of_kin"
-                                           id="" value="{{$member->next_of_kin}}">
-                                       @error('next_of_kin')
-                                           <span class="text-danger">{{ $message }}</span>
-                                       @enderror
-
-
-                                   </div>
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <!--begin::Label-->
-                                       <label class="form-label">Contact of next of kin</label>
-                                       <!--end::Label-->
-                                       <input type="tel" class="form-control"
-                                           name="next_of_kin_contact" id="" value={{$member->next_of_kin_contact}}>
-                                       @error('next_of_kin_contact')
-                                           <span class="text-danger">{{ $message }}</span>
-                                       @enderror
-                                   </div>
-                                   <!--end::Input group-->
-                                   <!--begin::Input group-->
-                                   <div class="fv-row w-100 flex-md-root">
-                                       <!--begin::Label-->
-                                       <label class="form-label">Relationship to next of kin</label>
-                                       <!--end::Label-->
-                                       <input type="text" class="form-control"
-                                           name="relation_to_nok" value="{{$member->relation_to_nok}}">
-                                       <!--begin::Description-->
-                                       @error('license_number')
-                                           <span class="text-danger">{{ $message }}</span>
-                                       @enderror
-                                   </div>
-                                   <!--end::Input group-->
-                               </div>
-                               <!--end::Input group-->
-                           </div>
-                           <!--end::Card body-->
-                            </div>
-                            <!--end::Card-->
-
-
+                            </form>
                         </div>
                         <!--end:::Tab pane-->
                         <!--begin:::Tab pane-->
                         <div class="tab-pane fade" id="kt_customer_view_overview_events_and_logs_tab" role="tabpanel">
-
-
                             <!--begin::Card-->
                             <div class="card pt-2 mb-6 mb-xl-9">
                                 <!--begin::Card header-->
                                 <div class="card-header border-0">
                                     <!--begin::Card title-->
                                     <div class="card-title">
-                                        <h2>Invoices</h2>
+                                        <h2>Tithes & Welfares</h2>
                                     </div>
                                     <!--end::Card title-->
                                     <!--begin::Toolbar-->

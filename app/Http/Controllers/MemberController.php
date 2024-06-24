@@ -100,6 +100,7 @@ class MemberController extends Controller
             'fullname' => $request->fullname,
             'contact'=> $request->phone,
             'mask' => Str::orderedUuid(),
+            'membership_no' => rand(000000,999999),
             'created_at'=> Carbon::now()->toDateTimeString()
         ]);
 
@@ -174,38 +175,43 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request,$mask)
     {
-        DB::table('members')->where('id', '=', $request->input('id'))
-            ->update([
-                // 'profileImg' => $newImgName,
-                'fullname' => $request->input('fullname'),
-                'dob' => $request->input('dob'),
-                'contact' => $request->input('phone'),
-                'gender' => $request->input('gender'),
-                'hometown' => $request->input('hometown'),
-                'marital' => $request->input('marital'),
-                'region' => $request->input('region'),
-                'residence' => $request->input('residence'),
-                'email' => $request->input('email'),
-                'father_name' => $request->input('fathers_name'),
-                'father_stat' => $request->input('dad_stat'),
-                'mother_name' => $request->input('mothers_name'),
-                'mother_stat' => $request->input('mom_stat'),
-                'next_of_kin' => $request->input('nok'),
-                'nok_contact' => $request->input('nok_phone'),
-                'relation_to_nok' => $request->input('r_nok'),
-                'email_of_nok' => $request->input('nok_email'),
-                'dept' => $request->input('department'),
-                'baptism_stat' => $request->input('baptism'),
-                'date_baptised' => $request->input('baptism_date'),
-                'yom' => $request->input('yom'),
-                'profession' => $request->input('profession'),
-                'present_occupation' => $request->input('occupation'),
-                'name_of_company' => $request->input('company_name'),
-                'employment_stat' => $request->input('em_stat'),
-            ]);
-        return redirect('/all_members');
+        // dd($request->all());
+
+        DB::table('members')->where('mask', $mask)
+            ->update($request->except(['_token']));
+
+            // DB::table('members')->where('mask', $mask)
+            // ->update([
+            //     // 'profileImg' => $newImgName,
+            //     'fullname' => $request->input('fullname'),
+            //     'dob' => $request->input('dob'),
+            //     'contact' => $request->input('phone'),
+            //     'gender' => $request->input('gender'),
+            //     'hometown' => $request->input('hometown'),
+            //     'marital' => $request->input('marital'),
+            //     'region' => $request->input('region'),
+            //     'residence' => $request->input('residence'),
+            //     'email' => $request->input('email'),
+            //     'father_name' => $request->input('fathers_name'),
+            //     'father_stat' => $request->input('dad_stat'),
+            //     'mother_name' => $request->input('mothers_name'),
+            //     'mother_stat' => $request->input('mom_stat'),
+            //     'next_of_kin' => $request->input('nok'),
+            //     'nok_contact' => $request->input('nok_phone'),
+            //     'relation_to_nok' => $request->input('r_nok'),
+            //     'email_of_nok' => $request->input('nok_email'),
+            //     'dept' => $request->input('department'),
+            //     'baptism_stat' => $request->input('baptism'),
+            //     'date_baptised' => $request->input('baptism_date'),
+            //     'yom' => $request->input('yom'),
+            //     'profession' => $request->input('profession'),
+            //     'present_occupation' => $request->input('occupation'),
+            //     'name_of_company' => $request->input('company_name'),
+            //     'employment_stat' => $request->input('em_stat'),
+            // ]);
+        return back()->with('success','Details updated');
     }
 
     /**
