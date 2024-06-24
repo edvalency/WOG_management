@@ -43,41 +43,12 @@
 			<!--end::Page-->
 		</div>
 		<!--end::App-->
-		<!--begin::Drawers-->
-		<!--begin::Drawers-->
-		<!--begin::Activities drawer-->
-        @include('partials.activities')
-		<!--end::Activities drawer-->
-		<!--begin::Chat drawer-->
-        @include('partials.chat')
-		<!--end::Chat drawer-->
-		<!--begin::Cart drawer-->
-        @include('partials.cart')
-		<!--end::Cart drawer-->
-		<!--end::Drawers-->
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
 			<i class="ki-outline ki-arrow-up"></i>
 		</div>
 		<!--end::Scrolltop-->
 		<!--begin::Modals-->
-
-		<!--begin::Modal - View Users-->
-        @include('partials.modals.view_users')
-		<!--end::Modal - View Users-->
-		<!--begin::Modal - Create Campaign-->
-        @include('partials.modals.create_campaign')
-		<!--end::Modal - Create Campaign-->
-		<!--begin::Modal - New Target-->
-        @include('partials.modals.new_target')
-		<!--end::Modal - New Target-->
-		<!--begin::Modal - Users Search-->
-        @include('partials.modals.search_users')
-		<!--end::Modal - Users Search-->
-		<!--begin::Modal - Invite Friends-->
-        @include('partials.modals.invite_friends')
-		<!--end::Modal - Invite Friend-->
-		<!--end::Modals-->
 		<!--begin::Javascript-->
         @include('layout.scripts')
 		<!--end::Custom Javascript-->

@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::get('all', [MemberController::class, 'index'])->name('members.show');
         Route::get('members', [MemberController::class, 'show'])->name('members.back');
         Route::post('search', [MemberController::class, 'search'])->name('search_member');
-        Route::post('update', [MemberController::class, 'update'])->name('member.update');
+        Route::post('{mask}/update', [MemberController::class, 'update'])->name('member.update');
         Route::get('{name}/view', [MemberController::class, 'single'])->name('mem.single');
         Route::get('{member}/delete', [MemberController::class, 'delete'])->name('member.delete');
         Route::post('look_up', [MemberController::class, 'look_up'])->name('member_lookup');
@@ -136,4 +136,8 @@ Route::middleware('auth')->group(function () {
     Route::post('gc_newproject', [ContributionController::class, 'gccontribproject'])->name('gccontrib.store');
     Route::get('gc_project/{proj}', [ContributionController::class, 'gcsingleproject'])->name('gcproject.show');
     Route::post('gc_single_project/', [ContributionController::class, 'gc_contribution'])->name('gc_contribution');
+});
+
+Route::get('view',function(){
+return view('organization.overview');
 });
