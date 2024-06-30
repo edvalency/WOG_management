@@ -1,5 +1,8 @@
 <?php
 
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+
 // smsonlinegh
 function sendText($receiver, $message, $sender_name = "WOGWCI")
 {
@@ -25,4 +28,18 @@ function sendText($receiver, $message, $sender_name = "WOGWCI")
     } catch (Exception $e) {
         return $e;
     }
+}
+
+function getSundays()
+{
+    $sundays = [];
+    $start = Carbon::parse('first sunday of january');
+    array_push($sundays, $start->toDateString());
+    $end = Carbon::parse('last sunday');
+    $currwk = $end->weekOfYear;
+    for ($w = 1; $w <= $currwk; $w++) {
+        $nxt =  $start->addWeek();
+        array_push($sundays, $nxt->toDateString());
+    }
+    return $sundays;
 }

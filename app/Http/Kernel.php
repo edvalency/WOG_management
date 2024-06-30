@@ -67,5 +67,8 @@ class Kernel extends HttpKernel
         'gcg' => \App\Http\Middleware\GameChangersMiddleware::class,
         'woh' => \App\Http\Middleware\WomenOfHonourMiddleware::class,
         'welfare' => \App\Http\Middleware\WelfareMiddleware::class,
+        'attendance' => \App\Http\Middleware\AttendanceMiddleware::class,
+        'sermons' => \App\Http\Middleware\SermonMiddleware::class,
+        'articles' => \App\Http\Middleware\ArticlesMiddleware::class,
     ];
 }

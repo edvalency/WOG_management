@@ -27,7 +27,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Organizations</li>
+                    <li class="breadcrumb-item text-muted">Dashboard</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -46,7 +46,7 @@
                 <!--begin::Row-->
                 <div class="row g-lg-5 g-xl-10">
                     <!--begin::Col-->
-                    <div class="col-md-4 col-xl-4 mb-xl-10">
+                    <div class="col-md-4 col-xl-4 mb-xl-10 mb-5">
                         <!--begin::Engage widget 1-->
                         <div class="card h-md-100" dir="ltr">
                             <!--begin::Header-->
@@ -57,7 +57,7 @@
                                     <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">6,700</span>
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
-                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Shipments</span>
+                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Members</span>
                                     <!--end::Subtitle-->
                                 </div>
                                 <!--end::Title-->
@@ -79,7 +79,7 @@
                                         <div class="bullet w-8px h-6px rounded-2 bg-success me-3"></div>
                                         <!--end::Bullet-->
                                         <!--begin::Label-->
-                                        <div class="fs-6 fw-semibold text-gray-400 flex-shrink-0">Successful shipments
+                                        <div class="fs-6 fw-semibold text-gray-400 flex-shrink-0">Children
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Separator-->
@@ -96,7 +96,7 @@
                                         <div class="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
                                         <!--end::Bullet-->
                                         <!--begin::Label-->
-                                        <div class="fs-6 fw-semibold text-gray-400 flex-shrink-0">Failed shipments
+                                        <div class="fs-6 fw-semibold text-gray-400 flex-shrink-0">Youth
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Separator-->
@@ -114,7 +114,7 @@
                                             style="background-color: #E4E6EF"></div>
                                         <!--end::Bullet-->
                                         <!--begin::Label-->
-                                        <div class="fs-6 fw-semibold text-gray-400 flex-shrink-0">Cancelled shipments
+                                        <div class="fs-6 fw-semibold text-gray-400 flex-shrink-0">Adults
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Separator-->
@@ -145,12 +145,12 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">47,769,700</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc 47,769,700</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Description-->
-                                    <span class="fs-6 fw-semibold text-gray-400">Total Brokers</span>
+                                    <span class="fs-6 fw-semibold text-gray-400">Revenue balance</span>
                                     <!--end::Description-->
                                 </div>
                                 <!--end::Statistics-->
@@ -170,12 +170,12 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">47,769,700</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc 47,769,700</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Description-->
-                                    <span class="fs-6 fw-semibold text-gray-400">Total Drivers</span>
+                                    <span class="fs-6 fw-semibold text-gray-400">Total Expenses</span> <small class="text-muted">of this year</small>
                                     <!--end::Description-->
                                 </div>
                                 <!--end::Statistics-->
@@ -200,12 +200,12 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">47</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc 47,4834</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Description-->
-                                    <span class="fs-6 fw-semibold text-gray-400">Total Vehicles</span>
+                                    <span class="fs-6 fw-semibold text-gray-400">Welfare balance</span>
                                     <!--end::Description-->
                                 </div>
                                 <!--end::Statistics-->
@@ -258,8 +258,8 @@
                 <div class="card-header pt-7">
                     <!--begin::Title-->
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bold text-dark">Active Drivers per month</span>
-                        <span class="text-gray-400 pt-2 fw-semibold fs-6">Displaying number of active drivers per month for this year</span>
+                        <span class="card-label fw-bold text-dark">Revenue and Expenses per month</span>
+                        <span class="text-gray-400 pt-2 fw-semibold fs-6">Displaying revenue and expenses per month</span>
                     </h3>
                     <!--end::Title-->
                     <!--begin::Toolbar-->
@@ -313,7 +313,7 @@
         </div>
         <!--end::Col-->
          <!--begin::Col-->
-         <div class="col-xl-12 mt-5">
+         {{-- <div class="col-xl-12 mt-5">
             <!--begin::Chart widget 17-->
             <div class="card card-flush h-xl-100">
                 <!--begin::Header-->
@@ -372,7 +372,7 @@
                 <!--end::Body-->
             </div>
             <!--end::Chart widget 17-->
-        </div>
+        </div> --}}
         <!--end::Col-->
     </div>
     <!--end::Content container-->
