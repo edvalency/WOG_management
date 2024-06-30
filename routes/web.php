@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Offertory;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ use App\Http\Controllers\OffertoryController;
 
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\GameChangerDueController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RevenueController;
 use PhpParser\Lexer\TokenEmulator\ReverseEmulator;
@@ -129,7 +131,37 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/single_gcmember/{name}', [MemberController::class, 'gcsingle'])->name('gc.single');
 
+    Route::middleware('attendance')->group(function () {
+        Route::controller(AttendanceController::class)->group(function () {
+            Route::prefix('attendance')->group(function () {
+                Route::get('index', 'index')->name('attendance');
+                Route::get('record', 'add')->name('attendance.record');
+                Route::post('save', 'record')->name('attendance.save');
+            });
+        });
+    });
 
+    Route::middleware('sermons')->group(function () {
+        Route::controller(MediaController::class)->group(function () {
+            Route::prefix('sermons')->group(function () {
+                Route::get('all', 'all_sermons')->name('sermons.all');
+                // Route::get('{sermon}/view', 'vi')->name('sermon.view');
+                Route::post('save', 'save_sermon')->name('sermon.save');
+            });
+        });
+    });
+
+    Route::middleware('articles')->group(function () {
+        Route::controller(MediaController::class)->group(function () {
+            Route::prefix('articles')->group(function () {
+                Route::get('all', 'index')->name('articles.all');
+                Route::get('{article}/edit', 'addArticle')->name('article.edit');
+                Route::post('{article}/update', 'updateArticle')->name('article.update');
+                Route::post('{article}/delete', 'deleteArticle')->name('article.delete');
+                Route::post('save', 'saveArticle')->name('article.save');
+            });
+        });
+    });
 
 
     Route::get('gc_projects/show', [ContributionController::class, 'gcindex'])->name('gccontrib.show');
@@ -138,6 +170,6 @@ Route::middleware('auth')->group(function () {
     Route::post('gc_single_project/', [ContributionController::class, 'gc_contribution'])->name('gc_contribution');
 });
 
-Route::get('view',function(){
-return view('organization.overview');
+Route::get('view', function () {
+    return view('organization.overview');
 });
