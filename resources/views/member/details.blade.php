@@ -101,6 +101,16 @@
 
                                         </div>
                                         <!--begin::Details item-->
+                                         <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Gender</div>
+                                        <div class="text-gray-600">
+                                            <select name="gender" class="form-control" id="">
+                                                <option value="">--select--</option>
+                                                <option value="Male" {{ $member->gender == "Male" ? 'selected' : '' }}>Male</option>
+                                                <option value="Female" {{ $member->gender == "Female" ? 'selected' : '' }}>Female</option>
+                                            </select>
+                                        </div>
+                                        <!--begin::Details item-->
                                         <!--begin::Details item-->
                                         <div class="fw-bold mt-5">Email</div>
                                         <div class="text-gray-600">

@@ -137,6 +137,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('index', 'index')->name('attendance');
                 Route::get('record', 'add')->name('attendance.record');
                 Route::post('save', 'record')->name('attendance.save');
+                Route::get('{date}/members', 'members_present')->name('attendance.members');
             });
         });
     });

@@ -41,5 +41,5 @@ function getSundays()
         $nxt =  $start->addWeek();
         array_push($sundays, $nxt->toDateString());
     }
-    return $sundays;
+    return array_reverse($sundays);
 }

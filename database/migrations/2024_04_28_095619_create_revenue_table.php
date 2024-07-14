@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('revenue', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('user_id');
             $table->string('type');
             $table->double('amount');
             $table->timestamps();
