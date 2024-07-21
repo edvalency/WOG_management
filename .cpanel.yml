@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ultralin/wogms.ultralinks/
+    - /bin/cp -R * $DEPLOYPATH
+    - php artisan migrate
