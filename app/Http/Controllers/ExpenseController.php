@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ExpenseController extends Controller
 {
@@ -64,14 +65,17 @@ class ExpenseController extends Controller
     }
 
     public function all(){
-        $data = DB::table('expenses')
+        $expenses = DB::table('expenses')
         ->join("users",'users.mask','expenses.user_id')
         ->select('users.name','expenses.*')
         ->orderByDesc('created_at')->get();
-        $sum = DB::table('expenses')->sum('expenses.amount');
+
+        $monthSum = DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+
+        // $sum = DB::table('expenses')->sum('expenses.amount');
 
         // dd($data);
-        return view('expenses.list')->with(['expenses'=>$data, 'total'=>$sum]);
+        return view('expenses.list',compact('monthSum','expenses'));
 
     }
 
@@ -93,7 +97,9 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(),['type'=>'required','amount'=>'required']);
         //
+
         DB::table('expenses')->insert([
             'user_id'=> Auth::user()->mask,
             'type'=>$request->type,
@@ -101,6 +107,8 @@ class ExpenseController extends Controller
             'description' => $request->input('description'),
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
+
+        recordActivity("Added expenses");
         return redirect()->back()->with('success','Expenses recorded');
     }
 

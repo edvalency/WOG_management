@@ -25,7 +25,7 @@
                             <div class="">
 
                                 <!--begin::Form-->
-                                <form class="form" novalidate="novalidate" id="kt_sign_in_form" method="POST" action="{{route("revenue.save")}}">
+                                <form class="form add_revenue" novalidate="novalidate" method="POST" action="{{route("revenue.save")}}">
                                     @csrf
                                     <!--begin::Heading-->
                                     <div class="text-center mb-10">
@@ -43,13 +43,14 @@
                                         <!--end::Label-->
 
                                         <!--begin::Input-->
-                                        <select name="type" id="" class="form-control">
+                                        <select name="type" id="rev_type" class="form-control">
                                             <option value="">--select--</option>
                                             <option value="Offering">Offering</option>
                                             <option value="Missions Offering">Missions Offering</option>
-                                            {{-- <option value=""></option> --}}
+                                            <option value="other">Other</option>
                                         </select>
                                         <!--end::Input-->
+                                        <input type="text" name="other_type" id="other_type" class="form-control d-none" placeholder="Enter revenue type">
                                     </div>
                                     <!--end::Input group-->
 
@@ -102,5 +103,21 @@
         <!--end::Modal content-->
     </div>
     <!--end::Modal dialog-->
+    <script>
+        $('document').ready(function(){
+            $('.add_revenue').on('change','#rev_type',function(){
+                console.log($(this).val());
+                if($(this).val() == 'other'){
+                    $('#other_type').addClass('d-block');
+                    $('#other_type').addClass('mt-3');
+                    $('#other_type').removeClass('d-none');
+                }else{
+                    $('#other_type').addClass('d-none');
+                    $('#other_type').removeClass('d-block');
+
+                }
+            })
+        })
+    </script>
 </div>
 <!--end::Modal

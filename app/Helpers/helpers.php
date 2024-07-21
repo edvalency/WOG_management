@@ -2,6 +2,8 @@
 
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 // smsonlinegh
 function sendText($receiver, $message, $sender_name = "WOGWCI")
@@ -42,4 +44,8 @@ function getSundays()
         array_push($sundays, $nxt->toDateString());
     }
     return array_reverse($sundays);
+}
+
+function recordActivity($activity){
+DB::table('user_activity')->insert(['user_id'=>Auth::user()->mask,'activity'=> $activity,'created_at'=> Carbon::now()->toDateTimeString()]);
 }

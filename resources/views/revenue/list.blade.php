@@ -20,7 +20,7 @@
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
                         <h3 class="fw-bold mb-1">Revenue</h3>
-                        {{-- <div class="fs-6 text-gray-500">Total $260,300 sepnt so far</div> --}}
+                        <div class="fs-5 text-gray-800">Total GHc {{ number_format($monthSum,2) }} recorded so far this month</div>
                     </div>
                     <!--begin::Card title-->
 
@@ -58,7 +58,7 @@
                         <!--begin::Table-->
                         <table id="kt_profile_overview_table"
                             class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
-                            <thead class="fs-7 text-gray-500 text-uppercase">
+                            <thead class="fs-7 text-dark text-uppercase">
                                 <tr>
                                     <th class="min-w-250px">Recorded by</th>
                                     <th class="min-w-150px">Date</th>
@@ -73,16 +73,6 @@
                                         <td>
                                             <!--begin::User-->
                                             <div class="d-flex align-items-center">
-                                                <!--begin::Wrapper-->
-                                                <div class="me-5 position-relative">
-                                                    <!--begin::Avatar-->
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="Pic" src="../../assets/media/avatars/300-6.jpg" />
-                                                    </div>
-                                                    <!--end::Avatar-->
-
-                                                </div>
-                                                <!--end::Wrapper-->
 
                                                 <!--begin::Info-->
                                                 <div class="d-flex flex-column justify-content-center">

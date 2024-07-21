@@ -64,7 +64,6 @@
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
-
                                     <!--begin::Actions-->
                                     <div class="text-center">
                                         <!--begin::Submit button-->

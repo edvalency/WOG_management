@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Faker\Extension\Extension;
@@ -37,12 +38,11 @@ class HomeController extends Controller
 
     public function main()
     {
-        $tMembers = DB::table('members')
+        $members = DB::table('members')
             ->count();
-        $toffertory = DB::table('offertories')
-            ->sum('offertories.amount');
-        $ttithe = DB::table('tithes')
-            ->sum('tithes.amount');
+        $revenue = DB::table('revenue')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+        $expenses = DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+
         $twelfare = DB::table('welfares')
             ->sum('welfares.amount');
         $welexpense = DB::table('welfare_expenses')
@@ -84,7 +84,7 @@ class HomeController extends Controller
                 }
             }
         }
-        return view('dashboard', ['tmembers' => $tMembers, 'totaloffertory' => $toffertory, 'totaltithe' => $ttithe, 'totalwelfare' => $welfare_bal, 'months' => $months]);
+        return view('dashboard', compact('members','revenue','expenses'));
     }
 
     public function userAdd()

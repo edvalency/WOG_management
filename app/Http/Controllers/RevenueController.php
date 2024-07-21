@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RevenueController extends Controller
 {
@@ -13,17 +14,23 @@ class RevenueController extends Controller
         $revenues = DB::table('revenue')
         ->join('users','users.mask','revenue.user_id')
         ->select('revenue.*','users.name')
+        ->orderByDesc('created_at')
         ->get();
+        $monthSum = DB::table('revenue')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
 
-        return view('revenue.list',compact('revenues'));
+        return view('revenue.list',compact('revenues','monthSum'));
 
     }
 
     public function store(Request $request) {
+        Validator::make($request->all(),['amount'=>'required|numeric']);
         $request['user_id'] = Auth::user()->mask;
         $request['created_at'] = Carbon::now()->toDateTimeString();
+        if($request->type == 'other'){
+            $request['type'] = $request->other_type;
+        }
 
-        DB::table('revenue')->insert($request->except(['_token']));
+        DB::table('revenue')->insert($request->except(['_token','other_type']));
 
         return back()->with('success',"Revenue recored");
     }
