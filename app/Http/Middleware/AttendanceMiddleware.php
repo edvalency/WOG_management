@@ -18,8 +18,7 @@ class AttendanceMiddleware
     {
         $roles = json_decode(Auth::user()->roles);
 
-        if(!in_array('attendance',$roles)){
-            dd($roles);
+        if(!in_array('attendance',$roles) || !in_array('admin',$roles)){
             return redirect()->back()->with('error', "Unauthorised Access");
         }
         return $next($request);

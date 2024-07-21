@@ -61,20 +61,15 @@
                                 class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
                                 <thead class="fs-7 text-gray-500 text-uppercase">
                                     <tr>
-                                        <th class="min-w-150px">Mark as present</th>
-                                        <th class="min-w-150px">Mem ID</th>
-                                        <th class="min-w-150px">Image</th>
-                                        <th class="min-w-150px">Name</th>
+                                        <th class="min-w-50px">Mark as present</th>
+                                        <th class="min-w-50px">Image</th>
+                                        <th class="min-w-50px">Name</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fs-6">
                                     @foreach ($members as $member)
                                         <tr>
                                             <td><input type="checkbox" name="present[]" id="" class="form-checkbox" value="{{$member->membership_no}}"></td>
-                                            <td>
-                                                <a href="#"
-                                                    class="fs-6 text-gray-800 text-hover-primary">{{ $member->membership_no }}</a>
-                                            </td>
                                             <td>
                                                 <!--begin::User-->
                                                 <div class="d-flex align-items-center">
@@ -91,27 +86,7 @@
                                                 <!--end::User-->
                                             </td>
                                             <td>{{ $member->fullname }}</td>
-                                            {{-- <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                                    <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                    data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="{{ route('mem.single', $member->mem) }}" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="{{route('member.delete',$member->mask)}}" onclick="return confirm('Confirm you want to delete?')" class="menu-link px-3"
-                                                            >Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td> --}}
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>

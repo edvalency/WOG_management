@@ -43,4 +43,13 @@ class AttendanceController extends Controller
         }
         return redirect(route('attendance'))->with('success', "Attendance recorded");
     }
+
+    public function members_present($date){
+
+        $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at',Carbon::parse($date)->toDateString())
+        ->join('members','members.membership_no','attendance_logs.member_id')
+        ->select('members.fullname','members.contact','members.profileImg')->get();
+
+        return view('attendance.members',compact('present'));
+    }
 }

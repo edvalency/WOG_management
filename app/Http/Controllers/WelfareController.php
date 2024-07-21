@@ -25,7 +25,7 @@ class WelfareController extends Controller
 
     public function index()
     {
-        $all = Member::all('id', 'fullname', 'mask');
+        $all = Member::orderBy('fullname')->get(['id', 'fullname', 'mask']);
 
         foreach ($all as $member) {
             $logs = DB::table('welfares')->where('member_id', $member->mask);

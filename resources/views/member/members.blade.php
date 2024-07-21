@@ -75,9 +75,9 @@
 
                         <!--begin::Search-->
                         <div class="d-flex align-items-center position-relative my-1">
-                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3"><span
-                                    class="path1"></span><span class="path2"></span></i> <input type="text"
-                                id="kt_filter_search" class="form-control form-control-solid form-select-sm w-150px ps-9"
+                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3"><span class="path1"></span><span
+                                    class="path2"></span></i> <input type="text" id="kt_filter_search"
+                                class="form-control form-control-solid form-select-sm w-150px ps-9"
                                 placeholder="Search Order" />
                         </div>
                         <!--end::Search-->
@@ -95,6 +95,7 @@
                             class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
                             <thead class="fs-7 text-gray-500 text-uppercase">
                                 <tr>
+                                    <th class="min-w-150px">#</th>
                                     <th class="min-w-150px">Mem ID</th>
                                     <th class="min-w-150px">Image</th>
                                     <th class="min-w-150px">Name</th>
@@ -106,7 +107,7 @@
                             <tbody class="fs-6">
                                 @foreach ($members as $member)
                                     <tr>
-
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <a href="#"
                                                 class="fs-6 text-gray-800 text-hover-primary">{{ $member->membership_no }}</a>
@@ -131,7 +132,8 @@
                                         <td>{{ $member->dept }}</td>
                                         <td>{{ $member->contact }}</td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                            <a href="#"
+                                                class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                 <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                             <!--begin::Menu-->
@@ -139,13 +141,15 @@
                                                 data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('mem.single', $member->mask) }}" class="menu-link px-3">View</a>
+                                                    <a href="{{ route('mem.single', $member->mask) }}"
+                                                        class="menu-link px-3">View</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{route('member.delete',$member->mask)}}" onclick="return confirm('Confirm you want to delete?')" class="menu-link px-3"
-                                                        >Delete</a>
+                                                    <a href="{{ route('member.delete', $member->mask) }}"
+                                                        onclick="return confirm('Confirm you want to delete?')"
+                                                        class="menu-link px-3">Delete</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
