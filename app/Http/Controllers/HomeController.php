@@ -42,6 +42,8 @@ class HomeController extends Controller
             ->count();
         $revenue = DB::table('revenue')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
         $expenses = DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+        $welfares = DB::table('welfares')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+        $welfare_expenses = DB::table('welfare_expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
 
         $twelfare = DB::table('welfares')
             ->sum('welfares.amount');
@@ -84,7 +86,7 @@ class HomeController extends Controller
                 }
             }
         }
-        return view('dashboard', compact('members','revenue','expenses'));
+        return view('dashboard', compact('members','revenue','expenses','welfares','welfare_expenses'));
     }
 
     public function userAdd()
