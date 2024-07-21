@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('revenue', function (Blueprint $table) {
+        Schema::create('user_activity', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id');
-            $table->string('type');
-            $table->double('amount');
-            $table->timestamps();
+            $table->string('user_id');
+            $table->string('activity');
+            $table->timestamp('created_at');
         });
     }
 
@@ -25,7 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('offertories', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('user_activity');
     }
 };

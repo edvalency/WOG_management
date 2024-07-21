@@ -39,7 +39,7 @@
                                     <!--begin::Input group-->
                                     <div class="fv-row mb-10">
                                         <!--begin::Label-->
-                                        <label class="form-label fs-6 fw-bold text-gray-900">Expense type</label>
+                                        <label class="form-label fs-6 fw-bold text-gray-900 required">Expense type</label>
                                         <!--end::Label-->
 
                                         <!--begin::Input-->
@@ -49,7 +49,7 @@
                                             <option value="Prepaid Bill">Prepaid Bill</option>
                                             <option value="Allowance">Allowance</option>
                                             <option value="Missions Offering top up">Missions Offering top up</option>
-                                            {{-- <option value=""></option> --}}
+                                            <option value="Other">Other</option>
                                         </select>
                                         <!--end::Input-->
                                     </div>
@@ -66,7 +66,7 @@
                                         <!--end::Wrapper-->
 
                                         <!--begin::Input-->
-                                        <textarea name="description" class="form-control" id="" cols="30" rows="">5</textarea>
+                                        <textarea name="description" class="form-control" id="" cols="30" rows=""></textarea>
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -75,7 +75,7 @@
                                         <!--begin::Wrapper-->
                                         <div class="d-flex flex-stack mb-2">
                                             <!--begin::Label-->
-                                            <label class="form-label fw-bold text-gray-900 fs-6 mb-0">Amount</label>
+                                            <label class="form-label fw-bold text-gray-900 fs-6 mb-0 required">Amount</label>
                                             <!--end::Label-->
                                         </div>
                                         <!--end::Wrapper-->

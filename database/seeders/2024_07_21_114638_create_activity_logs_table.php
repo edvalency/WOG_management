@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('revenue', function (Blueprint $table) {
+        Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id');
-            $table->string('type');
-            $table->double('amount');
             $table->timestamps();
         });
     }
@@ -25,7 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('offertories', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('activity_logs');
     }
 };

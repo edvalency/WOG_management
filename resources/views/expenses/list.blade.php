@@ -304,7 +304,7 @@
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
                         <h3 class="fw-bold mb-1">Expenses</h3>
-                        {{-- <div class="fs-6 text-gray-500">Total $260,300 sepnt so far</div> --}}
+                        <div class="fs-5 text-gray-800">Total GHc {{ number_format($monthSum,2) }} spent so far this month</div>
                     </div>
                     <!--begin::Card title-->
 
@@ -348,7 +348,6 @@
                     <!--begin::Card toolbar-->
                 </div>
                 <!--end::Card header-->
-
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <!--begin::Table container-->
@@ -356,46 +355,33 @@
                         <!--begin::Table-->
                         <table id="kt_profile_overview_table"
                             class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
-                            <thead class="fs-7 text-gray-500 text-uppercase">
+                            <thead class="fs-5 text-dark text-uppercase">
                                 <tr>
                                     <th class="min-w-250px">Recorded by</th>
                                     <th class="min-w-150px">Date</th>
                                     <th class="min-w-150px">Revenue type</th>
+                                    <th class="min-w-150px">Description</th>
                                     <th class="min-w-90px">Amount</th>
                                     <th class="min-w-50px text-end">Details</th>
                                 </tr>
                             </thead>
-                            <tbody class="fs-6">
+                            <tbody class="fs-6 expenses">
                                 @foreach ($expenses as $expense)
                                     <tr>
                                         <td>
-                                            <!--begin::User-->
-                                            <div class="d-flex align-items-center">
-                                                <!--begin::Wrapper-->
-                                                <div class="me-5 position-relative">
-                                                    <!--begin::Avatar-->
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="Pic" src="../../assets/media/avatars/300-6.jpg" />
-                                                    </div>
-                                                    <!--end::Avatar-->
-
-                                                </div>
-                                                <!--end::Wrapper-->
-
-                                                <!--begin::Info-->
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <a href="#"
-                                                        class="fs-6 text-gray-800 text-hover-primary">{{ $expense->name }}</a>
-                                                </div>
-                                                <!--end::Info-->
+                                            <!--begin::Info-->
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="#"
+                                                    class="fs-6 text-gray-800 text-hover-primary">{{ $expense->name }}</a>
                                             </div>
-                                            <!--end::User-->
+                                            <!--end::Info-->
                                         </td>
                                         <td>{{ date('D, m M Y', strtotime($expense->created_at)) }}</td>
                                         <td>{{ $expense->type }}</td>
+                                        <td>{{ $expense->description }}</td>
                                         <td>{{ $expense->amount }}</td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pen"></i>
+                                            <a href="#" data-expense="{{ json_encode($expense) }}" id="edit_expense" class="btn btn-info btn-sm"><i class="fa fa-pen"></i>
                                                 Edit</a>
                                             <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
                                                 Delete</a>
@@ -414,6 +400,26 @@
         </div>
         <!--end::Content container-->
     </div>
+
     <!--end::Content-->
     @include('includes.modals.add-expense')
+
+    <script>
+        $('document').ready(function(){
+            $('.expenses').on('change','#edit_expense',function(){
+                const expense = $(this).data('expense');
+console.log(expense);
+                // expense
+                if($(this).val() == 'other'){
+                    $('#other_type').addClass('d-block');
+                    $('#other_type').addClass('mt-3');
+                    $('#other_type').removeClass('d-none');
+                }else{
+                    $('#other_type').addClass('d-none');
+                    $('#other_type').removeClass('d-block');
+
+                }
+            })
+        })
+    </script>
 @endsection

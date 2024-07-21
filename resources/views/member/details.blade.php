@@ -60,20 +60,75 @@
                 <div class="flex-column flex-lg-row-auto w-100 w-xl-350px mb-10">
                     <!--begin::Card-->
                     <div class="card mb-5 mb-xl-8">
+                        <div class="card-title h-10px mt-3 ms-3">
+                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary">Go back</a>
+                        </div>
                         <!--begin::Card body-->
-                        <form action="{{ route('member.update',$member->mask) }}" method="post">
+                        <form action="{{ route('member.update',$member->mask) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body pt-15">
                                 <!--begin::Summary-->
-                                <div class="d-flex flex-center flex-column mb-5">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-100px symbol-circle mb-7">
-                                        <img src="{{ asset('profile/' . $member->profileImg) }}" alt="image" />
-                                    </div>
-                                    <!--end::Avatar-->
+                                <style>
+                                    .image-input-placeholder {
+                                        background-image: url("assets/{{ $member->profileImg ? 'profile/'.$member->profileImg : 'media/svg/files/blank-image.svg' }}" );
+                                    }
 
+                                    [data-bs-theme="dark"] .image-input-placeholder {
+                                        background-image: url('assets/media/svg/files/blank-image-dark.svg');
+                                    }
+                                </style>
+                                <!--end::Image input placeholder-->
+                                <div class="image-input image-input-empty image-input-outline mb-3 d-flex justify-content-center"
+                                    data-kt-image-input="true">
+                                    <!--begin::Preview existing avatar-->
+
+                                    {{-- @if (null)
+                                    <div class="">
+                                        <img class="symbol symbol-circle w-250px h-250px" src="{{ asset('assets/profile/' . $member->profileImg) }}">
+                                    </div>
+                                    @else
+                                    @endif --}}
+                                    <div class="symbol symbol-circle image-input-wrapper image-input-placeholder w-250px h-250px"></div>
+                                    <!--end::Preview existing avatar-->
+                                    <!--begin::Label-->
+                                    <label
+                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                        title="Change avatar">
+                                        <i class="ki-duotone ki-pencil fs-7">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                        <!--begin::Inputs-->
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" />
+                                        {{-- <input type="hidden" name="avatar_remove" /> --}}
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Label-->
+                                    <!--begin::Cancel-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                        title="Cancel avatar">
+                                        <i class="ki-duotone ki-cross fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </span>
+                                    <!--end::Cancel-->
+                                    <!--begin::Remove-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                        title="Remove avatar">
+                                        <i class="ki-duotone ki-cross fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </span>
+                                    <!--end::Remove-->
                                 </div>
-                                <!--end::Summary-->
+                                <!--end::Image input-->
 
                                 <div class="separator separator-dashed my-3"></div>
                                 <!--begin::Details content-->
@@ -143,9 +198,13 @@
                                         <!--begin::Details item-->
                                         <div class="fw-bold mt-5">Marital Status</div>
                                         <div class="text-gray-600">
-                                            <input type="text" class="form-control" name="marital"
-                                                value="{{ $member->marital }}" id="">
-
+                                            <select name="marital" class="form-control" id="">
+                                                <option value="">--select--</option>
+                                                <option value="Married" {{ $member->marital == "Married" ? 'selected' : '' }}>Married</option>
+                                                <option value="Divorced" {{ $member->marital == "Divorced" ? 'selected' : '' }}>Divorced</option>
+                                                <option value="Widowed" {{ $member->marital == "Widowed" ? 'selected' : '' }}>Widowed</option>
+                                                <option value="Single" {{ $member->marital == "Single" ? 'selected' : '' }}>Single</option>
+                                            </select>
                                         </div>
                                         <!--begin::Details item-->
                                     </div>

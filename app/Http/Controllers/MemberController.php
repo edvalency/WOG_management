@@ -57,7 +57,7 @@ class MemberController extends Controller
         ]);
 
         if ($request->img) {
-            $newImgName = $request->fullname. '-' . time() . '.' . $request->img->getClientOriginalextension();
+            $newImgName = $request->fullname . '-' . time() . '.' . $request->img->getClientOriginalextension();
             $request->img->move(public_path('profile'), $newImgName);
         }
 
@@ -98,10 +98,10 @@ class MemberController extends Controller
     {
         DB::table('members')->insert([
             'fullname' => $request->fullname,
-            'contact'=> $request->phone,
+            'contact' => $request->phone,
             'mask' => Str::orderedUuid(),
-            'membership_no' => rand(000000,999999),
-            'created_at'=> Carbon::now()->toDateTimeString()
+            'membership_no' => rand(000000, 999999),
+            'created_at' => Carbon::now()->toDateTimeString()
         ]);
 
         return redirect()->back()->with('success', "Member Registered");
@@ -113,7 +113,7 @@ class MemberController extends Controller
         $member = DB::table('members')
             ->where('mask', $mask)
             ->first();
-// dd($member);
+        // dd($member);
         return view('member.details', compact('member'));
     }
 
@@ -175,43 +175,52 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$mask)
+    public function update(Request $request, $mask)
     {
-        // dd($request->all());
+    // dd($request->all());
+        if (is_file($request->image)) {
+            $member = DB::table('members')->where('mask', $mask)->first(['profileImg', 'fullname']);
+            if (file_exists("assets/profile/" . $member->profileImg)) {
+                unlink("assets/profile/" . $member->profileImg);
+            }
+            $newImgName = $member->fullname . '.' . $request->image->extension();
+            $request->image->move('assets/profile/', $newImgName);
+            $request['profileImg'] = $newImgName;
+        }
 
         DB::table('members')->where('mask', $mask)
-            ->update($request->except(['_token']));
+            ->update($request->except(['_token','image']));
 
-            // DB::table('members')->where('mask', $mask)
-            // ->update([
-            //     // 'profileImg' => $newImgName,
-            //     'fullname' => $request->input('fullname'),
-            //     'dob' => $request->input('dob'),
-            //     'contact' => $request->input('phone'),
-            //     'gender' => $request->input('gender'),
-            //     'hometown' => $request->input('hometown'),
-            //     'marital' => $request->input('marital'),
-            //     'region' => $request->input('region'),
-            //     'residence' => $request->input('residence'),
-            //     'email' => $request->input('email'),
-            //     'father_name' => $request->input('fathers_name'),
-            //     'father_stat' => $request->input('dad_stat'),
-            //     'mother_name' => $request->input('mothers_name'),
-            //     'mother_stat' => $request->input('mom_stat'),
-            //     'next_of_kin' => $request->input('nok'),
-            //     'nok_contact' => $request->input('nok_phone'),
-            //     'relation_to_nok' => $request->input('r_nok'),
-            //     'email_of_nok' => $request->input('nok_email'),
-            //     'dept' => $request->input('department'),
-            //     'baptism_stat' => $request->input('baptism'),
-            //     'date_baptised' => $request->input('baptism_date'),
-            //     'yom' => $request->input('yom'),
-            //     'profession' => $request->input('profession'),
-            //     'present_occupation' => $request->input('occupation'),
-            //     'name_of_company' => $request->input('company_name'),
-            //     'employment_stat' => $request->input('em_stat'),
-            // ]);
-        return back()->with('success','Details updated');
+        // DB::table('members')->where('mask', $mask)
+        // ->update([
+        //     // 'profileImg' => $newImgName,
+        //     'fullname' => $request->input('fullname'),
+        //     'dob' => $request->input('dob'),
+        //     'contact' => $request->input('phone'),
+        //     'gender' => $request->input('gender'),
+        //     'hometown' => $request->input('hometown'),
+        //     'marital' => $request->input('marital'),
+        //     'region' => $request->input('region'),
+        //     'residence' => $request->input('residence'),
+        //     'email' => $request->input('email'),
+        //     'father_name' => $request->input('fathers_name'),
+        //     'father_stat' => $request->input('dad_stat'),
+        //     'mother_name' => $request->input('mothers_name'),
+        //     'mother_stat' => $request->input('mom_stat'),
+        //     'next_of_kin' => $request->input('nok'),
+        //     'nok_contact' => $request->input('nok_phone'),
+        //     'relation_to_nok' => $request->input('r_nok'),
+        //     'email_of_nok' => $request->input('nok_email'),
+        //     'dept' => $request->input('department'),
+        //     'baptism_stat' => $request->input('baptism'),
+        //     'date_baptised' => $request->input('baptism_date'),
+        //     'yom' => $request->input('yom'),
+        //     'profession' => $request->input('profession'),
+        //     'present_occupation' => $request->input('occupation'),
+        //     'name_of_company' => $request->input('company_name'),
+        //     'employment_stat' => $request->input('em_stat'),
+        // ]);
+        return back()->with('success', 'Details updated');
     }
 
     /**
@@ -222,7 +231,7 @@ class MemberController extends Controller
      */
     public function delete($member)
     {
-         Member::where('mask', $member)->delete();
+        Member::where('mask', $member)->delete();
         return back()->with('success', "Member deleted");
     }
 

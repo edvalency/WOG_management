@@ -93,7 +93,7 @@
                         <!--begin::Table-->
                         <table id="kt_profile_overview_table"
                             class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
-                            <thead class="fs-7 text-gray-500 text-uppercase">
+                            <thead class="fs-5 text-dark text-uppercase">
                                 <tr>
                                     <th class="min-w-150px">#</th>
                                     <th class="min-w-150px">Mem ID</th>
@@ -106,23 +106,34 @@
                             </thead>
                             <tbody class="fs-6">
                                 @foreach ($members as $member)
+<<<<<<< HEAD
                                     <tr>
+=======
+                                    <tr class="">
+>>>>>>> 45c240908c265268765740fce0fa08c233d82278
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <a href="#"
-                                                class="fs-6 text-gray-800 text-hover-primary">{{ $member->membership_no }}</a>
+                                                class="fs-7 text-dark text-hover-primary">{{ $member->membership_no }}</a>
                                         </td>
                                         <td>
                                             <!--begin::User-->
                                             <div class="d-flex align-items-center">
                                                 <!--begin::Wrapper-->
                                                 <div class="me-5 position-relative">
+                                                    @if($member->profileImg)
                                                     <!--begin::Avatar-->
                                                     <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="Pic" src="../../assets/media/avatars/300-6.jpg" />
+                                                        <img alt="img" src="../../assets/profile/{{ $member->profileImg }}" />
                                                     </div>
                                                     <!--end::Avatar-->
-
+                                                    @else
+                                                    <!--begin::Avatar-->
+                                                    <div class="symbol symbol-35px symbol-circle">
+                                                        <img alt="img" src="../../assets/media/avatars/blank.png" />
+                                                    </div>
+                                                    <!--end::Avatar-->
+                                                    @endif
                                                 </div>
                                                 <!--end::Wrapper-->
                                             </div>

@@ -54,7 +54,7 @@
                                 <!--begin::Title-->
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">6,700</span>
+                                    <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ number_format($members) }}</span>
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
                                     <span class="text-gray-400 pt-1 fw-semibold fs-6">Members</span>
@@ -145,7 +145,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc 47,769,700</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($revenue,2) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
@@ -170,7 +170,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc 47,769,700</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($expenses) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
@@ -230,7 +230,7 @@
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Description-->
-                                    <span class="fs-6 fw-semibold text-gray-400">Total Earnings</span>
+                                    <span class="fs-6 fw-semibold text-gray-400">Total Welfare Expenses</span>
                                     <!--end::Description-->
                                 </div>
                                 <!--end::Statistics-->
@@ -380,10 +380,10 @@
 
 <script src="/bundles/apexcharts/apexcharts.min.js"></script>
 <script src="/js/test.js"></script>
-<script>
+{{-- <script>
  OffertoryChart({{$months[0]}},{{$months[1]}},{{$months[2]}},{{$months[3]}},{{$months[4]}},
  {{$months[5]}},{{$months[6]}},{{$months[7]}},{{$months[8]}},{{$months[9]}},{{$months[10]}},{{$months[11]}});
 
-</script>
+</script> --}}
 
 @endsection
