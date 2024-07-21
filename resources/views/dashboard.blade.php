@@ -200,7 +200,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc 47,4834</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($welfares) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
@@ -225,7 +225,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHC 470,000</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHC {{ number_format($welfare_expenses) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
