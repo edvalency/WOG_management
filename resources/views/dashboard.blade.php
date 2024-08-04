@@ -145,7 +145,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($revenue,2) }}</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($revenue['total'],2) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
@@ -170,7 +170,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($expenses) }}</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($expenses['total']) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
@@ -200,7 +200,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($welfares) }}</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHc {{ number_format($welfares['total']) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->
@@ -225,7 +225,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center mb-2">
                                         <!--begin::Value-->
-                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHC {{ number_format($welfare_expenses) }}</span>
+                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">GHC {{ number_format($welfare_expenses['total']) }}</span>
                                         <!--end::Value-->
                                     </div>
                                     <!--end::Info-->

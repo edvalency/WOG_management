@@ -40,52 +40,46 @@ class HomeController extends Controller
     {
         $members = DB::table('members')
             ->count();
-        $revenue = DB::table('revenue')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
-        $expenses = DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
-        $welfares = DB::table('welfares')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
-        $welfare_expenses = DB::table('welfare_expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+        $revenue =['total' => DB::table('accounts')->where('type','church')->pluck('amount')->first(),'curr_month'=>DB::table('revenue')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
+        $expenses = ['total' => DB::table('expenses')->sum('amount'),'curr_month'=>DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
+        $welfares = ['total' => DB::table('accounts')->where('type','welfare')->pluck('amount')->first(),'curr_month'=>DB::table('welfares')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
+        $welfare_expenses = ['total' => DB::table('welfare_expenses')->sum('amount'),'curr_month'=>DB::table('welfare_expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
 
-        $twelfare = DB::table('welfares')
-            ->sum('welfares.amount');
-        $welexpense = DB::table('welfare_expenses')
-            ->sum('welfare_expenses.amount');
 
-        $welfare_bal = $twelfare - $welexpense;
+        // $date = date('Y');
+        // $data = DB::table('offertories')->get();
 
-        $date = date('Y');
-        $data = DB::table('offertories')->get();
-
-        $months = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        foreach ($data as $offer) {
-            $splt = explode("-", $offer->created_at);
-            if ($splt[0] == $date) {
-                if ($splt[1] == "01") {
-                    $months[0] += $offer->amount;
-                } elseif ($splt[1] == "02") {
-                    $months[1] += $offer->amount;
-                } elseif ($splt[1] == "03") {
-                    $months[2] += $offer->amount;
-                } elseif ($splt[1] == "04") {
-                    $months[3] += $offer->amount;
-                } elseif ($splt[1] == "05") {
-                    $months[4] += $offer->amount;
-                } elseif ($splt[1] == "06") {
-                    $months[5] += $offer->amount;
-                } elseif ($splt[1] == "07") {
-                    $months[6] += $offer->amount;
-                } elseif ($splt[1] == "08") {
-                    $months[7] += $offer->amount;
-                } elseif ($splt[1] == "09") {
-                    $months[8] += $offer->amount;
-                } elseif ($splt[1] == "10") {
-                    $months[9] += $offer->amount;
-                } elseif ($splt[1] == "11") {
-                    $months[10] += $offer->amount;
-                } elseif ($splt[1] == "12") {
-                    $months[11] += $offer->amount;
-                }
-            }
-        }
+        // $months = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        // foreach ($data as $offer) {
+        //     $splt = explode("-", $offer->created_at);
+        //     if ($splt[0] == $date) {
+        //         if ($splt[1] == "01") {
+        //             $months[0] += $offer->amount;
+        //         } elseif ($splt[1] == "02") {
+        //             $months[1] += $offer->amount;
+        //         } elseif ($splt[1] == "03") {
+        //             $months[2] += $offer->amount;
+        //         } elseif ($splt[1] == "04") {
+        //             $months[3] += $offer->amount;
+        //         } elseif ($splt[1] == "05") {
+        //             $months[4] += $offer->amount;
+        //         } elseif ($splt[1] == "06") {
+        //             $months[5] += $offer->amount;
+        //         } elseif ($splt[1] == "07") {
+        //             $months[6] += $offer->amount;
+        //         } elseif ($splt[1] == "08") {
+        //             $months[7] += $offer->amount;
+        //         } elseif ($splt[1] == "09") {
+        //             $months[8] += $offer->amount;
+        //         } elseif ($splt[1] == "10") {
+        //             $months[9] += $offer->amount;
+        //         } elseif ($splt[1] == "11") {
+        //             $months[10] += $offer->amount;
+        //         } elseif ($splt[1] == "12") {
+        //             $months[11] += $offer->amount;
+        //         }
+        //     }
+        // }
         return view('dashboard', compact('members','revenue','expenses','welfares','welfare_expenses'));
     }
 

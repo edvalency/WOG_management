@@ -46,6 +46,18 @@ function getSundays()
     return array_reverse($sundays);
 }
 
-function recordActivity($activity){
-DB::table('user_activity')->insert(['user_id'=>Auth::user()->mask,'activity'=> $activity,'created_at'=> Carbon::now()->toDateTimeString()]);
+function recordActivity($activity)
+{
+    DB::table('user_activity')->insert(['user_id' => Auth::user()->mask, 'activity' => $activity, 'created_at' => Carbon::now()->toDateTimeString()]);
+}
+
+function hasRole($role)
+{
+    $roles = json_decode(Auth::user()->roles);
+
+    if (in_array($role, $roles) || in_array("admin",$roles)) {
+        return true;
+    } else {
+        return false;
+    }
 }

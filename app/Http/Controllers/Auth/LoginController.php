@@ -55,10 +55,10 @@ class LoginController extends Controller
         //     return back()->with('error',"Email or Password incorrect");
         // }
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            recordActivity('Logged in');
             return redirect(route('home'));
         } else {
             return back()->with('error', "Email or Password incorrect");
         }
     }
-
 }
