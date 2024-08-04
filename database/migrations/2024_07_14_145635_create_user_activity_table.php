@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_activity', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('activity');
+            $table->text('activity');
             $table->timestamp('created_at');
         });
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6350e44f58794c096fd150650420367",
+    "content-hash": "fd76a4e74333b3366f957f11acc2386b",
     "packages": [
         {
             "name": "brick/math",
@@ -1249,6 +1249,56 @@
             "time": "2023-12-03T19:50:20+00:00"
         },
         {
+            "name": "jildertmiedema/laravel-plupload",
+            "version": "V0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jildertmiedema/laravel-plupload.git",
+                "reference": "75119f70655b4509275656621eb81f3e457e1135"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jildertmiedema/laravel-plupload/zipball/75119f70655b4509275656621eb81f3e457e1135",
+                "reference": "75119f70655b4509275656621eb81f3e457e1135",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0 | ^9.0|^10.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JildertMiedema\\LaravelPlupload": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jildert Miedema",
+                    "email": "jildertmiedema@gmail.com"
+                }
+            ],
+            "description": "Laravel/Plupload - Handle large file uploads",
+            "keywords": [
+                "laravel",
+                "large files",
+                "pluload"
+            ],
+            "support": {
+                "issues": "https://github.com/jildertmiedema/laravel-plupload/issues",
+                "source": "https://github.com/jildertmiedema/laravel-plupload/tree/V0.9.0"
+            },
+            "time": "2023-05-05T11:13:46+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v10.48.14",
             "source": {
@@ -2221,6 +2271,7 @@
             "time": "2024-06-18T11:10:42+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "mongodb/laravel-mongodb",
             "version": "4.0.0",
             "source": {
@@ -2390,6 +2441,8 @@
             "time": "2024-06-13T14:30:04+00:00"
         },
         {
+=======
+>>>>>>> afed6ddddb1e8b7048e12b88515a0799e7d8d853
             "name": "monolog/monolog",
             "version": "3.6.0",
             "source": {
@@ -5113,6 +5166,7 @@
             "time": "2024-05-31T15:07:36+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/polyfill-php81",
             "version": "v1.30.0",
             "source": {
@@ -5189,6 +5243,8 @@
             "time": "2024-06-19T12:30:46+00:00"
         },
         {
+=======
+>>>>>>> afed6ddddb1e8b7048e12b88515a0799e7d8d853
             "name": "symfony/polyfill-php83",
             "version": "v1.30.0",
             "source": {

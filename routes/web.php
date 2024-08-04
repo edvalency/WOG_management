@@ -1,23 +1,24 @@
 <?php
 
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Models\Offertory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WohController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\TitheController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\RevenueController;
+
 use App\Http\Controllers\WelfareController;
 use App\Http\Controllers\OffertoryController;
-
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\GameChangerDueController;
-use App\Http\Controllers\MediaController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\RevenueController;
 use PhpParser\Lexer\TokenEmulator\ReverseEmulator;
 
 /*
@@ -134,7 +135,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('attendance')->group(function () {
         Route::controller(AttendanceController::class)->group(function () {
             Route::prefix('attendance')->group(function () {
-                Route::get('index', 'index')->name('attendance');
+                Route::get('/', 'index')->name('attendance');
                 Route::get('record', 'add')->name('attendance.record');
                 Route::post('save', 'record')->name('attendance.save');
                 Route::get('{date}/members', 'members_present')->name('attendance.members');
@@ -172,5 +173,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('view', function () {
-    return view('organization.overview');
+    $rev = DB::table('revenue')->sum('amount') - DB::table('expenses')->sum('amount');
+    DB::table('accounts')->where('type','church')->increment('amount', $rev);
+
+    $welf = DB::table('welfares')->sum('amount') - DB::table('welfare_expenses')->sum('amount');
+    DB::table('accounts')->where('type','welfare')->increment('amount', $welf);
+return 'done';
+    // return view('organization.overview');
 });

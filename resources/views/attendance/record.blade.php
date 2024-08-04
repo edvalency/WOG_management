@@ -72,21 +72,29 @@
                                             <td><input type="checkbox" name="present[]" id="" class="form-checkbox" value="{{$member->membership_no}}"></td>
                                             <td>
                                                 <!--begin::User-->
-                                                <div class="d-flex align-items-center">
-                                                    <!--begin::Wrapper-->
-                                                    <div class="me-5 position-relative">
-                                                        <!--begin::Avatar-->
-                                                        <div class="symbol symbol-75px symbol-circle">
-                                                            <img alt="Pic" src="../../assets/media/avatars/300-6.jpg" />
-                                                        </div>
-                                                        <!--end::Avatar-->
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Wrapper-->
+                                                <div class="me-5 position-relative">
+                                                    @if($member->profileImg)
+                                                    <!--begin::Avatar-->
+                                                    <div class="symbol symbol-75px symbol-circle">
+                                                        <img alt="img" src="../../assets/profile/{{ $member->profileImg == 'profile.jpg' ? 'profile.png' : $member->profileImg}}" />
                                                     </div>
-                                                    <!--end::Wrapper-->
+                                                    <!--end::Avatar-->
+                                                    @else
+                                                    <!--begin::Avatar-->
+                                                    <div class="symbol symbol-75px symbol-circle">
+                                                        <img alt="img" src="{{ asset('assets/media/avatars/blank.png') }}" />
+                                                    </div>
+                                                    <!--end::Avatar-->
+                                                    @endif
                                                 </div>
-                                                <!--end::User-->
+                                                <!--end::Wrapper-->
+                                            </div>
+                                            <!--end::User-->
                                             </td>
                                             <td>{{ $member->fullname }}</td>
-                                            
+
                                         </tr>
                                     @endforeach
                                 </tbody>

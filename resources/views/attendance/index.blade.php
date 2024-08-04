@@ -37,10 +37,11 @@
                         <!--begin::Table-->
                         <table id="kt_profile_overview_table"
                             class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
-                            <thead class="fs-7 text-gray-500 text-uppercase">
+                            <thead class="fs-7  text-uppercase">
                                 <tr>
                                     <th class="min-w-50px">Date</th>
                                     <th class="min-w-50px">Attendance</th>
+                                    <th class="min-w-50px">Attendance by Gender</th>
                                 </tr>
                             </thead>
                             <tbody class="fs-6">
@@ -52,7 +53,11 @@
                                         </td>
                                         <td>
                                             <a href="#"
-                                                class="fs-6 text-gray-800 text-hover-primary">{{ $attendance }}</a>
+                                                class="fs-6 text-gray-800 text-hover-primary">{{ $attendance['total'] }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                                class="fs-6 text-gray-800 text-hover-primary">Males:&nbsp;{{ $attendance['gender']->males }}, Females:&nbsp;{{ $attendance['gender']->females }}</a>
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"

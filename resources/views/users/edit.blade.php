@@ -9,31 +9,27 @@
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control" id="" value="{{ $userdetails->name }}">
             </div>
+
             <div class="form-group">
-                <label for="name">Username</label>
-                <input type="text" name="username" class="form-control" id=""
-                    value="{{ $userdetails->username }}">
-            </div>
-            <div class="form-group">
-                <label for="name">Position</label>
+                <label for="name">roles</label>
                 <div class="form-group m-0">
-                    <input type="checkbox" name="position[]" value="admin" id=""
-                        {{ in_array('admin', json_decode($userdetails->position)) ? 'checked' : '' }}>
+                    <input type="checkbox" name="roles[]" value="admin" id=""
+                        {{ in_array('admin', json_decode($userdetails->roles)) ? 'checked' : '' }}>
                     <label for="">Admin</label>
                 </div>
                 <div class="form-group m-0">
-                    <input type="checkbox" name="position[]" value="gcg"
-                        id=""{{ in_array('gcg', json_decode($userdetails->position)) ? 'checked' : '' }}>
+                    <input type="checkbox" name="roles[]" value="gcg"
+                        id=""{{ in_array('gcg', json_decode($userdetails->roles)) ? 'checked' : '' }}>
                     <label for="">Game Changers Generation</label>
                 </div>
                 <div class="form-group m-0">
-                    <input type="checkbox" name="position[]" value="welfare" id=""
-                        {{ in_array('welfare', json_decode($userdetails->position)) ? 'checked' : '' }}>
+                    <input type="checkbox" name="roles[]" value="welfare" id=""
+                        {{ in_array('welfare', json_decode($userdetails->roles)) ? 'checked' : '' }}>
                     <label for="">Welfare</label>
                 </div>
                 <div class="form-group m-0">
-                    <input type="checkbox" name="position[]" value="woh" id=""
-                        {{ in_array('woh', json_decode($userdetails->position)) ? 'checked' : '' }}>
+                    <input type="checkbox" name="roles[]" value="woh" id=""
+                        {{ in_array('woh', json_decode($userdetails->roles)) ? 'checked' : '' }}>
                     <label for="">Women Of Honour</label>
                 </div>
                 {{-- <input type="text" name="name" class="form-control" id="" value="{{$userdetails->name}}"> --}}

@@ -49,54 +49,68 @@
                             class="menu-title">Dashboard</span></a><!--end:Menu link--></div>
 
                 <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('members')"
-                        href="{{ route('members.show') }}"><span class="menu-icon"><i
-                                class="fa fa-users fs-4"><span class="path1"></span><span
-                                    class="path2"></span></i></span><span
+                        href="{{ route('members.show') }}"><span class="menu-icon"><i class="fa fa-users fs-4"><span
+                                    class="path1"></span><span class="path2"></span></i></span><span
                             class="menu-title">Members</span></a><!--end:Menu link--></div>
-                <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('attendance')"
-                        href="{{ route('attendance') }}"><span class="menu-icon"><i
-                                class="ki-duotone ki-people fs-1"><span class="path1"></span><span
-                                    class="path2"></span></i></span><span
-                            class="menu-title">Attendance</span></a><!--end:Menu link--></div>
-                <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('revenue')"
-                        href="{{ route('revenue.show') }}"><span class="menu-icon"><i
-                                class="ki-duotone ki-dollar fs-1"><span class="path1"></span><span
-                                    class="path2"></span></i></span><span
-                            class="menu-title">Revenue</span></a><!--end:Menu link--></div>
-                <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('expenses')"
-                        href="{{ route('expense.all') }}"><span class="menu-icon"><i
-                                class="ki-duotone ki-chart fs-1"><span class="path1"></span><span
-                                    class="path2"></span></i></span><span
-                            class="menu-title">Expenses</span></a><!--end:Menu link--></div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                    <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                class="ki-duotone ki-colors-square fs-1"><span class="path1"></span><span
-                                    class="path2"></span><span class="path3"></span><span
-                                    class="path4"></span></i></span><span class="menu-title">Welfare</span><span
-                            class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                    <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                        <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                href="pages/user-profile/overview.html"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Overview</span></a><!--end:Menu link--></div>
-                        <!--end:Menu item--><!--begin:Menu item-->
-                        <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                href="{{ route('welfare.show') }}"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Payments</span></a><!--end:Menu link--></div>
-                        <!--end:Menu item--><!--begin:Menu item-->
-                        <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Expenses</span></a><!--end:Menu link--></div>
+                @if (hasRole('attendance'))
+                    <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('attendance')"
+                            href="{{ route('attendance') }}"><span class="menu-icon"><i
+                                    class="ki-duotone ki-people fs-1"><span class="path1"></span><span
+                                        class="path2"></span></i></span><span
+                                class="menu-title">Attendance</span></a><!--end:Menu link--></div>
 
-                    </div><!--end:Menu sub-->
-                </div><!--end:Menu item--><!--begin:Menu item-->
+                @endif
+                @if (hasRole('revenue'))
+                    <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('revenue')"
+                            href="{{ route('revenue.show') }}"><span class="menu-icon"><i
+                                    class="ki-duotone ki-dollar fs-1"><span class="path1"></span><span
+                                        class="path2"></span></i></span><span
+                                class="menu-title">Revenue</span></a><!--end:Menu link--></div>
+                                @endif
+                @if (hasRole('expenses'))
+                    <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('expenses')"
+                            href="{{ route('expense.all') }}"><span class="menu-icon"><i
+                                    class="ki-duotone ki-chart fs-1"><span class="path1"></span><span
+                                        class="path2"></span></i></span><span
+                                class="menu-title">Expenses</span></a><!--end:Menu link--></div>
+                                @endif
+                @if (hasRole('welfare'))
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
+                                    class="ki-duotone ki-colors-square fs-1"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span><span
+                                        class="path4"></span></i></span><span class="menu-title">Welfare</span><span
+                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
+                                    href="pages/user-profile/overview.html"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Overview</span></a><!--end:Menu link--></div>
+                            <!--end:Menu item--><!--begin:Menu item-->
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
+                                    href="{{ route('welfare.show') }}"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Payments</span></a><!--end:Menu link--></div>
+                            <!--end:Menu item--><!--begin:Menu item-->
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
+                                    href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Expenses</span></a><!--end:Menu link--></div>
+
+                        </div><!--end:Menu sub-->
+                    </div><!--end:Menu item-->
+                    @endif
+                    @if (hasRole('admin'))
+                    <!--begin:Menu item-->
                 <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('users')"
-                        href="{{ route('users') }}"><span class="menu-icon"><i
-                                class="ki-duotone ki-people fs-1"><span class="path1"></span><span
-                                    class="path2"></span></i></span><span class="menu-title">User
-                            Management</span></a><!--end:Menu link--></div>
+                    href="{{ route('users') }}"><span class="menu-icon"><i
+                            class="ki-duotone ki-people fs-1"><span class="path1"></span><span
+                                class="path2"></span></i></span><span class="menu-title">User
+                        Management</span></a><!--end:Menu link--></div>
+                @endif
+
+
+
 
                 {{-- <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('sermons')"
                         href="{{ route('sermons.all') }}"><span class="menu-icon"><i

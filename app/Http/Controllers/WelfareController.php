@@ -167,7 +167,7 @@ class WelfareController extends Controller
      * @param  \App\Models\Welfare  $welfare
      * @return \Illuminate\Http\Response
      */
-    public function edit(Welfare $welfare)
+    public function edit()
     {
         //
     }

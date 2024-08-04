@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/js/custom/utilities/modals/create-campaign.js') }}"></script>
 <script src="{{ asset('assets/js/custom/utilities/modals/bidding.js') }}"></script>
 <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+<script src="{{ asset('assets/js/custom/custom.js') }}"></script>
 
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
