@@ -53,25 +53,11 @@
                                     class="path1"></span><span class="path2"></span></i></span><span
                             class="menu-title">Members</span></a><!--end:Menu link--></div>
                 @if (hasRole('attendance'))
-                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                    class="ki-duotone ki-people fs-1"><span class="path1"></span><span
-                                        class="path2"></span><span class="path3"></span><span
-                                        class="path4"></span></i></span><span class="menu-title">Attendance</span><span
-                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="{{ route('attendance') }}"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Members</span></a><!--end:Menu link--></div>
-                            <!--end:Menu item--><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="{{ route('welfare.show') }}"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Visitors</span></a><!--end:Menu link--></div>
-                            <!--end:Menu item--><!--begin:Menu item-->
-                        </div><!--end:Menu sub-->
-                    </div><!--end:Menu item-->
+                    <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('attendance')"
+                            href="{{ route('attendance') }}"><span class="menu-icon"><i
+                                    class="ki-duotone ki-people fs-4"><span class="path1"></span><span
+                                        class="path2"></span></i></span><span
+                                class="menu-title">Attendance</span></a><!--end:Menu link--></div>
                 @endif
                 @if (hasRole('revenue'))
                     <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('revenue')"
