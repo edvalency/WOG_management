@@ -155,7 +155,7 @@
                                 </div>
                                 <!--end::Statistics-->
                                 <!--begin::Chart-->
-                                <div id="brokers_chart" class="min-h-auto" style="height: 125px"></div>
+                                <div id="kt_card_widget_13_chart" class="min-h-auto" style="height: 125px"></div>
                                 <!--end::Chart-->
                             </div>
                             <!--end::Card body-->
@@ -180,7 +180,7 @@
                                 </div>
                                 <!--end::Statistics-->
                                 <!--begin::Chart-->
-                                <div id="drivers_chart" class="min-h-auto" style="height: 125px"></div>
+                                <div id="kt_card_widget_12_chart" class="min-h-auto" style="height: 125px"></div>
                                 <!--end::Chart-->
                             </div>
                             <!--end::Card body-->
@@ -210,7 +210,7 @@
                                 </div>
                                 <!--end::Statistics-->
                                 <!--begin::Chart-->
-                                <div id="vehicles_chart" class="min-h-auto" style="height: 110px"></div>
+                                <div id="kt_card_widget_t" class="min-h-auto" style="height: 110px"></div>
                                 <!--end::Chart-->
                             </div>
                             <!--end::Card body-->
@@ -304,7 +304,7 @@
                 <!--begin::Body-->
                 <div class="card-body pt-5">
                     <!--begin::Chart container-->
-                    <div id="org_drivers_pm_chart" class="w-100 h-350px"></div>
+                    <div id="revnexp_chart" class="w-100 h-350px"></div>
                     <!--end::Chart container-->
                 </div>
                 <!--end::Body-->
@@ -377,13 +377,10 @@
     </div>
     <!--end::Content container-->
 </div>
+<script>
+            // $('document').ready(function(){
+            //     getRevnExpPyChart();
 
-<script src="/bundles/apexcharts/apexcharts.min.js"></script>
-<script src="/js/test.js"></script>
-{{-- <script>
- OffertoryChart({{$months[0]}},{{$months[1]}},{{$months[2]}},{{$months[3]}},{{$months[4]}},
- {{$months[5]}},{{$months[6]}},{{$months[7]}},{{$months[8]}},{{$months[9]}},{{$months[10]}},{{$months[11]}});
-
-</script> --}}
-
+            // });
+</script>
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('members')
+@section('visitors')
     active
 @endsection
 @section('search')
@@ -34,13 +34,13 @@
                 <div class="d-flex justify-content-end align-items-end flex-wrap mb-2 mt-4"> <a
                         data-bs-target="#add_member_modal"
                         class="btn btn-sm btn-bg-primary text-white btn-active-color-primary me-3"
-                        data-bs-toggle="modal">Add Member</a>
+                        data-bs-toggle="modal">Add Visitor</a>
                 </div>
                 <!--begin::Card header-->
                 <div class="card-header mt-2">
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
-                        <h3 class="fw-bold mb-1">Members</h3>
+                        <h3 class="fw-bold mb-1">Visitors</h3>
                         {{-- <div class="fs-6 text-gray-500">Total $260,300 sepnt so far</div> --}}
                     </div>
                     <!--begin::Card title-->
@@ -96,47 +96,19 @@
                             <thead class="fs-5 text-dark text-uppercase">
                                 <tr>
                                     <th class="min-w-150px">#</th>
-                                    <th class="min-w-150px">Mem ID</th>
-                                    <th class="min-w-150px">Image</th>
                                     <th class="min-w-150px">Name</th>
-                                    <th class="min-w-150px">Department</th>
-                                    <th class="min-w-90px">Phone</th>
+                                    <th class="min-w-90px">Gender</th>
+                                    <th class="min-w-150px">Phone</th>
                                     <th class="min-w-50px text-end">Details</th>
                                 </tr>
                             </thead>
                             <tbody class="fs-6">
-                                @foreach ($members as $member)
+                                @foreach ($visitors as $member)
                                     <tr class="">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            <a href="#"
-                                                class="fs-7 text-dark text-hover-primary">{{ $member->membership_no }}</a>
-                                        </td>
-                                        <td>
-                                            <!--begin::User-->
-                                            <div class="d-flex align-items-center">
-                                                <!--begin::Wrapper-->
-                                                <div class="me-5 position-relative">
-                                                    @if($member->profileImg)
-                                                    <!--begin::Avatar-->
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="img" src="../../assets/profile/{{ $member->profileImg }}" />
-                                                    </div>
-                                                    <!--end::Avatar-->
-                                                    @else
-                                                    <!--begin::Avatar-->
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="img" src="../../assets/media/avatars/blank.png" />
-                                                    </div>
-                                                    <!--end::Avatar-->
-                                                    @endif
-                                                </div>
-                                                <!--end::Wrapper-->
-                                            </div>
-                                            <!--end::User-->
-                                        </td>
+
                                         <td>{{ $member->fullname }}</td>
-                                        <td>{{ $member->dept }}</td>
+                                        <td>{{ $member->gender }}</td>
                                         <td>{{ $member->contact }}</td>
                                         <td class="text-end">
                                             <a href="#"
@@ -148,13 +120,13 @@
                                                 data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('mem.single', $member->mask) }}"
+                                                    <a href="{{ route('visitor.single', $member->mask) }}"
                                                         class="menu-link px-3">View</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('member.delete', $member->mask) }}"
+                                                    <a href="{{ route('visitor.delete', $member->mask) }}"
                                                         onclick="return confirm('Confirm you want to delete?')"
                                                         class="menu-link px-3">Delete</a>
                                                 </div>

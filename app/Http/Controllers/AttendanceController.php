@@ -14,19 +14,30 @@ class AttendanceController extends Controller
         $logs = [];
         foreach (getSundays() as $sunday) {
             $present = DB::table('attendance_logs')->whereDate('created_at', $sunday);
-            $log = $present->count();
+            $mlog = $present->where('attendee_type','members')->count();
 
-            $members = $present->pluck('member_id')->toArray();
-            $genders = DB::table('members')->whereIn('membership_no', $members)
+            $members = $present->where('attendee_type','members')->pluck('attendee_id')->toArray();
+            $m_genders = DB::table('members')->whereIn('membership_no', $members)->orWhereIn('mask',$members)
                 ->select(
                     DB::raw('COUNT(CASE WHEN gender = "Male" THEN 1 END) as males'),
                     DB::raw('COUNT(CASE WHEN gender = "Female" THEN 1 END) as females')
                 )
                 ->first();
-            $logs[$sunday] = ['total' => $log, 'gender' => $genders];
-        }
+            $member_logs[$sunday] = ['total' => $mlog, 'gender' => $m_genders];
 
-        return view('attendance.index', compact('logs'));
+            $vlog = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type','visitors')->count();
+            $visitors = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type','visitors')->pluck('attendee_id')->toArray();
+
+            $v_genders = DB::table('visitors')->whereIn('mask', $visitors)
+                ->select(
+                    DB::raw('COUNT(CASE WHEN gender = "Male" THEN 1 END) as males'),
+                    DB::raw('COUNT(CASE WHEN gender = "Female" THEN 1 END) as females')
+                )
+                ->first();
+
+            $visitor_logs[$sunday] = ['total' => $vlog, 'gender' => $v_genders];
+        }
+        return view('attendance.index', compact('member_logs','visitor_logs'));
     }
 
     public function add()
@@ -62,5 +73,15 @@ class AttendanceController extends Controller
             ->select('members.fullname', 'members.contact', 'members.profileImg')->get();
 
         return view('attendance.members', compact('present'));
+    }
+
+    public function visitors_present($date)
+    {
+
+        $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at', Carbon::parse($date)->toDateString())
+            ->join('visitors', 'visitors.mask', 'attendance_logs.attendee_id')
+            ->select('visitors.fullname', 'visitors.contact', 'visitors.gender')->get();
+
+        return view('attendance.visitors', compact('present'));
     }
 }

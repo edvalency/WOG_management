@@ -46,6 +46,8 @@ function getSundays()
     return array_reverse($sundays);
 }
 
+
+
 function recordActivity($activity)
 {
     DB::table('user_activity')->insert(['user_id' => Auth::user()->mask, 'activity' => $activity, 'created_at' => Carbon::now()->toDateTimeString()]);

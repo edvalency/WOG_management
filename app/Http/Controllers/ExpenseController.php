@@ -129,6 +129,16 @@ class ExpenseController extends Controller
         return redirect()->back();
     }
 
+    public function expensePy()
+    {
+        $months = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $amount = DB::table('expenses')->whereYear('created_at',Carbon::now()->year)->whereMonth('created_at', $i)->sum('amount');
+            array_push($months,$amount);
+        }
+        return $months;
+    }
+
     /**
      * Display the specified resource.
      *

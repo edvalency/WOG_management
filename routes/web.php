@@ -19,6 +19,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\GameChangerDueController;
+use App\Http\Controllers\VisitorsController;
 use PhpParser\Lexer\TokenEmulator\ReverseEmulator;
 
 /*
@@ -62,6 +63,20 @@ Route::middleware('auth')->group(function () {
         Route::post('look_up', [MemberController::class, 'look_up'])->name('member_lookup');
     });
 
+    Route::prefix('visitors')->group(function () {
+        Route::controller(VisitorsController::class)->group(function () {
+            Route::get('add', 'create')->name('visitors.add');
+            Route::post('quick-add', 'quick_store')->name('visitor.quick_save');
+            Route::get('all', 'index')->name('visitors.show');
+            Route::get('/', 'show')->name('visitors.back');
+            Route::post('search', 'search')->name('search_member');
+            Route::post('{mask}/update', 'update')->name('visitor.update');
+            Route::get('{name}/view', 'single')->name('visitor.single');
+            Route::get('{member}/delete', 'delete')->name('visitor.delete');
+            Route::post('look_up', 'look_up')->name('visitor_lookup');
+        });
+    });
+
 
     Route::get('/gc_members', [MemberController::class, 'gcMembers'])->name('gcmembers.show');
 
@@ -82,6 +97,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(RevenueController::class)->group(function () {
         Route::prefix('revenue')->group(function () {
+            Route::get('/get-revenue-year', 'revenuePy');
             Route::get('/', 'index')->name("revenue.show");
             Route::post('save', 'store')->name("revenue.save");
             Route::get('{id}/edit', 'store')->name("revenue.edit");
@@ -91,6 +107,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('welfare')->group(function () {
+        Route::get('/get-welfare-year', [WelfareController::class, 'welfarePyChart']);
+
         Route::get('/welfare/details/{name}', [WelfareController::class, 'single'])->name('welfare.single');
         Route::post('/welfare/details/', [WelfareController::class, 'search'])->name('welfare.search');
         Route::post('/welfaresupport/details/', [WelfareController::class, 'supportsearch'])->name('welfaresupport.search');
@@ -113,12 +131,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/game changers/offerings', [GameChangerDueController::class, 'offerings'])->name('gcoffering');
     });
 
-    Route::get('/month expenses', [ExpenseController::class, 'index'])->name('expenses.show');
-    Route::get('/previous expenses', [ExpenseController::class, 'prev'])->name('expense.prev');
-    Route::get('/all_expenses', [ExpenseController::class, 'all'])->name('expense.all');
-    Route::post('/expense/Store', [ExpenseController::class, 'store'])->name('expense.store');
-    Route::get('/gcexpenses', [ExpenseController::class, 'gcexpenses'])->name('gcexpense');
-    Route::post('/gcexpenses/store', [ExpenseController::class, 'gcexpensestore'])->name('gcexpense.store');
+    Route::controller(ExpenseController::class)->group(function () {
+        Route::get('/get-expenses-year', 'expensePy');
+
+        Route::get('/month expenses', 'index')->name('expenses.show');
+        Route::get('/previous expenses', 'prev')->name('expense.prev');
+        Route::get('/all_expenses', 'all')->name('expense.all');
+        Route::post('/expense/Store', 'store')->name('expense.store');
+        Route::get('/gcexpenses', 'gcexpenses')->name('gcexpense');
+        Route::post('/gcexpenses/store', 'gcexpensestore')->name('gcexpense.store');
+    });
 
 
     Route::middleware('woh')->group(function () {
@@ -139,6 +161,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('record', 'add')->name('attendance.record');
                 Route::post('save', 'record')->name('attendance.save');
                 Route::get('{date}/members', 'members_present')->name('attendance.members');
+                Route::get('{date}/visitors', 'visitors_present')->name('attendance.visitors');
             });
         });
     });
@@ -173,11 +196,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('view', function () {
-    $rev = DB::table('revenue')->sum('amount') - DB::table('expenses')->sum('amount');
-    DB::table('accounts')->where('type','church')->increment('amount', $rev);
+    (new WelfareController)->welfarePyChart();
+    //     $rev = DB::table('revenue')->sum('amount') - DB::table('expenses')->sum('amount');
+    //     DB::table('accounts')->where('type','church')->increment('amount', $rev);
 
-    $welf = DB::table('welfares')->sum('amount') - DB::table('welfare_expenses')->sum('amount');
-    DB::table('accounts')->where('type','welfare')->increment('amount', $welf);
-return 'done';
+    //     $welf = DB::table('welfares')->sum('amount') - DB::table('welfare_expenses')->sum('amount');
+    //     DB::table('accounts')->where('type','welfare')->increment('amount', $welf);
+    // return 'done';
     // return view('organization.overview');
 });

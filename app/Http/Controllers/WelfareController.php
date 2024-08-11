@@ -22,6 +22,15 @@ class WelfareController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+    public function welfarePyChart()
+    {
+        $months = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $amount = DB::table('welfares')->whereMonth('created_at', $i)->sum('amount');
+            $months[$i] = $amount;
+        }
+        return $months;
+    }
 
     public function index()
     {
@@ -87,7 +96,7 @@ class WelfareController extends Controller
     public function store(Request $request)
     {
         $time = Carbon::now()->toTimeString();
-        $date = Carbon::parse($request->input('date').' '.$time);
+        $date = Carbon::parse($request->input('date') . ' ' . $time);
 
         DB::table("welfares")->insert([
             'member_id' => $request->member_id,
@@ -98,7 +107,7 @@ class WelfareController extends Controller
         ]);
 
         $member = Member::where('mask', $request->member_id)->first();
-        $message = "Your welfare payment for the month of " . $date->monthName ." ".  $date->year." has been made.";
+        $message = "Your welfare payment for the month of " . $date->monthName . " " .  $date->year . " has been made.";
 
         sendText($member->contact, $message);
 
