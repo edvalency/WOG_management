@@ -53,8 +53,7 @@ class VisitorsController extends Controller
 
     public function quick_store(Request $request)
     {
-        Validator::make($request->all(), ['phone' => "required|unique:visitors,contact"])->validate();
-
+        // Validator::make($request->all(), ['phone' => "required|unique:visitors,contact"])->validate();
         $mask = Str::orderedUuid();
         DB::table('visitors')->insert([
             'fullname' => $request->fullname,
