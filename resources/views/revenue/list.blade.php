@@ -6,8 +6,107 @@
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content  flex-column-fluid ">
         <!--begin::Content container-->
-        <div id="kt_app_content_container" class="app-container  container-xxl ">
+        <div id="kt_app_content_container" class="app-container  container-xxl mt-3">
+<div class="card card-body">
 
+                    <!--begin::Stats-->
+                    <div class="d-flex flex-wrap flex-stack">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column flex-grow-1 pe-8">
+                            <!--begin::Stats-->
+                            {{-- <div class="d-flex flex-wrap">
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <!--begin::Number-->
+                                    <div class="d-flex align-items-center">
+                                        <i class="ki-duotone ki-arrow-up fs-3 text-success me-2"><span
+                                                class="path1"></span><span class="path2"></span></i>
+                                        <div class="fs-2 fw-bold" data-kt-countup="true" data-kt-countup-value="4500"
+                                            data-kt-countup-prefix="$">0</div>
+                                    </div>
+                                    <!--end::Number-->
+
+                                    <!--begin::Label-->
+                                    <div class="fw-semibold fs-6 text-gray-500">Earnings</div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Stat-->
+
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <!--begin::Number-->
+                                    <div class="d-flex align-items-center">
+                                        <i class="ki-duotone ki-arrow-down fs-3 text-danger me-2"><span
+                                                class="path1"></span><span class="path2"></span></i>
+                                        <div class="fs-2 fw-bold" data-kt-countup="true" data-kt-countup-value="75">0
+                                        </div>
+                                    </div>
+                                    <!--end::Number-->
+
+                                    <!--begin::Label-->
+                                    <div class="fw-semibold fs-6 text-gray-500">Projects</div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Stat-->
+
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <!--begin::Number-->
+                                    <div class="d-flex align-items-center">
+                                        <i class="ki-duotone ki-arrow-up fs-3 text-success me-2"><span
+                                                class="path1"></span><span class="path2"></span></i>
+                                        <div class="fs-2 fw-bold" data-kt-countup="true" data-kt-countup-value="60"
+                                            data-kt-countup-prefix="%">0</div>
+                                    </div>
+                                    <!--end::Number-->
+
+                                    <!--begin::Label-->
+                                    <div class="fw-semibold fs-6 text-gray-500">Success Rate</div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Stat-->
+                            </div> --}}
+                            <!--end::Stats-->
+                            {{-- <div class="d-flex justify-content-end align-items-end flex-wrap mb-2 mt-4">
+                                <div class="d-flex justify-content-end align-items-end flex-wrap mb-2"> <a
+                                        data-bs-target="#add_member_modal"
+                                        class="btn btn-sm btn-bg-primary text-white btn-active-color-primary me-3"
+                                        data-bs-toggle="modal">Add Member</a>
+                                </div>
+                                <div class="d-flex justify-content-end align-items-end flex-wrap mb-2"> <a
+                                        data-bs-target="#add_visitor_modal"
+                                        class="btn btn-sm btn-bg-primary text-white btn-active-color-primary me-3"
+                                        data-bs-toggle="modal">Add Visitor</a>
+                                </div>
+                                <a href="{{ route('attendance.record') }}"
+                                    class="btn btn-sm btn-bg-primary text-white btn-active-color-primary me-3 mb-2">Record
+                                    attendance</a>
+                            </div> --}}
+
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Stats-->
+                    <!--begin:::Tabs-->
+                    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
+                        <!--begin:::Tab item-->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
+                                href="#members">Members</a>
+                        </li>
+                        <!--end:::Tab item-->
+                        <!--begin:::Tab item-->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary pb-4 " wire:click="activate('routes')"
+                                data-bs-toggle="tab" href="#visitors">Visitors</a>
+                        </li>
+                        <!--end:::Tab item-->
+                        <!--begin:::Tab item-->
+
+                        <!--end:::Tab item-->
+                    </ul>
+                    <!--end:::Tabs-->
+</div>
             <!--begin::Table-->
             <div class="card card-flush mt-6 mt-xl-9">
                 <div class="d-flex justify-content-end align-items-end flex-wrap mb-2 mt-4"> <a

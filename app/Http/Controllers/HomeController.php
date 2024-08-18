@@ -40,10 +40,10 @@ class HomeController extends Controller
     {
         $members = DB::table('members')
             ->count();
-        $revenue =['total' => DB::table('accounts')->where('type','church')->pluck('amount')->first(),'curr_month'=>DB::table('revenue')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
-        $expenses = ['total' => DB::table('expenses')->sum('amount'),'curr_month'=>DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
-        $welfares = ['total' => DB::table('accounts')->where('type','welfare')->pluck('amount')->first(),'curr_month'=>DB::table('welfares')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
-        $welfare_expenses = ['total' => DB::table('welfare_expenses')->sum('amount'),'curr_month'=>DB::table('welfare_expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount')] ;
+        $revenue = ['total' => DB::table('accounts')->where('type', 'church')->pluck('amount')->first(), 'curr_month' => DB::table('revenue')->whereMonth('created_at', Carbon::now()->month)->sum('amount')];
+        $expenses = ['total' => DB::table('expenses')->sum('amount'), 'curr_month' => DB::table('expenses')->whereMonth('created_at', Carbon::now()->month)->sum('amount')];
+        $welfares = ['total' => DB::table('accounts')->where('type', 'welfare')->pluck('amount')->first(), 'curr_month' => DB::table('welfares')->whereMonth('created_at', Carbon::now()->month)->sum('amount')];
+        $welfare_expenses = ['total' => DB::table('welfare_expenses')->sum('amount'), 'curr_month' => DB::table('welfare_expenses')->whereMonth('created_at', Carbon::now()->month)->sum('amount')];
 
 
         // $date = date('Y');
@@ -80,7 +80,7 @@ class HomeController extends Controller
         //         }
         //     }
         // }
-        return view('dashboard', compact('members','revenue','expenses','welfares','welfare_expenses'));
+        return view('dashboard', compact('members', 'revenue', 'expenses', 'welfares', 'welfare_expenses'));
     }
 
     public function userAdd()
@@ -90,7 +90,7 @@ class HomeController extends Controller
 
     public function userSave(Request $request)
     {
-        Validator::make($request->all(),['phone'=>'required|unique:users','email'=>'required|unique:users','name'=>'required']);
+        Validator::make($request->all(), ['phone' => 'required|unique:users', 'email' => 'required|unique:users', 'name' => 'required']);
 
         $password = Str::random(6);
         DB::table('users')->insert([
@@ -105,7 +105,7 @@ class HomeController extends Controller
         $message = 'Hello ' . $request->name . ', Your account has been created on ' . env("APP_NAME") . '. Access the platform via ' . env('APP_URL') . ' with the email: '
             . $request->email . ' and password: ' . $password . '.';
 
-        sendText($request->phone,$message);
+        sendText($request->phone, $message);
 
         return redirect(route('users'))->with('success', "User added successfully");
     }

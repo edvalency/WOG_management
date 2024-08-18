@@ -55,8 +55,9 @@
                 @if (hasRole('attendance'))
                     <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('attendance')"
                             href="{{ route('attendance') }}"><span class="menu-icon"><i
-                                    class="ki-duotone ki-people fs-4"><span class="path1"></span><span
-                                        class="path2"></span></i></span><span
+                                class="ki-duotone ki-people fs-1"><span class="path1"></span><span
+                                    class="path2"></span><span class="path3"></span><span
+                                    class="path4"></span></i></span><span
                                 class="menu-title">Attendance</span></a><!--end:Menu link--></div>
                 @endif
                 @if (hasRole('revenue'))

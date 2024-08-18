@@ -54,10 +54,10 @@ class AttendanceController extends Controller
         Validator::make($request->all(), ['present' => 'required'])->validate();
 
         foreach ($request->present as $member) {
-            $present = DB::table('attendance_logs')->where('member_id', $member)->whereDate('created_at', Carbon::today()->toDateString())->exists();
+            $present = DB::table('attendance_logs')->where('attendee_id', $member)->whereDate('created_at', Carbon::today()->toDateString())->exists();
             if (!$present) {
                 DB::table('attendance_logs')->insert([
-                    'member_id' => $member,
+                    'attendee_id' => $member,
                     'created_at' => Carbon::now()->toDateTimeString()
                 ]);
             }
@@ -69,7 +69,7 @@ class AttendanceController extends Controller
     {
 
         $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at', Carbon::parse($date)->toDateString())
-            ->join('members', 'members.membership_no', 'attendance_logs.member_id')
+            ->join('members', 'members.membership_no', 'attendance_logs.attendee_id')
             ->select('members.fullname', 'members.contact', 'members.profileImg')->get();
 
         return view('attendance.members', compact('present'));
