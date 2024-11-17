@@ -70,7 +70,7 @@
                                 <!--begin::Summary-->
                                 <style>
                                     .image-input-placeholder {
-                                        background-image: url("assets/{{ $member->profileImg ? 'profile/'.$member->profileImg : 'media/svg/files/blank-image.svg' }}" );
+                                        background-image: url("{{ $member->profileImg }}" );
                                     }
 
                                     [data-bs-theme="dark"] .image-input-placeholder {

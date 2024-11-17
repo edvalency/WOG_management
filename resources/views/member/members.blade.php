@@ -120,7 +120,7 @@
                                                     @if($member->profileImg)
                                                     <!--begin::Avatar-->
                                                     <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="img" src="../../assets/profile/{{ $member->profileImg }}" />
+                                                        <img alt="img" src="{{ $member->profileImg }}" />
                                                     </div>
                                                     <!--end::Avatar-->
                                                     @else

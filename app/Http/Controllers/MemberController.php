@@ -180,13 +180,15 @@ class MemberController extends Controller
     // dd($request->all());
         if (is_file($request->image)) {
             $member = DB::table('members')->where('mask', $mask)->first(['profileImg', 'fullname']);
-            if (file_exists("assets/profile/" . $member->profileImg)) {
-                unlink("assets/profile/" . $member->profileImg);
-            }
+            // if (file_exists("assets/profile/" . $member->profileImg)) {
+            //     unlink("assets/profile/" . $member->profileImg);
+            // }
             $newImgName = $member->fullname . '.' . $request->image->extension();
             $request->image->move('assets/profile/', $newImgName);
-            $request['profileImg'] = $newImgName;
+            $imageurl = url('assets/profile/'.$newImgName);
+            $request['profileImg'] = $imageurl;
         }
+        
 
         DB::table('members')->where('mask', $mask)
             ->update($request->except(['_token','image']));
@@ -205,7 +207,7 @@ class MemberController extends Controller
         //     'email' => $request->input('email'),
         //     'father_name' => $request->input('fathers_name'),
         //     'father_stat' => $request->input('dad_stat'),
-        //     'mother_name' => $request->input('mothers_name'),
+        //     'mother_name' => $request->input('mothers_name'), 
         //     'mother_stat' => $request->input('mom_stat'),
         //     'next_of_kin' => $request->input('nok'),
         //     'nok_contact' => $request->input('nok_phone'),
@@ -231,9 +233,9 @@ class MemberController extends Controller
      */
     public function delete($member)
     {
-        Member::where('mask', $member)->delete();
+        Member::where('mask', $member)->delete();                            
         return back()->with('success', "Member deleted");
-    }
+    }    
 
     public function search(Request $request)
     {
