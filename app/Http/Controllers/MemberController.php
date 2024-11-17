@@ -19,10 +19,10 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
@@ -239,6 +239,13 @@ class MemberController extends Controller
     {
         $data = Member::where('fullname', 'like', "%" . $request->input('search') . "%")->get();
         return view('member.members')->with('data', $data);
+    }
+
+    public function searchJson(Request $request)
+    {
+        // dd($request->all());
+        $data = Member::where('fullname', 'like', "%" . $request->input('search') . "%")->get(["mask",'fullname']);
+        return $data;
     }
 
     public function look_up(Request $request)

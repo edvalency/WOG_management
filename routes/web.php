@@ -40,14 +40,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::get('logout', [HomeController::class, 'destroy'])->name('logout');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'main'])->name('home');
-    Route::get('/users', [HomeController::class, 'users'])->name('users');
-    Route::get('/user-add', [HomeController::class, 'userAdd'])->name('user.add');
-    Route::post('/user-save', [HomeController::class, 'userSave'])->name('user.save');
-    Route::get('/user-edit/{user}', [HomeController::class, 'userEdit'])->name('user.edit');
-    Route::post('/user-edit/{user}', [HomeController::class, 'userUpdate'])->name('user.edit');
-    Route::get('/user-delete/{user}', [HomeController::class, 'userDelete'])->name('user.delete');
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('logout', 'destroy')->name('logout');
+        Route::get('/home', 'main')->name('home');
+        Route::get('/users', 'users')->name('users');
+        Route::get('/user-add', 'userAdd')->name('user.add');
+        Route::post('/user-save', 'userSave')->name('user.save');
+        Route::get('/user-edit/{user}', 'userEdit')->name('user.edit');
+        Route::post('/user-edit/{user}', 'userUpdate')->name('user.edit');
+        Route::post('/user-permissions-update/{user}', 'updateRoles')->name('user.permissions.update');
+        Route::get('/user-delete/{user}', 'userDelete')->name('user.delete');
+    });
     // Route::get('/dashboard',[HomeController::class,'main'])->name('dashboard');
     Route::prefix('members')->group(function () {
         Route::get('add', [MemberController::class, 'create'])->name('members.add');
@@ -80,15 +83,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/gc_members', [MemberController::class, 'gcMembers'])->name('gcmembers.show');
 
-    Route::get('/Offertory', [OffertoryController::class, 'index'])->name('offertory.show');
-    Route::post('/offertory/add', [OffertoryController::class, 'store'])->name('offertory.save');
-    Route::get('/offertory/delete/{record}', [OffertoryController::class, 'destroy'])->name('offertory.delete');
+    // Route::get('/Offertory', [OffertoryController::class, 'index'])->name('offertory.show');
+    // Route::post('/offertory/add', [OffertoryController::class, 'store'])->name('offertory.save');
+    // Route::get('/offertory/delete/{record}', [OffertoryController::class, 'destroy'])->name('offertory.delete');
 
-    Route::get('/Tithes', [TitheController::class, 'index'])->name('tithe.show');
-    Route::get('/Tithes/Details/{name} ', [TitheController::class, 'single'])->name('tithes.single');
-    Route::post('/Tithes/Details/', [TitheController::class, 'search'])->name('tithes.search');
+    Route::get('/tithes', [TitheController::class, 'index'])->name('tithe.show');
+    Route::get('/tithes/Details/{name} ', [TitheController::class, 'single'])->name('tithes.single');
+    Route::post('/tithes/Details/', [TitheController::class, 'search'])->name('tithes.search');
 
-    Route::post('/tithes/Store', [TitheController::class, 'store'])->name('tithes.store');
+    Route::post('/tithes/Store', [TitheController::class, 'store'])->name('tithe.save');
+    Route::post('/tithes/store', [TitheController::class, 'update'])->name('tithe.edit');
     Route::get('/tithes/delete/{record}', [TitheController::class, 'destroy'])->name('tithe.delete');
     // Route::get('search',[TitheController::class, 'search']);
 
@@ -133,7 +137,6 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ExpenseController::class)->group(function () {
         Route::get('/get-expenses-year', 'expensePy');
-
         Route::get('/month expenses', 'index')->name('expenses.show');
         Route::get('/previous expenses', 'prev')->name('expense.prev');
         Route::get('/all_expenses', 'all')->name('expense.all');
@@ -160,6 +163,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('/', 'index')->name('attendance');
                 Route::get('record', 'add')->name('attendance.record');
                 Route::post('save', 'record')->name('attendance.save');
+                Route::get('{log_id}/delete', 'destroy')->name('attendance.delete');
                 Route::get('{date}/members', 'members_present')->name('attendance.members');
                 Route::get('{date}/visitors', 'visitors_present')->name('attendance.visitors');
             });

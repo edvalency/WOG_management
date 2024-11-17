@@ -94,7 +94,7 @@
                             class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
                             <thead class="fs-7 text-gray-500 text-uppercase">
                                 <tr>
-                                    <th class="min-w-50px">#</th>  
+                                    <th class="min-w-50px">#</th>
                                     <th class="min-w-50px">Image</th>
                                     <th class="min-w-50px">Name</th>
                                     <th class="min-w-90px">Phone</th>
@@ -138,11 +138,11 @@
                                                 </div> --}}
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
-                                                {{-- <div class="menu-item px-3">
-                                                    <a href="{{ route('member.delete', $member->mask) }}"
-                                                        onclick="return confirm('Confirm you want to delete?')"
-                                                        class="menu-link px-3">Delete</a>
-                                                </div> --}}
+                                                <div class="menu-item px-3">
+                                                    <a href="{{ route('attendance.delete', $member->id) }}"
+                                                        onclick="return confirm('Confirm you want to remove member?')"
+                                                        class="menu-link px-3">Remove from list</a>
+                                                </div>
                                                 <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->

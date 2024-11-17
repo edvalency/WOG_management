@@ -7,6 +7,7 @@ use App\Models\Tithe;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class TitheController extends Controller
@@ -23,9 +24,12 @@ class TitheController extends Controller
 
     public function index(Member $member)
     {
-
-        $all = Member::all('id', 'fullname');
-        return view('tithe.tithes')->with('member', $all);
+        $tithes = DB::table('tithes')
+            ->join('members', 'members.mask', 'tithes.member_id')
+            ->join('users','users.mask','tithes.recorded_by')
+            ->select('members.fullname', 'tithes.amount', 'users.name as recorded_by','tithes.created_at','tithes.id')
+            ->get();
+        return view('revenue.tithe.list', compact('tithes'));
     }
 
     /**
@@ -46,7 +50,7 @@ class TitheController extends Controller
         //     ->get();
         $data = Member::where('fullname', 'like', "%" . $request->input('search') . "%")->select('fullname')->get();
         // dd($data);
-        return view('tithe.tithes')->with('member', $data);
+        return view('revenue.tithe.tithes')->with('member', $data);
     }
 
     /**
@@ -57,12 +61,24 @@ class TitheController extends Controller
      */
     public function store(Request $request)
     {
+        $date = Carbon::parse($request->input('date'))->toFormattedDateString();
+
         DB::table('tithes')->insert([
-            'member_id' => $request->input('id'), 'created_at' => Carbon::now()->toDateString(),
+            'recorded_by' => Auth::user()->mask,
+            'member_id' => $request->member_id,
+            'created_at' => Carbon::parse($request->date)->toDateString(),
             'date' => $request->date,
             'amount' => $request->input('amount'),
-            'updated_at' => Carbon::now()->toDateString()
+            'updated_at' => Carbon::now()->toDateTimeString()
         ]);
+
+        if ($request->receipt) {
+            $member = Member::where('mask', $request->member_id)->first();
+            $message = "Your tithe paid on " . $date . " has been recorded.";
+
+            sendText($member->contact, $message);
+        }
+
         return redirect()->back()->with('success', 'Recorded');
     }
 
@@ -86,7 +102,7 @@ class TitheController extends Controller
         $data = DB::table('tithes')
             ->where('member_id', $member->id)
             ->get();
-        return view('tithe.details', ['results' => $data, 'name' => $member]);
+        return view('revenue.tithe.details', ['results' => $data, 'name' => $member]);
     }
 
     /**
@@ -125,9 +141,9 @@ class TitheController extends Controller
      * @param  \App\Models\Tithe  $tithe
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $tithe)
+    public function destroy($tithe)
     {
         DB::table('tithes')->where('id', $tithe)->delete();
-       return redirect()->back()->with('success', 'Deleted');
+        return redirect()->back()->with('success', 'Deleted');
     }
 }

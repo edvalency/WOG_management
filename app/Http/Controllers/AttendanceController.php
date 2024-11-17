@@ -14,10 +14,10 @@ class AttendanceController extends Controller
         $logs = [];
         foreach (getSundays() as $sunday) {
             $present = DB::table('attendance_logs')->whereDate('created_at', $sunday);
-            $mlog = $present->where('attendee_type','members')->count();
+            $mlog = $present->where('attendee_type', 'members')->count();
 
-            $members = $present->where('attendee_type','members')->pluck('attendee_id')->toArray();
-            $m_genders = DB::table('members')->whereIn('membership_no', $members)->orWhereIn('mask',$members)
+            $members = $present->where('attendee_type', 'members')->pluck('attendee_id')->toArray();
+            $m_genders = DB::table('members')->whereIn('membership_no', $members)->orWhereIn('mask', $members)
                 ->select(
                     DB::raw('COUNT(CASE WHEN gender = "Male" THEN 1 END) as males'),
                     DB::raw('COUNT(CASE WHEN gender = "Female" THEN 1 END) as females')
@@ -25,8 +25,8 @@ class AttendanceController extends Controller
                 ->first();
             $member_logs[$sunday] = ['total' => $mlog, 'gender' => $m_genders];
 
-            $vlog = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type','visitors')->count();
-            $visitors = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type','visitors')->pluck('attendee_id')->toArray();
+            $vlog = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type', 'visitors')->count();
+            $visitors = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type', 'visitors')->pluck('attendee_id')->toArray();
 
             $v_genders = DB::table('visitors')->whereIn('mask', $visitors)
                 ->select(
@@ -37,7 +37,7 @@ class AttendanceController extends Controller
 
             $visitor_logs[$sunday] = ['total' => $vlog, 'gender' => $v_genders];
         }
-        return view('attendance.index', compact('member_logs','visitor_logs'));
+        return view('attendance.index', compact('member_logs', 'visitor_logs'));
     }
 
     public function add()
@@ -70,7 +70,7 @@ class AttendanceController extends Controller
 
         $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at', Carbon::parse($date)->toDateString())
             ->join('members', 'members.membership_no', 'attendance_logs.attendee_id')
-            ->select('members.fullname', 'members.contact', 'members.profileImg')->get();
+            ->select('members.fullname', 'members.contact', 'members.profileImg','attendance_logs.id')->get();
 
         return view('attendance.members', compact('present'));
     }
@@ -81,7 +81,15 @@ class AttendanceController extends Controller
         $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at', Carbon::parse($date)->toDateString())
             ->join('visitors', 'visitors.mask', 'attendance_logs.attendee_id')
             ->select('visitors.fullname', 'visitors.contact', 'visitors.gender')->get();
+            recordActivity('Viewed visitors attendance logs');
 
         return view('attendance.visitors', compact('present'));
+    }
+
+    public function destroy($log_id)
+    {
+        DB::table('attendance_logs')->where('id', $log_id)->delete();
+        recordActivity('Deleted an attendance entry');
+        return back()->with('success', 'Record deleted');
     }
 }

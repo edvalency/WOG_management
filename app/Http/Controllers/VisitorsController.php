@@ -54,20 +54,36 @@ class VisitorsController extends Controller
     public function quick_store(Request $request)
     {
         // Validator::make($request->all(), ['phone' => "required|unique:visitors,contact"])->validate();
-        $mask = Str::orderedUuid();
-        DB::table('visitors')->insert([
-            'fullname' => $request->fullname,
-            'contact' => $request->phone,
-            'gender' => $request->gender,
-            'mask' => $mask,
-            'created_at' => Carbon::now()->toDateTimeString()
-        ]);
+        function add_visitor($visitor)
+        {
+            $mask = Str::orderedUuid();
+            DB::table('visitors')->insert([
+                'fullname' => $visitor->fullname,
+                'contact' => $visitor->phone,
+                'gender' => $visitor->gender,
+                'mask' => $mask,
+                'created_at' => Carbon::now()->toDateTimeString()
+            ]);
 
-        DB::table('attendance_logs')->insert([
-            'attendee_type' => "visitors",
-            'attendee_id' => $mask,
-            'created_at' =>  Carbon::now()->toDateTimeString()
-        ]);
+            DB::table('attendance_logs')->insert([
+                'attendee_type' => "visitors",
+                'attendee_id' => $mask,
+                'created_at' =>  Carbon::now()->toDateTimeString()
+            ]);
+        }
+
+        if ($request->has('males')) {
+            for ($i = 1; $i <= $request->males; $i++) {
+                add_visitor((object)['fullname' => null, 'phone' => null, 'gender' => 'Male']);
+            }
+        }
+
+        if ($request->has('females')) {
+            for ($i = 1; $i <= $request->females; $i++) {
+                add_visitor((object)['fullname' => null, 'phone' => null, 'gender' => 'Female']);
+            }
+        }
+
 
 
         return redirect()->back()->with('success', "Visitor Registered");

@@ -106,10 +106,13 @@ class WelfareController extends Controller
             'updated_at' => Carbon::now()->toDateString()
         ]);
 
-        $member = Member::where('mask', $request->member_id)->first();
-        $message = "Your welfare payment for the month of " . $date->monthName . " " .  $date->year . " has been made.";
+        if ($request->receipt) {
+            $member = Member::where('mask', $request->member_id)->first();
+            $message = "Your welfare payment for the month of " . $date->monthName . " " .  $date->year . " has been made.";
 
-        sendText($member->contact, $message);
+            sendText($member->contact, $message);
+        }
+
 
         return redirect()->back()->with('success', "Recorded");
     }

@@ -65,7 +65,14 @@
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
-
+                                     <!--begin::Input group-->
+                                     <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <input type="checkbox" name="receipt" id="">
+                                            <label class="form-label fw -bold text-gray-900 fs-6 mb-0">Send receipt</label>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center">
                                         <!--begin::Submit button-->

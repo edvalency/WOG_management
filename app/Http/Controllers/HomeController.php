@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Carbon\Carbon;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Faker\Extension\Extension;
@@ -119,9 +122,26 @@ class HomeController extends Controller
 
     public function userEdit($user)
     {
-        $userdetails = DB::table('users')->where('mask', $user)->first();
+        $userdetails = User::where('mask', $user)->first();
+        $roles = Role::all();
+        $permissions = Permission::all();
 
-        return view('users.edit', compact('userdetails'));
+        $all_roles = [];
+
+        foreach ($roles as  $role) {
+            $permissions = DB::table('role_has_permissions')->where('role_id', $role->uuid)
+                ->join('permissions', 'permissions.uuid', 'role_has_permissions.permission_id')
+                ->select('name', 'uuid')->get();
+
+            $rnp = ['name' => $role->name, 'permissions' => $permissions];
+            array_push($all_roles, $rnp);
+        }
+
+        if ($userdetails) {
+            $perms = $userdetails->getDirectPermissions()->pluck('name')->toArray();
+            // Do something with the permissions
+        }
+        return view('users.edit', compact('all_roles', 'perms','userdetails'));
     }
 
     public function userUpdate(Request $request, $user)
@@ -164,6 +184,15 @@ class HomeController extends Controller
         //         $msg = 'MongoDB is not accessible. Error: ' . $e->getMessage();
         //     }
         //     return ['msg' => $msg];
+    }
+
+    public function updateRoles(Request $request, $user)
+    {
+        // dd($request->all());
+        User::where('mask', $user)->first()->syncPermissions($request->permissions);
+        // foreach($request->permission as $permission){
+        // }
+        return back()->with('success', 'Roles updated');
     }
 
     public function destroy()
