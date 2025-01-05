@@ -52,7 +52,7 @@
                         href="{{ route('members.show') }}"><span class="menu-icon"><i class="fa fa-users fs-4"><span
                                     class="path1"></span><span class="path2"></span></i></span><span
                             class="menu-title">Members</span></a><!--end:Menu link--></div>
-                @if (hasRole('attendance'))
+                @if (hasPermission(Auth::user()->mask,'attendance.view'))
                     <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('attendance')"
                             href="{{ route('attendance') }}"><span class="menu-icon"><i
                                 class="ki-duotone ki-people fs-1"><span class="path1"></span><span
@@ -60,7 +60,7 @@
                                     class="path4"></span></i></span><span
                                 class="menu-title">Attendance</span></a><!--end:Menu link--></div>
                 @endif
-                @if (hasRole('revenue'))
+                @if (hasPermission(Auth::user()->mask,'revenue.view'))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
                                 class="ki-duotone ki-dollar fs-1"><span class="path1"></span><span
@@ -91,14 +91,14 @@
                                         class="path2"></span></i></span><span
                                 class="menu-title">Revenue</span></a><!--end:Menu link--></div> --}}
                 @endif
-                @if (hasRole('expenses'))
+                @if (hasPermission(Auth::user()->mask,'expenses.view'))
                     <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('expenses')"
                             href="{{ route('expense.all') }}"><span class="menu-icon"><i
                                     class="ki-duotone ki-chart fs-1"><span class="path1"></span><span
                                         class="path2"></span></i></span><span
                                 class="menu-title">Expenses</span></a><!--end:Menu link--></div>
                 @endif
-                @if (hasRole('welfare'))
+                @if (hasPermission(Auth::user()->mask,'welfare.view'))
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
                                     class="ki-duotone ki-colors-square fs-1"><span class="path1"></span><span
@@ -124,7 +124,7 @@
                         </div><!--end:Menu sub-->
                     </div><!--end:Menu item-->
                 @endif
-                @if (hasRole('admin'))
+                @if (hasPermission(Auth::user()->mask,'admin'))
                     <!--begin:Menu item-->
                     <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('users')"
                             href="{{ route('users') }}"><span class="menu-icon"><i

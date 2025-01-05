@@ -8,7 +8,7 @@
 
             <!--begin::Table-->
             <div class="card card-flush mt-6 mt-xl-9">
-            
+
                 <!--begin::Card header-->
                 <div class="card-header mt-2">
                     <!--begin::Card title-->
@@ -30,6 +30,7 @@
                                 <input type="text" name="name" class="form-control" id=""
                                     value="{{ $userdetails->name }}">
                             </div>
+                            <input type="hidden" name="user_id" value="{{ $userdetails->mask }}">
                             <div class="fv-row mt-4">
                                 <!--begin::Label-->
                                 <label class="fs-5 fw-bold form-label mb-2">Role Permissions</label>
@@ -55,7 +56,7 @@
                                                     <!--begin::Checkbox-->
                                                     <label
                                                         class="form-check form-check-sm form-check-custom form-check-solid me-9">
-                                                        <input class="form-check-input" type="checkbox" name=""
+                                                        <input class="form-check-input" type="checkbox" name="permissions[]"
                                                             value="admin" id="select_all">
                                                         <span class="form-check-label" for="kt_roles_select_all">
                                                             Select all
@@ -81,10 +82,11 @@
                                                                 <label
                                                                     class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                     <input class="form-check-input permission"
-                                                                        type="checkbox" value="{{ $permission->name }}"
+                                                                        type="checkbox" value="{{ $permission->name }}" {{ hasPermission($userdetails->mask, $permission->name) ? 'checked' : '' }}
                                                                         name="permissions[]"
-                                                                        {{ in_array($permission->name, $perms) ? 'checked' : '0' }} />
-                                                                    <span class="form-check-label text-capitalize">
+                                                                        {{-- {{ in_array($permission->id, $user_permissions) ? 'checked' : '0' }} --}}
+                                                                         />
+                                                                    <span class="form-check-label">
                                                                         {{ $permission->name }}
                                                                     </span>
                                                                 </label>

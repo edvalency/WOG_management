@@ -80,7 +80,6 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        {{-- <td>{{ $value->membership_no }}</td> --}}
                                         <td id="name">{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>

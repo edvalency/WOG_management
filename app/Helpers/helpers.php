@@ -63,3 +63,14 @@ function hasRole($role)
         return false;
     }
 }
+
+function hasPermission($user, $permission)
+{
+    $permissions = DB::table('user_permissions')->where('user_id', $user)->pluck('permission')->toArray();
+
+    if (in_array($permission, $permissions)) {
+        return true;
+    } else {
+        return false;
+    }
+}

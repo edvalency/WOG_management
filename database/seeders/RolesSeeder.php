@@ -15,23 +15,32 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
-        // Reset cached roles and permissions
 
-        $role = Role::create(['name' => 'attendance'],['name'=>'welfare']);
-        // $permissiono = Permission::create(['name' => 'add attendance']);
-        // $permissiont = Permission::create(['name' => 'view attendance']);
-        // $permissiontr = Permission::create(['name' => 'delete']);
+        $attendance = Role::create(['name' => 'attendance']);
+        $welfare = Role::create(['name' => 'welfare']);
+        $rev = Role::create(['name' => 'revenue']);
+        $mem = Role::create(['name' => 'members']);
 
-        $role->givePermissionTo(['add attendance','view attendance']);
+        $att_permissions = ['attendance.view', 'attendance.edit', 'attendance.save'];
+        $wel_permissions = ['welfare.view', 'welfare.edit', 'welfare.save'];
+        $rev_permissions = ['revenue.view', 'revenue.edit', 'revenue.save'];
+        $mem_permissions = ['attendance.view', 'attendance.edit', 'attendance.save'];
+        foreach ($att_permissions as $perm) {
+            $permission = Permission::create(['name' => $perm]); // Create permission first
+            $attendance->permissions()->save($permission); // Attach the permission to the role
+        }
+        foreach ($wel_permissions as $perm) {
+            $permission = Permission::create(['name' => $perm]); // Create permission first
+            $welfare->permissions()->save($permission); // Attach the permission to the role
+        }
+        foreach ($rev_permissions as $perm) {
+            $permission = Permission::create(['name' => $perm]); // Create permission first
 
-        // Permission::create(['name' => 'add offertory']);
-        // Role::where('name' , 'revenue')->first()->givePermissionTo(['add offertory', 'edit offertory']);
-        // $del_off = Permission::create(['name' => 'delete offertory']);
-        // $add_tithe = Permission::create(['0name' => 'add tithe']);
-        // $edit_tithe = Permission::create(['name' => 'edit tithe']);
-        // $del_tithe = Permission::create(['name' => 'delete tithe']);
-        // $permissiontr = Permission::create(['name' => 'delete']);
-
-        // $role->givePermissionTo(['add offertory', 'edit offertory']);
+            $rev->permissions()->save($permission); // Attach the permission to the role
+        }
+        foreach ($mem_permissions as $perm) {
+            $permission = new Permission(['name' => $perm]);
+            $mem->permissions()->save($permission);
+        }
     }
 }

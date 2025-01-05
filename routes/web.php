@@ -37,7 +37,11 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/birthdays', [HomeController::class,'getTodaysBirthday']);
+
 Auth::routes();
+
+
 
 Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function () {

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\UserPermission;
 use Faker\Extension\Extension;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -124,24 +125,17 @@ class HomeController extends Controller
     {
         $userdetails = User::where('mask', $user)->first();
         $roles = Role::all();
-        $permissions = Permission::all();
 
         $all_roles = [];
 
         foreach ($roles as  $role) {
-            $permissions = DB::table('role_has_permissions')->where('role_id', $role->uuid)
-                ->join('permissions', 'permissions.uuid', 'role_has_permissions.permission_id')
-                ->select('name', 'uuid')->get();
-
-            $rnp = ['name' => $role->name, 'permissions' => $permissions];
+            $rnp = ['name' => $role->name, 'permissions' => $role->permissions];
             array_push($all_roles, $rnp);
         }
 
-        if ($userdetails) {
-            $perms = $userdetails->getDirectPermissions()->pluck('name')->toArray();
-            // Do something with the permissions
-        }
-        return view('users.edit', compact('all_roles', 'perms','userdetails'));
+        $user_permissions = $userdetails->permissions;
+
+        return view('users.edit', compact('all_roles', 'userdetails', 'user_permissions'));
     }
 
     public function userUpdate(Request $request, $user)
@@ -189,10 +183,28 @@ class HomeController extends Controller
     public function updateRoles(Request $request, $user)
     {
         // dd($request->all());
-        User::where('mask', $user)->first()->syncPermissions($request->permissions);
-        // foreach($request->permission as $permission){
-        // }
+        // User::where('mask', $user)->first()->syncPermissions($request->permissions);
+        DB::table('user_permissions')->where('user_id',$request->user_id)->delete();
+        foreach($request->permissions as $permission){
+        DB::table('user_permissions')->insert([
+            'user_id'=> $request->user_id,
+            'permission' => $permission
+        ]);
+
+        }
         return back()->with('success', 'Roles updated');
+    }
+
+    public function getTodaysBirthday()
+    {
+        $members = DB::table('members')->whereDay('dob', date('d'))->whereMonth('dob', date('m'))->get(['fullname', 'contact']);
+
+        foreach ($members as $member) {
+
+            $message = "We pray that as you mark your new age may the Joy of the Lord never depart from your life. May the Lord show you mercy. May his Mercies speak for you everywhere you go and in any situation you find yourself in. May the Lord remember your acts of kindness, your sacrifices and may He answer all your secret prayers and give you rest on every side. We love and celebrate you. Glorious Happy Birthday, $member->fullname! \n\n From: Word Of Grace Worship Center Int.";
+            sendText($member->contact, $message);
+        }
+        return true;
     }
 
     public function destroy()
