@@ -201,7 +201,7 @@ class HomeController extends Controller
 
         foreach ($members as $member) {
 
-            $message = "We pray that as you mark your new age may the Joy of the Lord never depart from your life. May the Lord show you mercy. May his Mercies speak for you everywhere you go and in any situation you find yourself in. May the Lord remember your acts of kindness, your sacrifices and may He answer all your secret prayers and give you rest on every side. We love and celebrate you. Glorious Happy Birthday, $member->fullname! \n\n From: Word Of Grace Worship Center Int.";
+            $message = "We pray that as you mark your new age may the Joy of the Lord never depart from your life. May the Lord show you mercy. May his Mercies speak for you everywhere you go and in any situation you find yourself in. May the Lord remember your acts of kindness, your sacrifices and may He answer all your secret prayers and give you rest on every side. We love and celebrate you. Glorious HAPPY BIRTHDAY, $member->fullname! \n\n From: Word Of Grace Worship Center Int.";
             sendText($member->contact, $message);
         }
         return true;

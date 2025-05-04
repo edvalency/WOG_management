@@ -41,7 +41,7 @@ class ExpenseController extends Controller
         foreach ($currentMonth as $month) {
             $split = explode('-', $month->created_at);
             if ($split[1] == $date) {
-                array_push($thismonth,$month);
+                array_push($thismonth, $month);
             }
         }
         // dd($thismonth);
@@ -49,34 +49,35 @@ class ExpenseController extends Controller
         return view('expenses')->with(['expense' => $thismonth, 'total' => $current]);
     }
 
-    public function prev(){
+    public function prev()
+    {
         $current = 0;
         $date = date('m');
         $thismonth = array();
         $currentMonth = Expense::all()->sortByDesc('created_at');
         foreach ($currentMonth as $month) {
             $split = explode('-', $month->created_at);
-            if ($split[1] == $date-1) {
-                array_push($thismonth,$month);
+            if ($split[1] == $date - 1) {
+                array_push($thismonth, $month);
                 $current += $month->amount;
             }
         }
-        return view('expenses')->with(['expense'=>$thismonth, 'total'=>$current]);
+        return view('expenses')->with(['expense' => $thismonth, 'total' => $current]);
     }
 
-    public function all(){
+    public function all()
+    {
         $expenses = DB::table('expenses')
-        ->join("users",'users.mask','expenses.user_id')
-        ->select('users.name','expenses.*')
-        ->orderByDesc('created_at')->get();
+            ->join("users", 'users.mask', 'expenses.user_id')
+            ->select('users.name', 'expenses.*')
+            ->orderByDesc('created_at')->get();
 
-        $monthSum = DB::table('expenses')->whereMonth('created_at',Carbon::now()->month)->sum('amount');
+        $monthSum = DB::table('expenses')->whereMonth('created_at', Carbon::now()->month)->sum('amount');
 
         // $sum = DB::table('expenses')->sum('expenses.amount');
 
         // dd($data);
-        return view('expenses.list',compact('monthSum','expenses'));
-
+        return view('expenses.list', compact('monthSum', 'expenses'));
     }
 
     /**
@@ -97,30 +98,32 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(),['type'=>'required','amount'=>'required']);
+        Validator::make($request->all(), ['type' => 'required', 'amount' => 'required']);
         //
 
         DB::table('expenses')->insert([
-            'user_id'=> Auth::user()->mask,
-            'type'=>$request->type,
+            'user_id' => Auth::user()->mask,
+            'type' => $request->type,
             'amount' => $request->input('amount'),
             'description' => $request->input('description'),
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
 
         recordActivity("Added expenses");
-        return redirect()->back()->with('success','Expenses recorded');
+        return redirect()->back()->with('success', 'Expenses recorded');
     }
 
-    public function gcexpenses(){
+    public function gcexpenses()
+    {
         $data = Gc_expense::all()->sortByDesc('created_at');
         $totalexpense = DB::table('gc_expenses')->sum('gc_expenses.amount');
 
 
-        return view('gc.expenses',['total'=>$totalexpense, 'expense'=>$data]);
+        return view('gc.expenses', ['total' => $totalexpense, 'expense' => $data]);
     }
 
-    public function gcexpensestore(Request $request){
+    public function gcexpensestore(Request $request)
+    {
         Gc_expense::create([
             'description' => $request->input('desc'),
             'amount' => $request->input('amount')
@@ -133,8 +136,8 @@ class ExpenseController extends Controller
     {
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
-            $amount = DB::table('expenses')->whereYear('created_at',Carbon::now()->year)->whereMonth('created_at', $i)->sum('amount');
-            array_push($months,$amount);
+            $amount = DB::table('expenses')->whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->sum('amount');
+            array_push($months, $amount);
         }
         return $months;
     }
@@ -179,8 +182,12 @@ class ExpenseController extends Controller
      * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expense $expense)
+    public function destroy($expense)
     {
-        //
+        DB::table('expenses')->where("id", $expense)->delete();
+
+        recordActivity("Deleted expense log");
+
+        return back()->with('suceess', 'Expense log deleted');
     }
 }

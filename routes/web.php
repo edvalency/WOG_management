@@ -144,6 +144,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/month expenses', 'index')->name('expenses.show');
         Route::get('/previous expenses', 'prev')->name('expense.prev');
         Route::get('/all_expenses', 'all')->name('expense.all');
+        Route::get('/expense/{expense}/delete', 'destroy')->name('expense.destroy');
         Route::post('/expense/Store', 'store')->name('expense.store');
         Route::get('/gcexpenses', 'gcexpenses')->name('gcexpense');
         Route::post('/gcexpenses/store', 'gcexpensestore')->name('gcexpense.store');

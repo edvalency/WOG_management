@@ -1,7 +1,7 @@
 <!--begin::Modal - Invite Friends-->
 <div class="modal fade" id="add_tithe_modal" aria-hidden="true">
     <!--begin::Modal dialog-->
-    <div class="modal-dialog mw-450px">
+    <div class="modal-dialog mw-350px">
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Modal header-->
@@ -39,18 +39,9 @@
                                     <!--begin::Input group-->
                                     <div class="fv-row mb-10">
                                         <!--begin::Label-->
-                                        <label class="form-label fs-6 fw-bold text-gray-900">Enter date of payment</label>
-                                        <!--end::Label-->
-
-                                        <input type="date" name="date" id=""
-                                            class="form-control">
-                                    </div>
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
                                         <label class="form-label fs-6 fw-bold text-gray-900">Select member</label>
                                         <!--end::Label-->
-                                        <select name="member_id" id="" class="form-control form-control-lg form-control-solid member_search">
+                                        <select name="member_id" id="" class="form-control form-control-lg form-control-solid member_search" required>
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -65,7 +56,7 @@
                                         </div>
                                         <!--end::Wrapper-->
                                         <!--begin::Input-->
-                                        <input class="form-control form-control-lg form-control-solid" type="text"
+                                        <input class="form-control form-control-lg form-control-solid" type="text" required
                                             name="amount" autocomplete="off" />
                                         <!--end::Input-->
                                     </div>
@@ -73,7 +64,7 @@
                                      <!--begin::Input group-->
                                      <div class="fv-row mb-10">
                                         <!--begin::Label-->
-                                        <input type="checkbox" name="receipt" id="">
+                                        <input type="checkbox" name="receipt" id="" checked>
                                         <label class="form-label fw -bold text-gray-900 fs-6 mb-0">Send receipt</label>
                                     <!--end::Input-->
                                 </div>
