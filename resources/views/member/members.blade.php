@@ -117,7 +117,7 @@
                                             <div class="d-flex align-items-center">
                                                 <!--begin::Wrapper-->
                                                 <div class="me-5 position-relative">
-                                                    @if($member->profileImg != 'profile.jpg')
+                                                    @if($member->profileImg != 'profile.jpg' || $member->profileImg != null)
                                                     <!--begin::Avatar-->
                                                     <div class="symbol symbol-70px symbol-circle">
                                                         <img alt="" src="{{ $member->profileImg }}" />
