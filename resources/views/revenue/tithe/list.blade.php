@@ -62,8 +62,8 @@
                             <thead class="fs-7 text-dark text-uppercase">
                                 <tr>
                                     <th class="min-w-250px">Recorded by</th>
-                                    <th class="min-w-250px">Name</th>
-                                    <th class="min-w-150px">Date</th>
+                                    <th class="min-w-250px">Date Recorded</th>
+                                    <th class="min-w-250px">Name</th>r
                                     <th class="min-w-90px">Amount</th>
                                     <th class="min-w-50px text-end">Actions</th>
                                 </tr>
@@ -72,6 +72,7 @@
                                 @foreach ($tithes as $tithe)
                                     <tr>
                                         <td>{{ $tithe->recorded_by }}</td>
+                                        <td>{{ date('D, m M Y', strtotime($tithe->updated_at)) }}</td>
                                         <td>
                                             <!--begin::User-->
                                             <div class="d-flex align-items-center">

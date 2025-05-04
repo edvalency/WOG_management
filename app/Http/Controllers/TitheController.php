@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class TitheController extends Controller
 {
@@ -27,7 +28,8 @@ class TitheController extends Controller
         $tithes = DB::table('tithes')
             ->join('members', 'members.mask', 'tithes.member_id')
             ->join('users','users.mask','tithes.recorded_by')
-            ->select('members.fullname', 'tithes.amount', 'users.name as recorded_by','tithes.created_at','tithes.id')
+            ->select('members.fullname', 'tithes.amount', 'users.name as recorded_by','tithes.created_at','tithes.id','tithes.updated_at')
+            ->orderByDesc('tithes.created_at')
             ->get();
         return view('revenue.tithe.list', compact('tithes'));
     }
@@ -61,12 +63,14 @@ class TitheController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), ['member_id' => 'required','amount'=> 'required'])->validate();
+
         $date = Carbon::parse($request->input('date'))->toFormattedDateString();
 
         DB::table('tithes')->insert([
             'recorded_by' => Auth::user()->mask,
             'member_id' => $request->member_id,
-            'created_at' => Carbon::parse($request->date)->toDateString(),
+            'created_at' => Carbon::now()->toDateTimeString(),
             'date' => $request->date,
             'amount' => $request->input('amount'),
             'updated_at' => Carbon::now()->toDateTimeString()
@@ -74,7 +78,7 @@ class TitheController extends Controller
 
         if ($request->receipt) {
             $member = Member::where('mask', $request->member_id)->first();
-            $message = "Your tithe paid on " . $date . " has been recorded.";
+            $message = "Your tithe of GHc ". $request->amount." paid on " . $date . " has been recorded.";
 
             sendText($member->contact, $message);
         }

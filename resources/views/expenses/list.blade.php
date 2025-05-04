@@ -381,9 +381,9 @@
                                         <td>{{ $expense->description }}</td>
                                         <td>{{ $expense->amount }}</td>
                                         <td class="text-end">
-                                            <a href="#" data-expense="{{ json_encode($expense) }}" id="edit_expense" class="btn btn-info btn-sm"><i class="fa fa-pen"></i>
-                                                Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
+                                            {{-- <a href="#" data-expense="{{ json_encode($expense) }}" id="edit_expense" class="btn btn-info btn-sm"><i class="fa fa-pen"></i>
+                                                Edit</a> --}}
+                                            <a href="{{ route('expense.destroy', $expense->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
                                                 Delete</a>
                                         </td>
                                     </tr>
