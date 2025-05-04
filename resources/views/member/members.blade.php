@@ -97,7 +97,7 @@
                                 <tr>
                                     <th class="min-w-150px">#</th>
                                     <th class="min-w-150px">Mem ID</th>
-                                    <th class="min-w-150px">Image</th>
+                                    <th class="min-w-200px">Image</th>
                                     <th class="min-w-150px">Name</th>
                                     <th class="min-w-150px">Department</th>
                                     <th class="min-w-90px">Phone</th>
@@ -117,17 +117,27 @@
                                             <div class="d-flex align-items-center">
                                                 <!--begin::Wrapper-->
                                                 <div class="me-5 position-relative">
-                                                    @if($member->profileImg)
+                                                    @if($member->profileImg != 'profile.jpg')
                                                     <!--begin::Avatar-->
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="img" src="{{ $member->profileImg }}" />
+                                                    <div class="symbol symbol-70px symbol-circle">
+                                                        <img alt="" src="{{ $member->profileImg }}" />
                                                     </div>
                                                     <!--end::Avatar-->
                                                     @else
                                                     <!--begin::Avatar-->
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="img" src="../../assets/media/avatars/blank.png" />
-                                                    </div>
+                                                        <!--begin::User-->
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Wrapper-->
+                                                            <div class="me-5 position-relative">
+                                                                <!--begin::Avata    r-->
+                                                                <div class="symbol symbol-70px symbol-circle">
+                                                                    <img alt="Pic" src="/assets/media/avatars/blank.png" />
+                                                                </div>
+                                                                <!--end::Avatar-->
+                                                            </div>
+                                                            <!--end::Wrapper-->
+                                                        </div>
+                                                        <!--end::User-->
                                                     <!--end::Avatar-->
                                                     @endif
                                                 </div>
