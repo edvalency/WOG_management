@@ -71,7 +71,7 @@ class TitheController extends Controller
             'recorded_by' => Auth::user()->mask,
             'member_id' => $request->member_id,
             'created_at' => Carbon::now()->toDateTimeString(),
-            'date' => $request->date,
+            'date' => Carbon::now()->toDateTimeString(),
             'amount' => $request->input('amount'),
             'updated_at' => Carbon::now()->toDateTimeString()
         ]);
