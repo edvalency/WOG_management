@@ -63,8 +63,8 @@
                                 <tr>
                                     <th class="min-w-250px">Recorded by</th>
                                     <th class="min-w-250px">Date Recorded</th>
-                                    <th class="min-w-250px">Name</th>r
-                                    <th class="min-w-90px">Amount</th>
+                                    <th class="min-w-250px">Name</th>
+                                    <th class="min-w-90px">Amount (GHC)</th>
                                     <th class="min-w-50px text-end">Actions</th>
                                 </tr>
                             </thead>
@@ -72,7 +72,7 @@
                                 @foreach ($tithes as $tithe)
                                     <tr>
                                         <td>{{ $tithe->recorded_by }}</td>
-                                        <td>{{ date('D, m M Y', strtotime($tithe->updated_at)) }}</td>
+                                        <td>{{ date('D, jS M, Y', strtotime($tithe->updated_at)) }}</td>
                                         <td>
                                             <!--begin::User-->
                                             <div class="d-flex align-items-center">
@@ -85,7 +85,7 @@
                                             </div>
                                             <!--end::User-->
                                         </td>
-                                        <td>{{ date('D, m M Y', strtotime($tithe->created_at)) }}</td>
+                                        {{-- <td>{{ date('D, m M Y', strtotime($tithe->created_at)) }}</td> --}}
                                         <td>{{ $tithe->amount }}</td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
