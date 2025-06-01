@@ -207,6 +207,16 @@
                                             </select>
                                         </div>
                                         <!--begin::Details item-->
+                                        <!--begin::Details item-->
+                                        <div class="fw-bold mt-5">Membership Status</div>
+                                        <div class="text-gray-600">
+                                            <select name="membership_type" class="form-control" id="">
+                                                <option value="">--select--</option>
+                                                <option value="Member" {{ $member->membership_type == "Member" ? 'selected' : '' }}>Member</option>
+                                                <option value="Visitor" {{ $member->membership_type == "Visitor" ? 'selected' : '' }}>Visitor</option>
+                                            </select>
+                                        </div>
+                                        <!--begin::Details item-->
                                     </div>
                                 </div>
                                 <!--end::Details content-->

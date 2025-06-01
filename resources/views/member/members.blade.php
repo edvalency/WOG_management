@@ -96,7 +96,7 @@
                             <thead class="fs-5 text-dark text-uppercase">
                                 <tr>
                                     <th class="min-w-150px">#</th>
-                                    <th class="min-w-150px">Mem ID</th>
+                                    <th class="min-w-150px">Member type</th>
                                     <th class="min-w-200px">Image</th>
                                     <th class="min-w-150px">Name</th>
                                     <th class="min-w-150px">Department</th>
@@ -110,7 +110,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <a href="#"
-                                                class="fs-7 text-dark text-hover-primary">{{ $member->membership_no }}</a>
+                                                class="fs-7 text-dark text-hover-primary">{{ $member->membership_type }}</a>
                                         </td>
                                         <td>
                                             <!--begin::User-->
