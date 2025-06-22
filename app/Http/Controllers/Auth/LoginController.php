@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -55,6 +56,11 @@ class LoginController extends Controller
         //     return back()->with('error',"Email or Password incorrect");
         // }
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $bdays = (new HomeController)->getWeekBirthdays();
+
+            Session::put('bdays', json_encode(
+                $bdays
+            ));
             recordActivity('Logged in');
             return redirect(route('home'));
         } else {

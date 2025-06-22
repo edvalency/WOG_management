@@ -57,7 +57,7 @@ function hasRole($role)
 {
     $roles = json_decode(Auth::user()->roles);
 
-    if (in_array($role, $roles) || in_array("admin",$roles)) {
+    if (in_array($role, $roles) || in_array("admin", $roles)) {
         return true;
     } else {
         return false;

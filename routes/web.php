@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('logout', 'destroy')->name('logout');
         Route::get('/home', 'main')->name('home');
+        Route::get('/home/bdays', 'getWeekBirthdays');
         Route::get('/users', 'users')->name('users');
         Route::get('/user-add', 'userAdd')->name('user.add');
         Route::post('/user-save', 'userSave')->name('user.save');

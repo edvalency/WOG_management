@@ -49,41 +49,6 @@ class HomeController extends Controller
         $welfares = ['total' => DB::table('accounts')->where('type', 'welfare')->pluck('amount')->first(), 'curr_month' => DB::table('welfares')->whereMonth('created_at', Carbon::now()->month)->sum('amount')];
         $welfare_expenses = ['total' => DB::table('welfare_expenses')->sum('amount'), 'curr_month' => DB::table('welfare_expenses')->whereMonth('created_at', Carbon::now()->month)->sum('amount')];
 
-
-        // $date = date('Y');
-        // $data = DB::table('offertories')->get();
-
-        // $months = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        // foreach ($data as $offer) {
-        //     $splt = explode("-", $offer->created_at);
-        //     if ($splt[0] == $date) {
-        //         if ($splt[1] == "01") {
-        //             $months[0] += $offer->amount;
-        //         } elseif ($splt[1] == "02") {
-        //             $months[1] += $offer->amount;
-        //         } elseif ($splt[1] == "03") {
-        //             $months[2] += $offer->amount;
-        //         } elseif ($splt[1] == "04") {
-        //             $months[3] += $offer->amount;
-        //         } elseif ($splt[1] == "05") {
-        //             $months[4] += $offer->amount;
-        //         } elseif ($splt[1] == "06") {
-        //             $months[5] += $offer->amount;
-        //         } elseif ($splt[1] == "07") {
-        //             $months[6] += $offer->amount;
-        //         } elseif ($splt[1] == "08") {
-        //             $months[7] += $offer->amount;
-        //         } elseif ($splt[1] == "09") {
-        //             $months[8] += $offer->amount;
-        //         } elseif ($splt[1] == "10") {
-        //             $months[9] += $offer->amount;
-        //         } elseif ($splt[1] == "11") {
-        //             $months[10] += $offer->amount;
-        //         } elseif ($splt[1] == "12") {
-        //             $months[11] += $offer->amount;
-        //         }
-        //     }
-        // }
         return view('dashboard', compact('members', 'revenue', 'expenses', 'welfares', 'welfare_expenses'));
     }
 
@@ -140,8 +105,6 @@ class HomeController extends Controller
 
     public function userUpdate(Request $request, $user)
     {
-        // dd($request);
-
         DB::table('users')->where('mask', $user)->update([
             'name' => $request->name,
             'username' => $request->username,
@@ -182,15 +145,12 @@ class HomeController extends Controller
 
     public function updateRoles(Request $request, $user)
     {
-        // dd($request->all());
-        // User::where('mask', $user)->first()->syncPermissions($request->permissions);
-        DB::table('user_permissions')->where('user_id',$request->user_id)->delete();
-        foreach($request->permissions as $permission){
-        DB::table('user_permissions')->insert([
-            'user_id'=> $request->user_id,
-            'permission' => $permission
-        ]);
-
+        DB::table('user_permissions')->where('user_id', $request->user_id)->delete();
+        foreach ($request->permissions as $permission) {
+            DB::table('user_permissions')->insert([
+                'user_id' => $request->user_id,
+                'permission' => $permission
+            ]);
         }
         return back()->with('success', 'Roles updated');
     }
@@ -205,6 +165,28 @@ class HomeController extends Controller
             sendText($member->contact, $message);
         }
         return true;
+    }
+
+    public function getWeekBirthdays()
+    {
+        $from = Carbon::parse('sunday');
+        $to = Carbon::parse('this saturday');
+
+        // Get all members
+        $members = DB::table('members')->get(['fullname', 'contact', 'dob']);
+        $birthdayMembers = [];
+        foreach ($members as $member) {
+            $dob = Carbon::parse($member->dob);
+            // Create birthday for current year
+            $birthdayThisYear = $dob->copy()->year($from->year);
+
+            // Check if birthday falls within the range
+            if (($birthdayThisYear->between($from, $to))) {
+                $birthdayMembers[] = $member;
+            }
+        }
+
+        return $birthdayMembers;
     }
 
     public function destroy()
