@@ -173,7 +173,7 @@ class HomeController extends Controller
         $to = Carbon::parse('this saturday');
 
         // Get all members
-        $members = DB::table('members')->get(['fullname', 'contact', 'dob']);
+        $members = DB::table('members')->whereNotNull('dob')->get(['fullname', 'contact', 'dob']);
         $birthdayMembers = [];
         foreach ($members as $member) {
             $dob = Carbon::parse($member->dob);
