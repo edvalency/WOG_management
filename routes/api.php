@@ -24,5 +24,6 @@ Route::prefix('v1')->group(function () {
     });
 });
 
+Route::get('check-birthdays',[HomeController::class,'getTodaysBirthday']);
 
 Route::get('ping', [HomeController::class, 'mongodb']);
