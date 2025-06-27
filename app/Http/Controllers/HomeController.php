@@ -169,8 +169,8 @@ class HomeController extends Controller
 
     public function getWeekBirthdays()
     {
-        $from = Carbon::parse('sunday');
-        $to = Carbon::parse('this saturday');
+        $from = Carbon::now()->startOfWeek(Carbon::SUNDAY);
+        $to = Carbon::now()->endOfWeek(Carbon::SATURDAY);
 
         // Get all members
         $members = DB::table('members')->whereNotNull('dob')->get(['fullname', 'contact', 'dob']);
