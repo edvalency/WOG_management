@@ -82,11 +82,17 @@
                                     href="{{ route('tithe.show') }}"><span class="menu-bullet"><span
                                             class="bullet bullet-dot"></span></span><span
                                         class="menu-title">Tithe</span></a><!--end:Menu link--></div>
-                            <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('expenses')"
-                                    href="{{ route('expense.all') }}"><span class="menu-icon"><i
-                                            class="bullet bullet-dot fs-1"></i></span><span
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link @yield('expenses')"
+                                    href="{{ route('expense.all') }}"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
                                         class="menu-title">Expenses</span></a><!--end:Menu link--></div>
+                            <!--begin:Menu item-->
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
+                                href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
+                                        class="bullet bullet-dot"></span></span><span
+                                    class="menu-title">Report</span></a><!--end:Menu link--></div>
                         </div><!--end:Menu sub-->
+
                     </div><!--end:Menu item-->
                     {{-- <div class="menu-item mb-3"><!--begin:Menu link--><a class="menu-link @yield('revenue')"
                             href="{{ route('revenue.show') }}"><span class="menu-icon"><i
@@ -118,6 +124,11 @@
                                     href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
                                             class="bullet bullet-dot"></span></span><span
                                         class="menu-title">Expenses</span></a><!--end:Menu link--></div>
+                            <!--begin:Menu item-->
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
+                                href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
+                                        class="bullet bullet-dot"></span></span><span
+                                    class="menu-title">Report</span></a><!--end:Menu link--></div>
 
                         </div><!--end:Menu sub-->
                     </div><!--end:Menu item-->

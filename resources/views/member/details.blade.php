@@ -395,7 +395,7 @@
                                         <div class="d-flex flex-wrap gap-5 mb-3">
                                             <!--begin::Input group-->
                                             <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Profession</label>
+                                                <label class="required form-label">Profession/Occupation</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="profession" class="form-control mb-2"
@@ -406,35 +406,18 @@
                                             <!--begin::Input group-->
                                             <div class="fv-row w-100 flex-md-root">
                                                 <!--begin::Label-->
-                                                <label class="required form-label">Occupation</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input name="present_occupation" class="form-control mb-2" id=""
-                                                    value="{{ $member->present_occupation }}" />
-
-                                                <!--end::Input-->
-
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
-                                        <!--end:Tax-->
-                                        <!--begin::Tax-->
-                                        <div class="d-flex flex-wrap gap-5">
-                                            <!--begin::Input group-->
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Name</label>
+                                                <label class="required form-label">Company</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="name_of_company" class="form-control mb-2"
                                                     placeholder="Company's name" value="{{ $member->name_of_company }}" />
+
                                                 <!--end::Input-->
+
                                             </div>
                                             <!--end::Input group-->
-
                                         </div>
                                         <!--end:Tax-->
-
-
                                     </div>
                                     <!--end::Card body-->
                                 </div>
