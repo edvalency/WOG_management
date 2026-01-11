@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('members')
+@section('tachmonites')
     active
 @endsection
 @section('search')
@@ -98,7 +98,7 @@
                                     <th class="min-w-150px">#</th>
                                     <th class="min-w-200px">Image</th>
                                     <th class="min-w-150px">Name</th>
-                                    <th class="min-w-150px">Department</th>
+                                    {{-- <th class="min-w-150px">Department</th> --}}
                                     <th class="min-w-90px">Phone</th>
                                     <th class="min-w-50px text-end">Details</th>
                                 </tr>
@@ -112,28 +112,29 @@
                                             <div class="d-flex align-items-center">
                                                 <!--begin::Wrapper-->
                                                 <div class="me-5 position-relative">
-                                                    @if($member->profileImg != 'profile.jpg' || $member->profileImg != null)
-                                                    <!--begin::Avatar-->
-                                                    <div class="symbol symbol-70px symbol-circle">
-                                                        <img alt="" src="{{ $member->profileImg }}" />
-                                                    </div>
-                                                    <!--end::Avatar-->
+                                                    @if ($member->profileImg != 'profile.jpg' || $member->profileImg != null)
+                                                        <!--begin::Avatar-->
+                                                        <div class="symbol symbol-70px symbol-circle">
+                                                            <img alt="" src="{{ $member->profileImg }}" />
+                                                        </div>
+                                                        <!--end::Avatar-->
                                                     @else
-                                                    <!--begin::Avatar-->
+                                                        <!--begin::Avatar-->
                                                         <!--begin::User-->
                                                         <div class="d-flex align-items-center">
                                                             <!--begin::Wrapper-->
                                                             <div class="me-5 position-relative">
                                                                 <!--begin::Avata    r-->
                                                                 <div class="symbol symbol-70px symbol-circle">
-                                                                    <img alt="Pic" src="/assets/media/avatars/blank.png" />
+                                                                    <img alt="Pic"
+                                                                        src="/assets/media/avatars/blank.png" />
                                                                 </div>
                                                                 <!--end::Avatar-->
                                                             </div>
                                                             <!--end::Wrapper-->
                                                         </div>
                                                         <!--end::User-->
-                                                    <!--end::Avatar-->
+                                                        <!--end::Avatar-->
                                                     @endif
                                                 </div>
                                                 <!--end::Wrapper-->
@@ -141,7 +142,7 @@
                                             <!--end::User-->
                                         </td>
                                         <td>{{ $member->fullname }}</td>
-                                        <td>{{ $member->dept }}</td>
+                                        {{-- <td>{{ $member->dept }}</td> --}}
                                         <td>{{ $member->contact }}</td>
                                         <td class="text-end">
                                             <a href="#"
@@ -182,5 +183,5 @@
         <!--end::Content container-->
     </div>
     <!--end::Content-->
-    @include('includes.modals.add-member',['type'=> 'member'])
+    @include('includes.modals.add-member', ['type' => 'tachmonite'])
 @endsection

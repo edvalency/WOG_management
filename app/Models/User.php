@@ -24,6 +24,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'mask',
+        'phone',
+        'roles',
+        'password'
     ];
 
     /**
@@ -49,6 +53,5 @@ class User extends Authenticatable
     public function permissions(): HasMany
     {
         return $this->hasMany(UserPermission::class);
-
     }
 }
