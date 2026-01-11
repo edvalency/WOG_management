@@ -23,14 +23,21 @@
                     <!--begin::Table container-->
                     <div class="col-lg-12 col-sm-12 card card-body">
                         <h3>Edit User Details</h3>
-                        <form action="{{ route('user.permissions.update', $userdetails->mask) }}" method="post">
+                        <form action="{{ route('user.edit', $userdetails->mask) }}" method="post">
                             @csrf
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" class="form-control" id=""
                                     value="{{ $userdetails->name }}">
                             </div>
-                            <input type="hidden" name="user_id" value="{{ $userdetails->mask }}">
+                              <div class="form-group mb-3">
+                                <label for="name">Email</label>
+                                <input type="text" name="email" class="form-control" id="" value="{{ $userdetails->email }}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="name">Phone</label>
+                                <input type="text" name="phone" class="form-control" id="" value="{{ $userdetails->phone }}">
+                            </div>
                             <div class="fv-row mt-4">
                                 <!--begin::Label-->
                                 <label class="fs-5 fw-bold form-label mb-2">Role Permissions</label>

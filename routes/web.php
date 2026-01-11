@@ -19,6 +19,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\GameChangerDueController;
+use App\Http\Controllers\TachmoniteController;
 use App\Http\Controllers\VisitorsController;
 use PhpParser\Lexer\TokenEmulator\ReverseEmulator;
 
@@ -37,7 +38,7 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/birthdays', [HomeController::class,'getTodaysBirthday']);
+Route::get('/birthdays', [HomeController::class, 'getTodaysBirthday']);
 
 Auth::routes();
 
@@ -203,7 +204,15 @@ Route::middleware('auth')->group(function () {
     Route::post('gc_newproject', [ContributionController::class, 'gccontribproject'])->name('gccontrib.store');
     Route::get('gc_project/{proj}', [ContributionController::class, 'gcsingleproject'])->name('gcproject.show');
     Route::post('gc_single_project/', [ContributionController::class, 'gc_contribution'])->name('gc_contribution');
+
+    Route::prefix('tachmonite')->group(function () {
+        Route::get('index', [TachmoniteController::class, 'index']);
+        Route::get('attendance', [TachmoniteController::class, 'attendance'])->name('tachmonite.attendance');
+        Route::get('index', [TachmoniteController::class, 'members'])->name('tachmonite.members');
+    });
 });
+
+
 
 Route::get('view', function () {
     (new WelfareController)->welfarePyChart();

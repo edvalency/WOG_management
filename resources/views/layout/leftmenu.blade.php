@@ -88,9 +88,9 @@
                                         class="menu-title">Expenses</span></a><!--end:Menu link--></div>
                             <!--begin:Menu item-->
                             <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Report</span></a><!--end:Menu link--></div>
+                                    href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Report</span></a><!--end:Menu link--></div>
                         </div><!--end:Menu sub-->
 
                     </div><!--end:Menu item-->
@@ -126,9 +126,36 @@
                                         class="menu-title">Expenses</span></a><!--end:Menu link--></div>
                             <!--begin:Menu item-->
                             <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Report</span></a><!--end:Menu link--></div>
+                                    href="{{ route('welfare.expenses') }}"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Report</span></a><!--end:Menu link--></div>
+
+                        </div><!--end:Menu sub-->
+                    </div><!--end:Menu item-->
+                @endif
+                @if (hasPermission(Auth::user()->mask, 'tachmonite.view'))
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <!--begin:Menu link--><span class="menu-link @yield('tachmonites')"><span class="menu-icon"><i
+                                    class="ki-duotone ki-colors-square fs-1"><span class="path1"></span><span
+                                        class="path2"></span><span class="path3"></span><span
+                                        class="path4"></span></i></span><span
+                                class="menu-title">Tachmonites</span><span
+                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
+                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link" href="#"><span
+                                        class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Overview</span></a><!--end:Menu link--></div>
+
+                            <div class="menu-item"><a class="menu-link"
+                                    href="{{ route('tachmonite.members') }}"><span class="menu-bullet"><span
+                                            class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Members</span></a></div>
+
+                            <div class="menu-item"><a class="menu-link" {{-- {{ route('tachmonite.attendance') }} --}} href="#"><span
+                                        class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
+                                        class="menu-title">Attendance</span></a></div>
+
+
 
                         </div><!--end:Menu sub-->
                     </div><!--end:Menu item-->

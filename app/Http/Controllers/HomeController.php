@@ -54,7 +54,17 @@ class HomeController extends Controller
 
     public function userAdd()
     {
-        return view('users.add');
+        $roles = Role::all();
+
+        $all_roles = [];
+
+        foreach ($roles as  $role) {
+            $rnp = ['name' => $role->name, 'permissions' => $role->permissions];
+            array_push($all_roles, $rnp);
+        }
+
+        // $user_permissions = $userdetails->permissions;
+        return view('users.add', compact('all_roles'));
     }
 
     public function userSave(Request $request)
@@ -62,7 +72,7 @@ class HomeController extends Controller
         Validator::make($request->all(), ['phone' => 'required|unique:users', 'email' => 'required|unique:users', 'name' => 'required']);
 
         $password = Str::random(6);
-        DB::table('users')->insert([
+        $user = User::create([
             'name' => $request->name,
             'mask' => Str::orderedUuid(),
             'email' => $request->email,
@@ -70,6 +80,8 @@ class HomeController extends Controller
             'roles' => json_encode($request->position),
             'password' => Hash::make($password)
         ]);
+
+        $this->updateRoles($request, $user);
 
         $message = 'Hello ' . $request->name . ', Your account has been created on ' . env("APP_NAME") . '. Access the platform via ' . env('APP_URL') . ' with the email: '
             . $request->email . ' and password: ' . $password . '.';
@@ -105,11 +117,10 @@ class HomeController extends Controller
 
     public function userUpdate(Request $request, $user)
     {
-        DB::table('users')->where('mask', $user)->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'position' => $request->position
-        ]);
+        User::where('mask', $user)->update($request->except(['_token', 'permissions']));
+
+        $usr = User::where('mask', $user)->first();
+        $this->updateRoles($request, $usr);
 
         return redirect(route('users'))->with('success', "User details updated");
     }
@@ -145,10 +156,10 @@ class HomeController extends Controller
 
     public function updateRoles(Request $request, $user)
     {
-        DB::table('user_permissions')->where('user_id', $request->user_id)->delete();
+        DB::table('user_permissions')->where('user_id', $user->mask)->delete();
         foreach ($request->permissions as $permission) {
             DB::table('user_permissions')->insert([
-                'user_id' => $request->user_id,
+                'user_id' => $user->mask,
                 'permission' => $permission
             ]);
         }

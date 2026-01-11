@@ -98,7 +98,8 @@ class MemberController extends Controller
     {
         DB::table('members')->insert([
             'fullname' => $request->fullname,
-            'contact' => $request->phone,
+            'contact' => $request->phone ?? '',
+            'dept'=> $request->type,
             'mask' => Str::orderedUuid(),
             'membership_no' => rand(000000, 999999),
             'created_at' => Carbon::now()->toDateTimeString()
@@ -113,7 +114,7 @@ class MemberController extends Controller
         $member = DB::table('members')
             ->where('mask', $mask)
             ->first();
-            
+
         return view('member.details', compact('member'));
     }
 
