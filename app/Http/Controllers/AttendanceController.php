@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AttendanceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $logs = [];
-        foreach (getSundays() as $sunday) {
+        $member_logs = $visitor_logs = [];
+        foreach (getServiceDays($request->search) as $sunday) {
             $present = DB::table('attendance_logs')->whereDate('created_at', $sunday);
             $mlog = $present->where('attendee_type', 'members')->count();
 
@@ -70,7 +71,7 @@ class AttendanceController extends Controller
 
         $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at', Carbon::parse($date)->toDateString())
             ->join('members', 'members.membership_no', 'attendance_logs.attendee_id')
-            ->select('members.fullname', 'members.contact', 'members.profileImg','attendance_logs.id')->get();
+            ->select('members.fullname', 'members.contact', 'members.profileImg', 'attendance_logs.id')->get();
 
         return view('attendance.members', compact('present'));
     }
@@ -81,7 +82,7 @@ class AttendanceController extends Controller
         $present = DB::table('attendance_logs')->whereDate('attendance_logs.created_at', Carbon::parse($date)->toDateString())
             ->join('visitors', 'visitors.mask', 'attendance_logs.attendee_id')
             ->select('visitors.fullname', 'visitors.contact', 'visitors.gender')->get();
-            recordActivity('Viewed visitors attendance logs');
+        recordActivity('Viewed visitors attendance logs');
 
         return view('attendance.visitors', compact('present'));
     }

@@ -29,6 +29,7 @@
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-column flex-grow-1 pe-8">
                             <!--begin::Stats-->
+
                             {{-- <div class="d-flex flex-wrap">
                                 <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
@@ -82,6 +83,21 @@
                                 <!--end::Stat-->
                             </div> --}}
                             <!--end::Stats-->
+                            <form action="{{ route('attendance') }}" method="get">
+                                <div class="d-flex justify-content-start align-items-center flex-wrap mb-2 mt-4">
+                                    <div class="form-group mt-3 col-sm-3">
+                                        <label for="" class="font-18">Select service day</label>
+                                        <select name="search" id="" class="form-control" required>
+                                            <option value="">select</option>
+                                            <option value="1">Sunday</option>
+                                            <option value="4">Wednesday</option>
+                                            <option value="6">Friday</option>
+                                        </select>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm mt-5 ms-2">Filter</button>
+                                </div>
+                            </form>
                             <div class="d-flex justify-content-end align-items-end flex-wrap mb-2 mt-4">
                                 <div class="d-flex justify-content-end align-items-end flex-wrap mb-2"> <a
                                         data-bs-target="#add_member_modal"

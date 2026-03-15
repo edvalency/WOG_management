@@ -46,6 +46,20 @@ function getSundays()
     return array_reverse($sundays);
 }
 
+function getServiceDays($day = 1)
+{
+    $days = DB::table('attendance_logs')
+        ->select(DB::raw('DISTINCT DATE(created_at) as date'))
+        ->whereRaw('DAYOFWEEK(DATE(created_at)) = ' . $day)
+        ->orderByDESC('date')
+        ->pluck('date')
+        ->map(function ($item) {
+            return date('D, jS F Y', strtotime(Carbon::parse($item)->toDateString()));
+        });
+
+    return $days;
+}
+
 
 
 function recordActivity($activity)

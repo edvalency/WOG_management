@@ -45,7 +45,7 @@
                                         <!--begin::Input-->
                                         <select name="type" id="rev_type" class="form-control">
                                             <option value="">--select--</option>
-                                            <option value="Offering">Offering</option>
+                                            <option value="Offering">Sunday Offering</option>
                                             <option value="Missions Offering">Missions Offering</option>
                                             <option value="other">Other</option>
                                         </select>
