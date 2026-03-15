@@ -14,7 +14,8 @@ class AttendanceController extends Controller
         $logs = [];
         $member_logs = $visitor_logs = [];
         foreach (getServiceDays($request->search ?? "1") as $sunday) {
-            $present = DB::table('attendance_logs')->whereDate('created_at', $sunday);
+            $service_date = Carbon::parse($sunday)->toDateString();
+            $present = DB::table('attendance_logs')->whereDate('created_at', $service_date);
             $mlog = $present->where('attendee_type', 'members')->count();
 
             $members = $present->where('attendee_type', 'members')->pluck('attendee_id')->toArray();
@@ -26,8 +27,8 @@ class AttendanceController extends Controller
                 ->first();
             $member_logs[$sunday] = ['total' => $mlog, 'gender' => $m_genders];
 
-            $vlog = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type', 'visitors')->count();
-            $visitors = DB::table('attendance_logs')->whereDate('created_at', $sunday)->where('attendee_type', 'visitors')->pluck('attendee_id')->toArray();
+            $vlog = DB::table('attendance_logs')->whereDate('created_at', $service_date)->where('attendee_type', 'visitors')->count();
+            $visitors = DB::table('attendance_logs')->whereDate('created_at', $service_date)->where('attendee_type', 'visitors')->pluck('attendee_id')->toArray();
 
             $v_genders = DB::table('visitors')->whereIn('mask', $visitors)
                 ->select(
@@ -36,7 +37,7 @@ class AttendanceController extends Controller
                 )
                 ->first();
 
-            $visitor_logs[$sunday] = ['total' => $vlog, 'gender' => $v_genders];
+            $visitor_logs[$service_date] = ['total' => $vlog, 'gender' => $v_genders];
         }
         return view('attendance.index', compact('member_logs', 'visitor_logs'));
     }
