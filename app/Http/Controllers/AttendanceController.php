@@ -13,7 +13,7 @@ class AttendanceController extends Controller
     {
         $logs = [];
         $member_logs = $visitor_logs = [];
-        foreach (getServiceDays($request->search) as $sunday) {
+        foreach (getServiceDays($request->search ?? "1") as $sunday) {
             $present = DB::table('attendance_logs')->whereDate('created_at', $sunday);
             $mlog = $present->where('attendee_type', 'members')->count();
 
