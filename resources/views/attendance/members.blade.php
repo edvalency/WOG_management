@@ -39,7 +39,7 @@
                 <div class="card-header mt-2">
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
-                        <h3 class="fw-bold mb-1">Members present on </h3>
+                        <h3 class="fw-bold mb-1">Members present on {{$date}}</h3>
                         {{-- <div class="fs-6 text-gray-500">Total $260,300 sepnt so far</div> --}}
                     </div>
                     <!--begin::Card title-->

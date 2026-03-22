@@ -74,7 +74,7 @@ class AttendanceController extends Controller
             ->join('members', 'members.membership_no', 'attendance_logs.attendee_id')
             ->select('members.fullname', 'members.contact', 'members.profileImg', 'attendance_logs.id')->get();
 
-        return view('attendance.members', compact('present'));
+        return view('attendance.members', compact('present','date'));
     }
 
     public function visitors_present($date)
