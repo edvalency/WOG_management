@@ -12,7 +12,7 @@ function sendText($receiver, $message, $sender_name = "WOGWCI")
 
         $sender = $sender_name;
         $client_id = 'recordscloud0@gmail.com';
-        $client_secret = 'Holygrail3000@';
+        $client_secret = "-bf.'U^D)wHj9p9";
         $client_user = $client_id;
         $client_password = $client_secret;
 
