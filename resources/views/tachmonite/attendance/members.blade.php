@@ -32,9 +32,9 @@
             <!--begin::Table-->
             <div class="card card-flush mt-6 mt-xl-9">
                 <div class="d-flex justify-content-end align-items-end flex-wrap mb-2 mt-4"> <a
-                    href="{{ route('attendance.record') }}"
-                    class="btn btn-sm btn-bg-primary text-white btn-active-color-primary me-3">Record attendance</a>
-            </div>
+                        href="{{ route('attendance.record') }}"
+                        class="btn btn-sm btn-bg-primary text-white btn-active-color-primary me-3">Record attendance</a>
+                </div>
                 <!--begin::Card header-->
                 <div class="card-header mt-2">
                     <!--begin::Card title-->
@@ -108,14 +108,16 @@
                                         <td>
                                             <!--begin::User-->
                                             <div class="d-flex align-items-center">
+
                                                 <!--begin::Wrapper-->
                                                 <div class="me-5 position-relative">
-                                                    <!--begin::Avatar-->
-                                                    <div class="symbol symbol-55px symbol-circle">
-                                                        <img alt="Pic" src="../../assets/media/avatars/300-6.jpg" />
-                                                    </div>
-                                                    <!--end::Avatar-->
-
+                                                    @if ($member->profileImg != 'profile.jpg' || $member->profileImg != null)
+                                                        <!--begin::Avatar-->
+                                                        <div class="symbol symbol-70px symbol-circle">
+                                                            <img alt="" src="{{ $member->profileImg }}" />
+                                                        </div>
+                                                        <!--end::Avatar-->
+                                                    @else
                                                 </div>
                                                 <!--end::Wrapper-->
                                             </div>
